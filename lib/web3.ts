@@ -9,3 +9,27 @@ export const contractABI = ABI.abi;
 
 // Grab ethereum object
 export const getEthereumObject = () => window.ethereum;
+
+export const signInMessageVerification = async () => {
+  try {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      //   Message
+      const message = `entered the site at: ${Date.now()}`;
+
+      //
+      let rawSig = await signer.signMessage(message);
+
+      return rawSig;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

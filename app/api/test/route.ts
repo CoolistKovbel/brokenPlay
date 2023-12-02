@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile } from 'fs/promises'
+import { ethers } from "ethers";
+import { signInMessageVerification } from "../../../lib/web3"
+
+declare global {
+    interface Window {
+      ethereum: any
+    }
+  }
 
 
 export async function GET() {
@@ -10,7 +18,20 @@ export async function GET() {
     }
 
 
-    return NextResponse.json(data, {status: 200})
+    try {
+
+        const x = await signInMessageVerification()
+
+        return NextResponse.json(`Signed Transaction, ${x}`,{ status: 200})
+
+        
+        
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json("Something went wrong", {status: 500})
+    }
+
+
 }
 
 
