@@ -1,14 +1,51 @@
 "use client";
 
-import React from "react";
+import * as z from "zod";
+import React, { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { SignUpFormSchema } from "./constant";
 
 function SignUpForm() {
-  const form = useForm();
+  const [eImage, setImage] = useState("")
+
+
+  const form = useForm<z.infer<typeof SignUpFormSchema>>({
+    resolver: zodResolver(SignUpFormSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      eddress: "",
+      imageUrl: "",
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof SignUpFormSchema>) => {
+    const dd = new FormData();
+    try {
+      dd.set("username", values.username);
+      dd.set("email", values.email);
+      dd.set("password", values.password);
+      dd.set("eddress", values.eddress);
+      dd.set("imageUrl", eImage);
+
+      console.log(dd, 'Where is the data');
+
+      const res = await fetch("/api/test", {
+        method: "POST",
+        body: dd,
+      });
+
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-[#111] h-full flex items-center align-center justify-center">
@@ -38,7 +75,11 @@ function SignUpForm() {
 
           {/* Signup Form */}
           <Form {...form}>
-            <form className="bg-[#222] p-4 w-[250px] rounded-lg">
+            <form
+              className="bg-[#222] p-4 w-[250px] rounded-lg"
+              onSubmit={form.handleSubmit(onSubmit)}
+            >
+              {/* Form Content */}
               <div className="p-2 flex flex-col gap-2">
                 <FormField
                   control={form.control}
@@ -50,6 +91,7 @@ function SignUpForm() {
                         <Input
                           placeholder="enter a username"
                           className="bg-black text-[#16a34a] text-sm"
+                          {...field}
                         />
                       </FormControl>
                     </FormItem>
@@ -67,6 +109,7 @@ function SignUpForm() {
                           type="email"
                           placeholder="enter your email"
                           className="bg-black text-[#16a34a] text-sm"
+                          {...field}
                         />
                       </FormControl>
                     </FormItem>
@@ -84,6 +127,7 @@ function SignUpForm() {
                           type="password"
                           placeholder="enter your password"
                           className="bg-black text-[#16a34a] text-sm"
+                          {...field}
                         />
                       </FormControl>
                     </FormItem>
@@ -100,6 +144,7 @@ function SignUpForm() {
                         <Input
                           placeholder="enter 0xAddress"
                           className="bg-black text-[#16a34a] text-sm"
+                          {...field}
                         />
                       </FormControl>
                     </FormItem>
@@ -116,6 +161,8 @@ function SignUpForm() {
                         <Input
                           type="file"
                           className="bg-black text-[#16a34a] text-sm"
+                          {...field}
+                          onChange={(e) => setImage(e.target.files?.[0])}
                         />
                       </FormControl>
                     </FormItem>
