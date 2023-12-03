@@ -100,7 +100,7 @@ function SignInForm() {
                 />
 
                 <Button className="bg-black text-[#16a34a] text-1xl uppercase hover:text-[yellow] mt-5">
-                  sign up
+                  sign in
                 </Button>
               </div>
             </form>

@@ -6,10 +6,10 @@ import { signInMessageVerification, getEthereumAccount, getUserNFTProfileImage }
 import {hash} from 'bcrypt'
 
 declare global {
-    interface Window {
-      ethereum: any
-    }
+  interface Window {
+    ethereum: any
   }
+}
 
 
 export async function GET() {
@@ -48,26 +48,27 @@ export async function POST(req: NextRequest){
     const email = body.get("email")?.toString()
     const password = body.get("password")?.toString()
     const eddress = body.get('eddress')?.toString()
-    let imageUrl: File | null = body.get('imageUrl') as unknown as File
+    let imageUrl = body.get('imageUrl') 
+
+    console.log(imageUrl)
 
     if (!imageUrl) {
+
         const x = await getUserNFTProfileImage();
         imageUrl = x ? x : null;
+
       } else {
-        if (imageUrl instanceof Blob || imageUrl instanceof File) {
-          const bytes = await imageUrl.arrayBuffer();
-          const buffer = Buffer.from(bytes);
-      
-          const path = `${process.cwd()}/public/${imageUrl.name}`;
-          await writeFile(path, buffer);
-      
-          imageUrl = path;
-      
-          console.log(`open ${path} to see the uploaded file`);
-        } else {
-          // Handle the case where imageUrl is not a Blob or File
-          console.error('imageUrl is not a Blob or File');
-        }
+        const bytes = await imageUrl.arrayBuffer();
+        console.log(bytes)
+        const buffer = Buffer.from(bytes);
+        console.log(buffer)
+    
+        const path = `${process.cwd()}/public/${imageUrl.name}`;
+        await writeFile(path, buffer);
+    
+        imageUrl = path;
+    
+        console.log(`open ${path} to see the uploaded file`);
       }
       
 
@@ -87,15 +88,14 @@ export async function POST(req: NextRequest){
             email,
             password: hashedPass,
             eddress,
-            imageUrl
+            image: imageUrl
         }
     
   
         const newUser = await prisma.profile.create({
             data: daBlock
         })
-    
-        console.log(daBlock)
+  
 
         return NextResponse.json(newUser, {status: 200})
     } catch (error) {

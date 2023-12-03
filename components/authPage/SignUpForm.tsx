@@ -178,7 +178,7 @@ function SignUpForm() {
                           type="file"
                           className="bg-black text-[#16a34a] text-sm"
                           {...field}
-                          // onChange={(e) => setImage(e.target.files?.[0])}
+                          onChange={(e) => setImage(e.target.files?.[0])}
                         />
                       </FormControl>
                     </FormItem>
