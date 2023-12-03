@@ -54,8 +54,8 @@ export async function POST(req: NextRequest){
 
     if (!imageUrl) {
 
-        const x = await getUserNFTProfileImage();
-        imageUrl = x ? x : null;
+        console.log("mint a nft")
+        imageUrl = null
 
       } else {
         const bytes = await imageUrl.arrayBuffer();

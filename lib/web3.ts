@@ -91,9 +91,12 @@ export async function getUserNFTProfileImage() {
 
     const tokenMetaday = await fetch(randomTokenMetaData).then(res => res.json())
 
-    console.log(tokenMetaday)
+    if(tokenMetaday){
+      return tokenMetaday.image || tokenMetaday 
+    } else {
+      return null
+    }
 
-    return tokenMetaday.image || tokenMetaday || null
 
     
   } catch (error) {

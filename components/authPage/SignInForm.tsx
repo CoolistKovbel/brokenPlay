@@ -13,8 +13,10 @@ import { signIn } from "next-auth/react";
 import { SignInFormSchema } from "./constant";
 
 import { getEthereumAccount } from "../../lib/web3";
+import { useRouter } from "next/navigation";
 
 function SignInForm() {
+  const router = useRouter()
   const [eAdress, setEaddres] = useState("");
 
   const form = useForm<z.infer<typeof SignInFormSchema>>({
@@ -31,7 +33,10 @@ function SignInForm() {
 
       const res = await signIn("credentials", { values });
 
-      console.log(res);
+      if(res){
+        router.push("/")
+      }
+
     } catch (error) {
       console.log(error);
     }
