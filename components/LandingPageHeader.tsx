@@ -34,7 +34,7 @@ function LandingPageHeader() {
         ) : (
           <div className='w-full flex items-center justify-between'>
             <nav className='flex items-center justify-between w-full mr-2'>
-              <Link href="/mint" className='bg-slate-500 text-white p-1 font-bold rounded-md'>Mint</Link>
+              <Link href="/#mint" className='bg-slate-500 text-white p-1 font-bold rounded-md'>Mint</Link>
               <Link href="/about" className='bg-slate-500 text-white p-1 font-bold rounded-md'>About</Link>
               <Link href="/moew" className='bg-slate-500 text-white p-1 font-bold rounded-md'>Announce</Link>
             </nav>

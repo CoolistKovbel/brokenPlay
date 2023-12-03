@@ -1,11 +1,8 @@
-"use client";
-
-
 import { signInMessageVerification } from "../../lib/web3";
 import LandingPageHeader from "@/components/LandingPageHeader";
 import LandingHero from "@/components/LandingHero";
 import LandingFeatures from "@/components/LandingFeatures";
-
+import MintingFeature from "@/components/MintingFeature";
 
 export default function Home() {
   const handleMessageSig = async () => {
@@ -23,6 +20,10 @@ export default function Home() {
       {/* Features */}
       <LandingFeatures />
 
+      {/* Minting sectoin */}
+      <MintingFeature />
+
+      
     </main>
   );
 }
