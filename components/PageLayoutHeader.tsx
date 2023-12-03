@@ -10,19 +10,19 @@ function PageLayoutHeader() {
 
       <nav className="w-[200px] flex items-center justify-between ">
         <a
-          href="#"
+          href="/#mint"
           className="bg-black p-2 text-[yellow] hover:bg-[yellow] hover:text-black bg-[rounded-lg font-bold text-sm"
         >
           Mint
         </a>
         <a
-          href="#"
+          href="/moew"
           className="bg-black p-2 text-[yellow] hover:bg-[yellow] hover:text-black bg-[rounded-lg font-bold text-sm"
         >
           Message
         </a>
         <a
-          href="#"
+          href="/pur"
           className="bg-black p-2 text-[yellow] hover:bg-[yellow] hover:text-black bg-[rounded-lg font-bold text-sm"
         >
           group

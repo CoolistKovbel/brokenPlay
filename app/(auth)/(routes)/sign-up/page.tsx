@@ -4,7 +4,7 @@ import React from 'react'
 function SignUpPage
 () {
   return (
-    <div>
+    <div className='w-full h-full'>
         <SignUpForm />
     </div>
   )

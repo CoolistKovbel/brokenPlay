@@ -62,14 +62,16 @@ function SignUpForm() {
 
   return (
     <div className="bg-[#111] h-full flex items-center align-center justify-center">
-      <div className="p-10 h-[720px] w-full flex flex-col items-center justify-between">
-        <h2 className="text-2xl font-bold">
+
+      <div className="p-10 h-full w-full flex flex-col items-center justify-between">
+
+        <h2 className="text-5xl font-bold ">
           <Link href="/">MysticMurko</Link>
         </h2>
 
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full flex-col md:flex-row max-w-5xl">
           {/* Announce content */}
-          <div className="max-w-[500px] bg-[#222] p-4 rounded-lg">
+          <div className="max-w-[500px] bg-[#222] p-4 rounded-lg mb-10">
             <h3 className="text-4xl font-bold mb-4">Connect Now</h3>
 
             <div className="text-sm">
@@ -197,7 +199,10 @@ function SignUpForm() {
             Sign In
           </Link>
         </p>
+
       </div>
+
+
     </div>
   );
 }

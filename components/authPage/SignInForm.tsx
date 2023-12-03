@@ -48,16 +48,18 @@ function SignInForm() {
 
   return (
     <div className="bg-[#111] h-full flex items-center align-center justify-center">
-      <div className="p-10 h-[720px] w-full flex flex-col items-center justify-between">
-        <h2 className="text-2xl font-bold">
+
+      <div className="p-10 h-full w-full flex flex-col items-center justify-between">
+
+        <h2 className="text-4xl font-bold">
           <Link href="/">MysticMurko</Link>
         </h2>
 
-        <div className="flex items-center justify-between w-[80%] m-auto">
+        <div className="flex items-center justify-between w-[80%] m-auto flex-col md:flex-row">
           {/* Signup Form */}
           <Form {...form}>
             <form
-              className="bg-[#222] p-4 w-[250px] rounded-lg"
+              className="bg-[#222] p-4 w-[250px] rounded-lg mb-10"
               onSubmit={form.handleSubmit(onSubmit)}
             >
               <div className="p-2 flex flex-col gap-2">
@@ -117,6 +119,7 @@ function SignInForm() {
           </Link>
         </p>
       </div>
+      
     </div>
   );
 }

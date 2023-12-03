@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
 function LandingPageHeader() {
-    const account = true
+    const account = false
   return (
     <header className='flex items-center justify-between bg-[#122] p-2'>
         
@@ -39,7 +39,7 @@ function LandingPageHeader() {
               <Link href="/moew" className='bg-slate-500 text-white p-1 font-bold rounded-md'>Announce</Link>
             </nav>
 
-            <Button>Connect</Button>
+            <Button onClick={() => window.location.href = "/sign-in"}>Connect</Button>
           </div>
         )
       }
