@@ -13,13 +13,13 @@ function Pur() {
     <div className="w-full h-full flex items-center justify-center">
       <div className="bg-[#222] w-full h-full flex items-center">
         {/* Side Bar */}
-        <div className="bg-[#111] h-full">
+        <div className="bg-[#111] h-full w-[40%] flex items-center justify-between flex-col">
           {/* image */}
-          <div className="relative w-[100px] h-[100px]">
+          <div className="relative w-[200px] h-[200px] m-auto">
             <Image src="/DarkHorsev12-test.png" alt="random iamge" fill />
           </div>
           {/* Groups */}
-          <div>
+          <div className="bg-[#222] p-2 text-center">
 
             <div>
               <h2>Group #001</h2>
