@@ -1,7 +1,7 @@
 "use client";
 
 import * as z from "zod";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { useForm } from "react-hook-form";
@@ -10,9 +10,11 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { SignUpFormSchema } from "./constant";
 
-function SignUpForm() {
-  const [eImage, setImage] = useState("")
+import { getEthereumAccount } from "../../lib/web3";
 
+function SignUpForm() {
+  const [eImage, setImage] = useState("");
+  const [eAdress, setEaddres] = useState("");
 
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
     resolver: zodResolver(SignUpFormSchema),
@@ -34,7 +36,7 @@ function SignUpForm() {
       dd.set("eddress", values.eddress);
       dd.set("imageUrl", eImage);
 
-      console.log(dd, 'Where is the data');
+      console.log(dd, "Where is the data");
 
       const res = await fetch("/api/test", {
         method: "POST",
@@ -46,6 +48,17 @@ function SignUpForm() {
       console.log(error);
     }
   };
+
+  console.log(eAdress);
+
+  useEffect(() => {
+    const x = async () => {
+      const y = await getEthereumAccount();
+      setEaddres(y);
+    };
+
+    x();
+  }, [eAdress]);
 
   return (
     <div className="bg-[#111] h-full flex items-center align-center justify-center">
@@ -145,6 +158,7 @@ function SignUpForm() {
                           placeholder="enter 0xAddress"
                           className="bg-black text-[#16a34a] text-sm"
                           {...field}
+                          value={eAdress}
                         />
                       </FormControl>
                     </FormItem>

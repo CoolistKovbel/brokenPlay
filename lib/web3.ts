@@ -33,3 +33,28 @@ export const signInMessageVerification = async () => {
     console.log(error);
   }
 };
+
+export const getEthereumAccount =  async() => {
+  try {
+    const ethereum = getEthereumObject();
+
+    if (!ethereum) {
+      console.error("Make sure you have Metamask!");
+      return null;
+    }
+
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      return account;
+    } else {
+      // Setup another alert
+      console.error("No authorized account found");
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
