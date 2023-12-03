@@ -58,3 +58,39 @@ export const getEthereumAccount =  async() => {
     return null;
   }
 }
+
+export async function getUserNFTProfileImage() {
+
+  try {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      contractAddress,
+      contractABI,
+      signer
+    );
+
+    const account = await getEthereumAccount()
+    console.log(signer, account)
+
+    let tokenId = await contract.ownerToToken(account)
+
+    let randomTokenMetaData = await contract.tokenURI(tokenId)
+
+    if(randomTokenMetaData.startsWith("ipfs://")) {
+      randomTokenMetaData = `https://scarlet-husky-loon-439.mypinata.cloud/ipfs/${randomTokenMetaData.split("ipfs://")[1]}`
+    }
+
+
+    const tokenMetaday = await fetch(randomTokenMetaData).then(res => res.json())
+
+    console.log(tokenMetaday)
+
+    return tokenMetaday.image || tokenMetaday || null
+
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
