@@ -5,6 +5,11 @@ import React from "react";
 function Meow() {
   const x = true
 
+  // Check if user is connected
+
+
+
+
   return (
     <div className="flex items-center justify-between flex-col h-full">
       {/*  small title*/}
