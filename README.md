@@ -11,3 +11,4 @@ Those who are looking around are able to send an announcement and join other roo
 Early supports will be whitelisted to upcomming defi applications.
 
 Oh yeah dont forget this will be nice small donation: 0x1C352E8F3e035c524F2385818b44859906d3c705
+BTC:1EBKdZ6rfUcDxR3uPfAsKcnPgaYm9zCUp2
