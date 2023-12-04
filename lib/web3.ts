@@ -14,7 +14,13 @@ declare global {
 }
 
 // Grab ethereum object
-export const getEthereumObject = () => window.ethereum;
+export const getEthereumObject = () => {
+  if (typeof window !== 'undefined' && window.ethereum) {
+    return window.ethereum;
+  }
+  return null; // or handle the case where Ethereum object is unavailable
+};
+
 
 export const signInMessageVerification = async () => {
   try {
@@ -102,4 +108,53 @@ export async function getUserNFTProfileImage() {
   } catch (error) {
     console.log(error)
   }
+}
+
+export async function grabAllAnnouncements() {
+  try {
+    const contract = contractBB()
+
+
+    const x = await contract.getAllMessages()
+
+    return x
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+// CLient functions
+export async function sendMessage(x:any) {
+
+  console.log("sending message")
+
+    try {
+
+      const contract = contractBB()
+      
+      const res = await contract.createMessage(x, {
+        value: ethers.utils.parseEther((0.012).toString()),
+        gasLimit: 500000
+      });
+      
+      console.log("mining tx:", res.hash);
+      await res.wait();
+      console.log(res.hash, "completed");
+      return res.hash
+
+    } catch (error) {
+      console.log(error.message);
+      return "Small malfunction on our side please double check yours"
+    }
+  
+}
+
+
+const contractBB = () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(contractAddress, contractABI, signer);
+  return contract
 }
