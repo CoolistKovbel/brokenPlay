@@ -9,12 +9,6 @@ import {
 } from "../../../lib/web3";
 import { hash } from "bcrypt";
 
-declare global {
-  interface Window {
-    ethereum: any;
-  }
-}
-
 export async function GET() {
   const data = {
     donate: "0x1C352E8F3e035c524F2385818b44859906d3c705",
