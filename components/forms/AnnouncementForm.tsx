@@ -15,7 +15,7 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { AnnouncmentFormSchema } from "./constant"
 
-import {sendMessage, grabAllAnnouncements} from "../../lib/web3"
+import {sendMessage} from "../../lib/web3"
 
 function AnnouncementForm() {
 
@@ -45,14 +45,7 @@ function AnnouncementForm() {
   }
 
 
-  useEffect(() =>{
-    const y =  async () => {
-      const d = await grabAllAnnouncements()
-      console.log(d)
-      return d
-    }
-    y()
-  },[])
+
 
   return (
     <Form {...form}>
