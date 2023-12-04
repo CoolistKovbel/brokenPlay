@@ -1,4 +1,7 @@
 "use client";
+
+
+import * as z from 'zod'
 import React from "react";
 import Image from "next/image";
 import {
@@ -11,9 +14,32 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { zodResolver } from '@hookform/resolvers/zod';
+
+
+export const MintAmountFormSchema = z.object({
+  amount: z.number() })
 
 function MintingFeature() {
-  const form = useForm();
+
+  const form = useForm<z.infer<typeof MintAmountFormSchema >>({
+    resolver: zodResolver(MintAmountFormSchema ),
+    defaultValues: {
+      amount: 0,
+    },
+  });
+
+
+  const onSubmit = async (values: z.infer<typeof MintAmountFormSchema>) => {
+    console.log("minting.")
+    try {
+      console.log(values.amount)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
   return (
     <section id="#mint" className=" bg-[#333] p-2">
 
@@ -38,7 +64,8 @@ function MintingFeature() {
           <p>Cost: 0.042 ETH</p>
 
           <Form {...form}>
-            <form className="mt-3">
+            <form className="mt-3" onSubmit={form.handleSubmit(onSubmit)}>
+      
               <FormField
                 control={form.control}
                 name="amount"
@@ -48,13 +75,13 @@ function MintingFeature() {
                       Amount:
                     </FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="0-5" {...field} />
+                      <Input type="number" placeholder="0-5" {...field} className='text-black'/>
                     </FormControl>
                   </FormItem>
                 )}
               />
 
-              <Button className="mt-3">Mint now</Button>
+              <Button type='submit' className="mt-3">Mint now</Button>
             </form>
           </Form>
         </div>

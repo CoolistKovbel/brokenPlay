@@ -151,6 +151,25 @@ export async function sendMessage(x:any) {
   
 }
 
+// Mint a nft
+export async function mintNFT() {
+  console.log("minting NFT")
+  try {
+    
+
+    const contract = contractBB
+
+    const res = await contract.mint(1, {
+      value: ethers.utils.parseEther((0.042).toString()),
+    });
+
+
+
+  } catch (error) {
+    
+  }
+}
+
 
 const contractBB = () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
