@@ -33,7 +33,7 @@ function MintingFeature() {
   const onSubmit = async (values: z.infer<typeof MintAmountFormSchema>) => {
     console.log("minting.")
     try {
-      console.log(values.amount)
+      
     } catch (error) {
       console.log(error)
     }
