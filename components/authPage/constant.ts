@@ -8,7 +8,7 @@ export const SignUpFormSchema = z.object({
       .min(8, 'Password must have than 8 characters'),
     eddress: z.string().min(1, 'Email is required'),
     username: z.string().min(1, 'Email is required'),
-    imageUrl: z.string()
+    imageUrl: z.any()
   });
 
 

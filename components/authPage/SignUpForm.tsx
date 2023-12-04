@@ -15,8 +15,15 @@ import { useRouter } from "next/navigation";
 
 function SignUpForm() {
   const router = useRouter()
-  const [eImage, setImage] = useState<File>();
   const [eAdress, setEaddres] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      console.log(file)
+      setFile(e.target.files[0]);
+    }
+  };
 
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
     resolver: zodResolver(SignUpFormSchema),
@@ -25,35 +32,26 @@ function SignUpForm() {
       email: "",
       password: "",
       eddress: "",
-      imageUrl: "",
+      imageUrl: file,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof SignUpFormSchema>) => {
     try {
-      console.log(values.imageUrl)
-      
-      const of = {
-        imageUrl: values.imageUrl,
-        email: values.email,
-        username: values.username,
-        password: values.password,
-        eAdress: values.eddress,
-        
-      }
 
-      console.log(of, "Where is the data");
+      const formData = new FormData();
+      formData.append('username', values.username);
+      formData.append('email', values.email);
+      formData.append('password', values.password);
+      formData.append('eAdress', values.eddress);
+      formData.append('imageUrl', file || '')
 
       const res = await fetch("/api/test", {
-        method: "POST",
-        body: JSON.stringify(of),
-      });
+        method: 'POST',
+        body: formData
+      })
 
-      
-      if(res) {
-        console.log(res)
-        router.push("/sign-in") 
-      }
+      console.log(res)
 
 
     } catch (error) {
@@ -189,7 +187,7 @@ function SignUpForm() {
                           type="file"
                           className="bg-black text-[#16a34a] text-sm"
                           {...field}
-                          // onChange={(e) => setImage(e.target.files?.[0])}
+                          onChange={handleFileChange}
                         />
                       </FormControl>
                     </FormItem>
