@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 function SignUpForm() {
   const router = useRouter()
-  const [eImage, setImage] = useState("");
+  const [eImage, setImage] = useState<File>();
   const [eAdress, setEaddres] = useState("");
 
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
@@ -30,19 +30,23 @@ function SignUpForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof SignUpFormSchema>) => {
-    const dd = new FormData();
     try {
-      dd.set("username", values.username);
-      dd.set("email", values.email);
-      dd.set("password", values.password);
-      dd.set("eddress", values.eddress);
-      dd.set("imageUrl", eImage || values.imageUrl);
+      console.log(values.imageUrl)
+      
+      const of = {
+        imageUrl: values.imageUrl,
+        email: values.email,
+        username: values.username,
+        password: values.password,
+        eAdress: values.eddress,
+        
+      }
 
-      console.log(dd, "Where is the data");
+      console.log(of, "Where is the data");
 
       const res = await fetch("/api/test", {
         method: "POST",
-        body: dd,
+        body: JSON.stringify(of),
       });
 
       
@@ -168,7 +172,6 @@ function SignUpForm() {
                           placeholder="enter 0xAddress"
                           className="bg-black text-[#16a34a] text-sm"
                           {...field}
-                          value={eAdress}
                         />
                       </FormControl>
                     </FormItem>
