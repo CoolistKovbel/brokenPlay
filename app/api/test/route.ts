@@ -58,9 +58,9 @@ export async function POST(req: NextRequest){
         imageUrl = null
 
       } else {
-        const bytes = await imageUrl.arrayBuffer();
-        console.log(bytes)
-        const buffer = Buffer.from(bytes);
+
+        const fileBuffer = await (imageUrl as Blob).arrayBuffer();
+        const buffer = Buffer.from(fileBuffer);
         console.log(buffer)
     
         const path = `${process.cwd()}/public/${imageUrl.name}`;
