@@ -8,7 +8,6 @@ export const contractAddress = "0x01B2795EC6E5ADD288e196fA437ADCB23438E9E7";
 export const contractABI = ABI.abi;
 
 
-
 // Grab ethereum object
 export const getEthereumObject = () => {
   return window.ethereum
