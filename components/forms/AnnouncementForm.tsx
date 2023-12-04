@@ -10,16 +10,31 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
+import { AnnouncmentFormSchema } from "./constant"
 
 function AnnouncementForm() {
-  const form = useForm();
+  
+  const form = useForm<z.infer<typeof AnnouncmentFormSchema>>({
+    resolver: zodResolver(AnnouncmentFormSchema),
+    defaultValues: {
+      message: "",
+    },
+  });
+
+
+  const onSubmit = async (values: z.infer<typeof AnnouncmentFormSchema>) => {
+    
+    console.log(values)
+
+  }
+
 
   return (
     <Form {...form}>
-      <form className="w-full">
+      <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
 
         <FormField
           control={form.control}
@@ -30,8 +45,8 @@ function AnnouncementForm() {
               <FormControl>
 
                 {/* TextArea */}
-                <Input
-                  className="bg-slate-500 text-[#16a34a] text-sm "
+                <Textarea
+                  className="bg-slate-500 text-[#16a34a] text-sm resize-none"
                   {...field}
                 />
 

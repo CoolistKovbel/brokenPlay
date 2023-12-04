@@ -31,10 +31,14 @@ function SignInForm() {
     try {
       console.log(values);
 
-      const res = await signIn("credentials", { values });
-
-      if(res){
-        router.push("/")
+      const res = await signIn("credentials", {
+        email: values.eddress,
+        password: values.password,
+        redirect: false
+      });
+      
+      if(res?.ok){
+        router.push("/moew")
       }
 
     } catch (error) {
@@ -76,10 +80,10 @@ function SignInForm() {
                       <FormLabel>Eddress: </FormLabel>
                       <FormControl>
                         <Input
+                          type="email"
                           placeholder="enter 0xAddress"
                           className="bg-black text-[#16a34a] text-sm"
                           {...field}
-                          value={eAdress}
                         />
                       </FormControl>
                     </FormItem>

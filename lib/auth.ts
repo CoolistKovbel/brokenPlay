@@ -18,17 +18,20 @@ export const authOptions: NextAuthOptions = {
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "MysticMurko",
       credentials: {
-        eddress: { label: "eddress", type: "text", placeholder: "0x" },
+        email: { label: "eddress", type: "email", placeholder: "0x" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.eddress || !credentials?.password) {
+        
+        if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
         const existingUser = await prisma.profile.findUnique({
-          where: { eddress: credentials?.eddress },
-        });
+          where: { email: credentials?.email },
+        }); 
+
+        console.log(existingUser)
 
         if (!existingUser) {
           return null;

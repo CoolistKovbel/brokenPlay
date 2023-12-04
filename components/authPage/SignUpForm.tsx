@@ -11,8 +11,10 @@ import Link from "next/link";
 import { SignUpFormSchema } from "./constant";
 
 import { getEthereumAccount } from "../../lib/web3";
+import { useRouter } from "next/navigation";
 
 function SignUpForm() {
+  const router = useRouter()
   const [eImage, setImage] = useState("");
   const [eAdress, setEaddres] = useState("");
 
@@ -43,7 +45,13 @@ function SignUpForm() {
         body: dd,
       });
 
-      console.log(res);
+      
+      if(res) {
+        console.log(res)
+        router.push("/sign-in") 
+      }
+
+
     } catch (error) {
       console.log(error);
     }

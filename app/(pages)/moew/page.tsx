@@ -3,7 +3,7 @@ import AnnouncementForm from "@/components/forms/AnnouncementForm";
 import React from "react";
 
 function Meow() {
-  const x = true
+  const x = false
 
   // Check if user is connected
 
