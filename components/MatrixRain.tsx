@@ -1,11 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
-const MatrixRain = () => {
-  const canvasRef = useRef(null);
+const MatrixRain: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const context = canvas.getContext('2d');
+    if (!context) return;
+
     let W = window.innerWidth;
     let H = window.innerHeight;
 
@@ -14,7 +18,7 @@ const MatrixRain = () => {
 
     const fontSize = 16;
     const columns = Math.floor(W / fontSize);
-    const drops = new Array(columns).fill(0);
+    const drops: number[] = new Array(columns).fill(0);
     const str = 'JavaScript Hacking Effect';
 
     const draw = () => {
@@ -28,7 +32,7 @@ const MatrixRain = () => {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         context.fillText(str[index], x, y);
-        
+
         if (y >= canvas.height && Math.random() > 0.99) {
           drops[i] = 0;
         }
@@ -41,7 +45,14 @@ const MatrixRain = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return <canvas ref={canvasRef} className='bg-[#111] w-full h-full blur-sm' />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className='bg-[#111] w-full h-full blur-sm'
+      width={window.innerWidth}
+      height={window.innerHeight}
+    />
+  );
 };
 
 export default MatrixRain;
