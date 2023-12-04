@@ -48,9 +48,9 @@ export const authOptions: NextAuthOptions = {
 
         return {
           id: `${existingUser.id}`,
-          username: existingUser.username,
+          username: existingUser.username || "",
           email: existingUser.email,
-          eddress: existingUser.eddress 
+          eddress: existingUser.eddress || "" 
         };
       },
     }),
