@@ -1,12 +1,30 @@
 "use client"
 
-import React from 'react'
+import React,{useEffect} from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { useSession } from 'next-auth/react'
 
 function LandingPageHeader() {
-    const account = false
+
+  const {data} = useSession()
+
+  let account = false
+
+  if(data?.user) {
+    account = true
+  } else {
+    account = false
+  }
+
+
+  useEffect(() => {
+
+    console.log(data)
+
+  },[data])
+
   return (
     <header className='flex items-center justify-between bg-[#122] p-2'>
         
@@ -17,6 +35,8 @@ function LandingPageHeader() {
         <Image src="/MystixKat-v.png" alt='Mysic kitty' fill />
       </div>
     </div>
+
+
     {/* Right */}
     <div className='w-[300px]'>
 
@@ -24,7 +44,7 @@ function LandingPageHeader() {
       {
         account ? (
         <div className='w-full flex items-center justify-between flex-col'>
-          <h3 className='mb-2 font-bold'>hello, 0x1231fwefgweg</h3>
+          <h3 className='mb-2 font-bold'>hello, {data?.user?.eddress.substring(0,5)}</h3>
           <nav className='w-[250px] flex items-center justify-between'>
             <Link href="/pur" className='text-[12px] bg-black text-green-500 p-1 rounded-md'>✉️ Messages</Link>
             <Link href="/moew" className='text-[12px] bg-black text-green-500 p-1 rounded-md'>💫 Announce</Link>

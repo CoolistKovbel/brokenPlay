@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
 import { grabAllAnnouncements } from "../lib/web3";
 import Image from "next/image";
 
@@ -20,7 +19,7 @@ function AnnounceMessages() {
 
   return (
     <div className="flex items-center gap-2 flex-col bg-[black] text-green-500 p-2 h-full overflow-auto w-full">
-      {messageXD.length > 0 ? (
+      {messageXD ? (
         <div className="w-full h-full flex flex-col items-center gap-4 p-2">
           {messageXD.map((msg) => (
             <div key={crypto.randomUUID()} className="w-[80%] bg-[#d1dec6] p-2 rounded-lg border-solid">

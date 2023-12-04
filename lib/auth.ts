@@ -50,32 +50,36 @@ export const authOptions: NextAuthOptions = {
           id: `${existingUser.id}`,
           username: existingUser.username,
           email: existingUser.email,
-          eddress: existingUser.eddress
+          eddress: existingUser.eddress 
         };
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, profile }) {
 
-        console.log(user, "Logging from the auth jwt function")
+        console.log(profile, "jwt token callback")
 
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
+        
         return {
           ...token,
           username: user.username,
+          eddress: user.eddress
+
         };
       }
       return token;
     },
     async session({ session, token }) {
-        console.log(session, "Logging from the auth session funcion")
+        console.log(token, "Logging from the auth session funcion")
       return {
         ...session,
         user: {
           ...session.user,
           username: token.username,
+          eddress: token.eddress
         },
       };
     },
