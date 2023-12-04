@@ -16,11 +16,8 @@ export async function POST(req: Request) {
            return NextResponse.json({message: "Give me a good announcement"}, {status: 400})
        }
 
-       let contractBB =  bd()
-       let y = await sendMessage(x,contractBB)
-
         
-        console.log(y, "Annountmnet completed")
+        console.log("Annountmnet completed")
 
         return NextResponse.json(x, {status: 200})
     } catch (error) {
