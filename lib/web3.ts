@@ -15,10 +15,7 @@ declare global {
 
 // Grab ethereum object
 export const getEthereumObject = () => {
-  if (typeof window !== 'undefined' && window.ethereum) {
-    return window.ethereum;
-  }
-  return null; // or handle the case where Ethereum object is unavailable
+  return window.ethereum
 };
 
 
@@ -152,18 +149,22 @@ export async function sendMessage(x:any) {
 }
 
 // Mint a nft
-export async function mintNFT() {
+export async function mintNFT(amount: any) {
   console.log("minting NFT")
+  console.log(amount)
   try {
     
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    const contract = contractBB
 
-    const res = await contract.mint(1, {
-      value: ethers.utils.parseEther((0.042).toString()),
+    const res = await contract.mint(amount, {
+      value: ethers.utils.parseEther((0.042 * amount).toString()),
+      gassLimit: "50000",
     });
 
-
+    console.log(res)
 
   } catch (error) {
     

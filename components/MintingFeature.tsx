@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import { mintNFT } from "../lib/web3"
 
 export const MintAmountFormSchema = z.object({
   amount: z.number() })
@@ -32,11 +32,6 @@ function MintingFeature() {
 
   const onSubmit = async (values: z.infer<typeof MintAmountFormSchema>) => {
     console.log("minting.")
-    try {
-      
-    } catch (error) {
-      console.log(error)
-    }
   }
 
 
