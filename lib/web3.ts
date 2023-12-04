@@ -128,7 +128,6 @@ export async function sendMessage(x:any) {
   console.log("sending message")
 
     try {
-
       const contract = contractBB()
       
       const res = await contract.createMessage(x, {
@@ -142,7 +141,6 @@ export async function sendMessage(x:any) {
       return res.hash
 
     } catch (error) {
-      console.log(error.message);
       return "Small malfunction on our side please double check yours"
     }
   
