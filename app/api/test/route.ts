@@ -40,22 +40,12 @@ export async function POST(req: NextRequest) {
   try {
     // const body = (await req.formData()).get("imageUrl")
     const bodyv2 = await req.formData();
-    const username = bodyv2.get("username");
-    const email = bodyv2.get("email");
-    const password = bodyv2.get("password");
-    const eddress = bodyv2.get("eddress");
+    const username = bodyv2.get("username")?.toString();
+    const email = bodyv2.get("email")?.toString();
+    const password = bodyv2.get("password")?.toString();
+    const eddress = bodyv2.get("eddress")?.toString();
     let imageUrl = bodyv2.get("imageUrl");
 
-
-    const data = {
-        username,
-        email,
-        password,
-        eddress,
-        imageUrl
-    }
-
-    console.log(data)
 
     if (!imageUrl || typeof imageUrl === "string") {
       console.log("mint a nft");
@@ -65,14 +55,14 @@ export async function POST(req: NextRequest) {
       const buffer = Buffer.from(fileBuffer);
       console.log(buffer);
 
-      const path = `${process.cwd()}/public/${imageUrl.name}`;
-      await writeFile(path, buffer);
+      let path = `${process.cwd()}/public/${imageUrl.name}`;
+    let p = `${path.split("/Users/shpintz/Desktop/hml")[1]}`        
+      await writeFile(p, buffer);
 
-      imageUrl = path;
+      imageUrl = p;
 
-      console.log(`open ${path} to see the uploaded file`);
+      console.log(`open ${p} to see the uploaded file`);
     }
-
 
     const existingUser = await prisma.profile.findUnique({
       where: { email: email },
@@ -84,21 +74,28 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const hashedPass = await hash(data.password, 10);
+    let hashedPass;
+    if (typeof password === 'string') {
+        const passwordString = password.toString();
+        // Use passwordString further in your code
+        hashedPass = await hash(passwordString, 10);
+        // Rest of your code using the hashed password
+      } 
 
-    // const daBlock = {
-    //     username,
-    //     email,
-    //     password,
-    //     eddress,
-    //     image: imageUrl
-    // }
 
-    // const newUser = await prisma.profile.create({
-    //     data: daBlock
-    // })
+    const newUser = await prisma.profile.create({
+        data: {
+            username: username,
+            email: email || "",
+            password: hashedPass || "",
+            eddress,
+            image: imageUrl
+        }
+    })
 
-    return NextResponse.json(bodyv2, { status: 200 });
+    console.log(newUser)
+
+    return NextResponse.json(newUser, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json("error", { status: 500 });
