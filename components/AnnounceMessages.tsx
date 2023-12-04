@@ -10,9 +10,11 @@ function AnnounceMessages() {
   useEffect(() => {
     const y = async () => {
       const d = await grabAllAnnouncements();
-      console.log(d);
-      setMessagesXD(d);
-      return d;
+      const deOp = d.map((item:any) => {
+        return {author: item.author, message: item.message}
+      })
+      setMessagesXD(deOp);
+      return deOp;
     };
     y();
   }, []);
@@ -21,18 +23,17 @@ function AnnounceMessages() {
     <div className="flex items-center gap-2 flex-col bg-[black] text-green-500 p-2 h-full overflow-auto w-full">
       {messageXD ? (
         <div className="w-full h-full flex flex-col items-center gap-4 p-2">
-          {messageXD.map((msg) => (
+          {messageXD.map((msg:any) => (
             <div key={crypto.randomUUID()} className="w-[80%] bg-[#d1dec6] p-2 rounded-lg border-solid">
 
+              <div className="flex items-center justify-between mb-2">
 
-            <div className="flex items-center justify-between mb-2">
+                <div className="relative w-[100px] h-[100px] p-2">
+                  <Image src="/murko-mystic.png" fill alt="" className="rounded" />
+                </div>
 
-              <div className="relative w-[100px] h-[100px] p-2">
-                <Image src="/murko-mystic.png" fill alt="" className="rounded" />
+                <h2 className="font-bold">{msg.author}</h2>
               </div>
-
-              <h2 className="font-bold">{msg.author}</h2>
-            </div>
 
               <p className="text-sm">{msg.message}</p>
 
