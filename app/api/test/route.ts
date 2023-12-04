@@ -52,7 +52,7 @@ export async function POST(req: NextRequest){
 
     console.log(imageUrl)
 
-    if (!imageUrl) {
+    if (!imageUrl|| typeof imageUrl === 'string') {
 
         console.log("mint a nft")
         imageUrl = null
