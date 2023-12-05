@@ -32,14 +32,15 @@ function MintingFeature() {
 
   const onSubmit = async (values: z.infer<typeof MintAmountFormSchema>) => {
     console.log("minting.")
-    
+    // TODO
   }
 
 
   return (
-    <section id="#mint" className=" bg-[#333] p-2">
+    <section id="#mint" className="bg-[#333] p-2 w-full h-full flex items-center justify-center">
 
       <div className="max-w-7xl m-auto flex items-center justify-between flex-col md:flex-row gap-5 ">
+        
         {/* NFT image */}
         <div className="relative w-[300px] h-[300px] ">
           <Image

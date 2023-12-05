@@ -21,7 +21,7 @@ function LandingPageHeader() {
 
   useEffect(() => {
 
-    console.log(data)
+    alert(data)
 
   },[data])
 

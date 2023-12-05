@@ -1,40 +1,37 @@
+import { prisma } from "../lib/db";
 
-import {prisma} from "../lib/db"
+interface initialProfileProps {
+
+}
 
 interface ProfileCreateInput {
-    userId: string;
-    email: string;
-    imageUrl: string;
-    username: string;
-    password: string;
+  userId: string;
+  email: string;
+  imageUrl: string;
+  username: string;
+  password: string;
 }
 
 export const initialProfile = async () => {
 
 
-    // const user = await currentUser()
 
-    // if(!user) {
-    //     return redirectToSignIn()
-    // }
+  // const profile = await prisma.profile.findUnique({
+  //     where: {
+  //         eddress: "0x1C352E8F3e035c524F2385818b44859906d3c705" // make better
+  //     }
+  // })
 
-    // const profile = await db.profile.findUnique({
-    //     where: {
-    //         userId: user.id
-    //     }
-    // })
+  // if(profile) {
+  //     return profile
+  // }
 
-    // if(profile) {
-    //     return profile
-    // }
-
-    const newProfile = await prisma.profile.create({
-        data: {
-
-        } as ProfileCreateInput
-    })
-
-    return newProfile
+  
+  return (
+    <div>
+      slow
+    </div>
+  )
 
 
-}
+};

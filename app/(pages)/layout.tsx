@@ -1,13 +1,21 @@
 import PageLayoutHeader from "@/components/PageLayoutHeader"
-import Link from "next/link"
+import { initialProfile } from "@/lib/initial-profile"
+import { getEthereumAccount } from "@/lib/web3"
 
 
 
-export default function Pagelayout({
+
+export default async function Pagelayout({
     children,
   }: {
     children: React.ReactNode
   }) {
+
+    const ethereumAccount = await getEthereumAccount()
+
+    console.log(ethereumAccount, "Account? from main page layout")
+
+    const profile = await initialProfile()
 
 
 

@@ -9,19 +9,8 @@ export default function Home() {
 
   return (
     <main className="bg-black w-[100%] h-[100%] text-white">
-      {/* Header */}
-      <LandingPageHeader />
-
       {/* Hero */}
-      <LandingHero />
-
-      {/* Features */}
-      <LandingFeatures />
-
-      {/* Minting sectoin */}
-      <MintingFeature />
-
-      
+      <LandingHero /> 
     </main>
   );
 }

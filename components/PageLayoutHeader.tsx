@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import UserLogout from "@/lib/user-logout";
 
 function PageLayoutHeader() {
   return (
@@ -28,6 +29,9 @@ function PageLayoutHeader() {
           group
         </a>
       </nav>
+
+
+      <UserLogout />
     </header>
   );
 }
