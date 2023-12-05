@@ -1,7 +1,7 @@
 import SignUpForm from '@/components/authPage/SignUpForm'
 import React from 'react'
 
-function SignUpPage
+function SignUpPage 
 () {
   return (
     <div className='w-full h-full'>

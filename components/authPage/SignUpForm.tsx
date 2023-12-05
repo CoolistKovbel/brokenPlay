@@ -46,7 +46,7 @@ function SignUpForm() {
       formData.append('eAdress', values.eddress);
       formData.append('imageUrl', file || '')
 
-      const res = await fetch("/api/test", {
+      const res = await fetch("/api/user", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -56,13 +56,12 @@ function SignUpForm() {
 
       console.log(res)
 
+      router.push("/KittyBowl")
 
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(eAdress);
 
   useEffect(() => {
     const x = async () => {
