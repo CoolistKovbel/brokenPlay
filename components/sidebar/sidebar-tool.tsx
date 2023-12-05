@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
@@ -10,18 +9,17 @@ import { prisma } from "@/lib/db";
 import User from "@/lib/current-profile";
 
 async function SidebarTool() {
-    const joined = false;
+  const joined = false;
 
-
-    const group = prisma.group.findMany({
-        where: {
-          members: {
-            some: {
-              profileId: "0",
-            },
-          },
+  const group = prisma.group.findMany({
+    where: {
+      members: {
+        some: {
+          profileId: "0",
         },
-      });
+      },
+    },
+  });
 
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-[orange] w-full bg-[#444] py-3">
@@ -63,8 +61,7 @@ async function SidebarTool() {
       </div>
 
       {/* Models */}
-        <SideBarAction />
-
+      <SideBarAction />
     </div>
   );
 }
