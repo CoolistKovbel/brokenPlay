@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
 
-function Pur() {
+export const Pur = ({children}: {children: React.ReactNode}) => {
 
   
 
@@ -62,4 +62,4 @@ function Pur() {
   );
 }
 
-export default Pur;
+

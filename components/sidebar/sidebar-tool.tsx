@@ -4,14 +4,24 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { getSession } from "next-auth/react";
-import User from "@/lib/current-profile";
 import { ScrollArea } from "../ui/scroll-area";
 import SideBarAction from "../modals/sidebar-action";
+import { prisma } from "@/lib/db";
+import User from "@/lib/current-profile";
 
 async function SidebarTool() {
     const joined = false;
 
 
+    const group = prisma.group.findMany({
+        where: {
+          members: {
+            some: {
+              profileId: "0",
+            },
+          },
+        },
+      });
 
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-[orange] w-full bg-[#444] py-3">
