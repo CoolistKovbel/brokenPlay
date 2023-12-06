@@ -18,7 +18,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { mintNFT } from "../lib/web3"
 
 export const MintAmountFormSchema = z.object({
-  amount: z.number() })
+  amount: z.number() 
+})
 
 function MintingFeature() {
 
@@ -30,9 +31,8 @@ function MintingFeature() {
   });
 
 
-  const onSubmit = async (values: z.infer<typeof MintAmountFormSchema>) => {
-    console.log("minting.")
-    // TODO
+  const onSubmit =  (values: z.infer<typeof MintAmountFormSchema>) => {
+    console.log("submited", values.amount)
   }
 
 
@@ -51,7 +51,7 @@ function MintingFeature() {
           />
         </div>
 
-        <div className="text-white w-[60%] p-3 border-solid   ">
+        <div className="text-white w-[60%] p-3 border-solid">
           <h2 className="text-2xl font-bold">Mystic Murko Collection</h2>
           <p>
             Limited 222 release, with special capabilities and features that can
@@ -72,13 +72,13 @@ function MintingFeature() {
                       Amount:
                     </FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="0-5" {...field} className='text-black'/>
+                      <Input type="number"  {...field} className='text-black'/>
                     </FormControl>
                   </FormItem>
                 )}
               />
 
-              <Button type='submit' className="mt-3">Mint now</Button>
+              <Button className="mt-3">Mint now</Button>
             </form>
           </Form>
         </div>

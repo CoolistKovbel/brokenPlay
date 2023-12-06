@@ -12,6 +12,7 @@ import { SignUpFormSchema } from "./constant";
 
 import { getEthereumAccount } from "../../lib/web3";
 import { useRouter } from "next/navigation";
+import axios from "axios"
 
 function SignUpForm() {
   const router = useRouter()
@@ -31,28 +32,16 @@ function SignUpForm() {
       username: "",
       email: "",
       password: "",
-      eddress: "",
-      imageUrl: file,
+      eAddress: "",
+      image: file,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof SignUpFormSchema>) => {
     try {
 
-      const formData = new FormData();
-      formData.append('username', values.username);
-      formData.append('email', values.email);
-      formData.append('password', values.password);
-      formData.append('eAdress', values.eddress);
-      formData.append('imageUrl', file || '')
-
-      const res = await fetch("/api/user", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: formData
-      })
+      values.image = file
+      const res = await axios.post("/api/user", values)
 
       console.log(res)
 
@@ -163,7 +152,7 @@ function SignUpForm() {
 
                 <FormField
                   control={form.control}
-                  name="eddress"
+                  name="eAddress"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Eddress: </FormLabel>
@@ -180,7 +169,7 @@ function SignUpForm() {
 
                 <FormField
                   control={form.control}
-                  name="imageUrl"
+                  name="image"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Image: </FormLabel>
