@@ -15,22 +15,22 @@ import { InitialModal } from "./modals/initial-modal";
 async function DappHeader() {
   const session = await getServerSession(authOptions);
 
-//   Check to see if user has nft....
-console.log(session, "data from dapp header");
+  //   Check to see if user has nft....
+  console.log(session, "data from dapp header");
 
-// If so then create server
+  // If so then create server
   const server = await prisma.group.findFirst({
     where: {
-      members:{
+      members: {
         some: {
-          profileId: session?.user.id
-        }
-      }
-    }
-  })
+          profileId: session?.user.id,
+        },
+      },
+    },
+  });
 
-  if(server){
-    return <InitialModal />
+  if (server) {
+    return <InitialModal />;
   }
 
   return (

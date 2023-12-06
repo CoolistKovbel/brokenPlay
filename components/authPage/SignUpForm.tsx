@@ -33,14 +33,15 @@ function SignUpForm() {
       email: "",
       password: "",
       eAddress: "",
-      image: file,
+      image: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof SignUpFormSchema>) => {
     try {
 
-      values.image = file
+      console.log(values.image, "Image value")
+      console.log(file, "Image value")
       const res = await axios.post("/api/user", values)
 
       console.log(res)
@@ -174,12 +175,7 @@ function SignUpForm() {
                     <FormItem>
                       <FormLabel>Image: </FormLabel>
                       <FormControl>
-                        <Input
-                          type="file"
-                          className="bg-black text-[#16a34a] text-sm"
-                          {...field}
-                          onChange={handleFileChange}
-                        />
+                       <input type="file" onChange={(e) => setFile(e.target.value[0])} />
                       </FormControl>
                     </FormItem>
                   )}
