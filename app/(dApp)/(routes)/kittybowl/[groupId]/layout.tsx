@@ -2,6 +2,7 @@
 // import { currentProfile } from "@/lib/current-profile"
 import SideBarAction from "@/components/sidebar/sidebar-action";
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
+import SidebarTool from "@/components/sidebar/sidebar-tool";
 import { prisma } from "@/lib/db"
 
 
@@ -13,7 +14,8 @@ const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; p
     return (
         <div className="h-full">
             <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-                
+                <SidebarTool />
+
                 <ServerSidebar serverId={params.serverId} />
 
 

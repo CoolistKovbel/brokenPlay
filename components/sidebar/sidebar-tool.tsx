@@ -19,24 +19,24 @@ async function SidebarTool() {
 
   console.log(session, "sessoin in the dAppLayout page");
   const joined = session
-  
-  const server = await prisma.group.findFirst({
-    where: {
-      members:{
-        some: {
-          profileId: session?.user.id
-        }
-      }
-    }
-  })
 
-  if(server) {
-    return redirect(`/kittybowl/${server.id}`)
-  }
+  // const server = await prisma.group.findFirst({
+  //   where: {
+  //     members:{
+  //       some: {
+  //         profileId: session?.user.id
+  //       }
+  //     }
+  //   }
+  // })
 
-  if(server === null || server === undefined){
-    return <InitialModal />
-  }
+  // // if(server) {
+  // //   return redirect(`/kittybowl/${server.id}`)
+  // // }
+
+  // if(server === null || server === undefined){
+  //   return <InitialModal />
+  // }
 
   
 

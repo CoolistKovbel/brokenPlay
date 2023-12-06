@@ -1,14 +1,15 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog"
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import * as z from "zod";
+import { Button } from "../ui/button";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -39,7 +40,7 @@ export const InitialModal = () => {
   
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try {
-        await axios.post("/api/servers", values);
+        await axios.post("/api/groups", values);
         form.reset();
         router.refresh();
         window.location.reload();
@@ -56,10 +57,10 @@ export const InitialModal = () => {
         <DialogContent className="bg-white text-black p-0 overflow-hidden">
           <DialogHeader className="pt-8 px-6">
             <DialogTitle className="text-2xl text-center font-bold">
-              Customize your server
+              Create your group
             </DialogTitle>
             <DialogDescription className="text-center text-zine-500">
-              Give your group a purpose
+              Give your group a purpose...what is going to be de next club in town
             </DialogDescription>
           </DialogHeader>
           <Form {...form}>
@@ -73,15 +74,13 @@ export const InitialModal = () => {
                       <FormItem>
                         <FormControl>
 
-                          <FileUpload
-                            endpoint="serverImage"
-                            value={field.value}
+                          <Input   
+                            type="file"                        
+                            // value={field.value}
                             onChange={field.onChange}
+                            className="p-2 bg-[#222] text-white"
                           />
 
-                          <div>
-
-                          </div>
 
                         </FormControl>
                       </FormItem>
