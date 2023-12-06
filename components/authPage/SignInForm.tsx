@@ -39,7 +39,7 @@ function SignInForm() {
       });
       
       if(res?.ok){
-        router.push("/moew")
+        router.push("/mint")
       }
 
     } catch (error) {

@@ -8,26 +8,37 @@ import SideBarAction from "./sidebar-action";
 import { prisma } from "@/lib/db";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { InitialModal } from "@/components/modals/initial-modal";
 
 
 
 async function SidebarTool() {
-
+  
   const session = await getServerSession(authOptions);
 
   console.log(session, "sessoin in the dAppLayout page");
+  const joined = session
   
-  const joined = false
-
-  const group = prisma.group.findMany({
+  const server = await prisma.group.findFirst({
     where: {
-      members: {
+      members:{
         some: {
-          profileId: session?.user.userId,
-        },
-      },
-    },
-  });
+          profileId: session?.user.id
+        }
+      }
+    }
+  })
+
+  if(server) {
+    return redirect(`/kittybowl/${server.id}`)
+  }
+
+  if(server === null || server === undefined){
+    return <InitialModal />
+  }
+
+  
 
   return (
     <div className="space-y-2 flex flex-col items-center h-full text-[orange] w-full bg-[#444] pt-[120px]">
