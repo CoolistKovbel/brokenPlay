@@ -1,11 +1,9 @@
 // Chat with others or if youre de cat create a room for your kitties
 import ChatMessageForm from "@/components/forms/ChatMessageForm";
-import SidebarTool from "@/components/sidebar/sidebar-tool";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
 
-export const Pur = ({children}: {children: React.ReactNode}) => {
+const Pur = ({children}: {children: React.ReactNode}) => {
 
   
 
@@ -62,4 +60,6 @@ export const Pur = ({children}: {children: React.ReactNode}) => {
   );
 }
 
+
+export default Pur
 
