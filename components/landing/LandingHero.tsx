@@ -1,17 +1,18 @@
 "use client"
 
-import React from 'react'
+import React,{useState} from 'react'
 import MatrixRain from "@/components/MatrixRain";
 import { useSession } from 'next-auth/react'
 import Image from 'next/image';
 import Link from 'next/link';
 
 function LandingHero() {
-
   
   const { data: session } = useSession()
 
   console.log(session, "This is data from hero")
+
+
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
@@ -29,9 +30,19 @@ function LandingHero() {
             your very own the blockchain itself. Suited for feature projects.
           </p>
           
-          <Link href="/mint" className="p-2 rounded-lg text-2xl bg-[yellow] text-black font-bold hover:text-white hover:bg-black" >
-            Mint Now
-          </Link>
+          {
+            session?.user ? (
+              <Link href="/mint" className="p-2 rounded-lg text-2xl bg-[yellow] text-black font-bold hover:text-white hover:bg-black" >
+                Mint Now
+              </Link>
+            ) : (
+              <Link href="/sign-in" className="p-2 rounded-lg text-2xl bg-[yellow] text-black font-bold hover:text-white hover:bg-black" >
+                Sign in
+              </Link>     
+            )
+          }
+
+
           
         </div>
 

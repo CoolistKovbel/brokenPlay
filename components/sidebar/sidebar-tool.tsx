@@ -22,18 +22,20 @@ async function SidebarTool() {
   });
 
   return (
-    <div className="space-y-4 flex flex-col items-center h-full text-[orange] w-full bg-[#444] py-3">
+    <div className="space-y-2 flex flex-col items-center h-full text-[orange] w-full bg-[#444] pt-[120px]">
       {/* image */}
       <div className="relative w-[120px] h-[120px] m-auto">
         <Image src="/DarkHorsev12-test.png" alt="random iamge" fill />
       </div>
 
+      <Separator className="h-[2px] bg-[#222] rounded-md dark:bg-[#111] w-10 mx-auto" />
+
       {/* Groups */}
-      <div className="bg-[#222] text-center">
+      <div className="bg-[#222] h-full text-center overflow-auto">
 
 
         <div className="p-2">
-          <div className="relative w-[50px] h-[50px]">
+          <div className="relative w-[25px] h-[25px] m-auto">
             <Image src="/test2.png" alt="test" fill />
           </div>
 
@@ -43,7 +45,7 @@ async function SidebarTool() {
         </div>
 
         <div className="p-2">
-          <div className="relative w-[100px] h-[100px]">
+          <div className="relative w-[25px] h-[25px] m-auto">
             <Image src="/test2.png" alt="test" fill />
           </div>
           <h2>Group #001</h2>
@@ -52,7 +54,7 @@ async function SidebarTool() {
         </div>
 
         <div className="p-2">
-          <div className="relative w-[100px] h-[100px]">
+          <div className="relative w-[25px] h-[25px] m-auto">
             <Image src="/test2.png" alt="test" fill />
           </div>
           <h2>Group #001</h2>

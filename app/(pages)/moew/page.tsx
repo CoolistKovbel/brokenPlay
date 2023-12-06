@@ -1,12 +1,17 @@
 // Share an announcement
 import AnnounceMessages from "@/components/AnnounceMessages";
 import AnnouncementForm from "@/components/forms/AnnouncementForm";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import React from "react";
 
-function Meow() {
+async function Meow() {
+
   const x = false
 
-  // Check if user is connected
+  const session = await getServerSession(authOptions);
+
+  console.log(session?.user, "sessoin in the Meow page");
 
 
 
