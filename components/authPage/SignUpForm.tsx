@@ -41,26 +41,17 @@ function SignUpForm() {
 
       values.image = file
 
-      if(values.image === file){
-        const fileBuffer = await (values.image as Blob).arrayBuffer();
-        const buffer = Buffer.from(fileBuffer);
-        console.log(buffer);
+      const formD = new FormData()
 
-        // let path = `${process.cwd()}/public/${values.image.name}`;
-        let path = `/public/${values.image.name}`;
-        console.log(path)
-        
-        // let p = `${path.split("/Users/shpintz/Desktop/hml")[1]}`;
-        // let p = `${path.split("/Users/shpintz/Desktop/hml")[1]}`;
-        // await fs.writeFile(p, buffer);
-  
-        values.image = {path, buffer};
-      }
+      formD.append("username", values.username)
+      formD.append("email", values.email)
+      formD.append("password", values.password)
+      formD.append("eAddress", values.eAddress)
+      formD.append("image", values.image)
 
       console.log(values.image)
 
-
-      const res = await axios.post("/api/user", values)
+      const res = await axios.post("/api/user", formD)
 
       console.log(res)
 
@@ -121,6 +112,7 @@ function SignUpForm() {
                           {...field}
                         />
                       </FormControl>
+                      
                     </FormItem>
                   )}
                 />
