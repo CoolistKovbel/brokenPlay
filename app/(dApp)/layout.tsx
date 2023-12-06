@@ -1,6 +1,5 @@
 import SidebarTool from "@/components/sidebar/sidebar-tool";
 import { authOptions } from "@/lib/auth";
-import User from "@/lib/current-profile";
 import { LogIn, Scroll } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";

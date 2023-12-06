@@ -1,3 +1,6 @@
+// Create a initial profile launch
+
+
 import { prisma } from "../lib/db";
 
 interface initialProfileProps {

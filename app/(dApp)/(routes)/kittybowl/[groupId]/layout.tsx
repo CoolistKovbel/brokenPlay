@@ -1,6 +1,6 @@
 // import { ServerSidebar } from "@/components/server/server-sidebar";
 // import { currentProfile } from "@/lib/current-profile"
-import SideBarAction from "@/components/modals/sidebar-action";
+import SideBarAction from "@/components/sidebar/sidebar-action";
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
 import { prisma } from "@/lib/db"
 

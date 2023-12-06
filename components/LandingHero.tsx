@@ -29,6 +29,7 @@ function LandingHero() {
           <Link href="/mint" className="p-2 rounded-lg text-2xl bg-[yellow] text-black font-bold hover:text-white hover:bg-black" >
             Mint Now
           </Link>
+          
         </div>
 
         <div className="relative w-[300px] h-[300px]">
