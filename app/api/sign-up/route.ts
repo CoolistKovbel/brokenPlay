@@ -1,9 +1,9 @@
 // import { prisma } from "@/lib/db";
 // import { hash } from "bcrypt";
 // import { writeFile } from "fs/promises";
-// import { NextResponse } from "next/server";
+import { NextRequest} from "next/server";
 
-// export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
 //     try {
 
 //       const body = await req.formData();
@@ -62,6 +62,6 @@
 //       return NextResponse.json(newUser, { status: 200 });
 //     } catch (error) {
 //       console.log(error);
-//       return NextResponse.json("error", { status: 500 });
+    //   return NextResponse.json("error", { status: 500 });
 //     }
-//   }
+  }
