@@ -34,8 +34,7 @@ async function DappHeader() {
   }
 
   return (
-    <header className="flex items-center justify-between w-full h-[100px] bg-[#222] z-30 fixed text-white p-4">
-      {/* Heading */}
+    <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-30 fixed ">
       <h2 className="font-size-3xl font-bold">
         <Link href="/">MysticMurkoXD</Link>
       </h2>
@@ -43,16 +42,13 @@ async function DappHeader() {
       {session?.user ? (
         <div className="flex items-center justify-between w-[250px]">
           <Link href="/" className="flex items-center">
-            {" "}
             <Home /> <span>Home</span>
           </Link>
           <Link href="/mint" className="flex items-center">
-            {" "}
             <PictureInPicture2Icon /> <span>Mint</span>
           </Link>
           {/* Check to see if has group if an go through the wholle process. */}
-          <Link href="/kittybowl" className="flex items-center">
-            {" "}
+          <Link href={`/kittybowl/${server?.id}`} className="flex items-center">
             <MessageCircle /> <span>Message</span>
           </Link>
         </div>
@@ -68,7 +64,7 @@ async function DappHeader() {
           </Link>
         </div>
       )}
-    </header>
+    </div>
   );
 }
 

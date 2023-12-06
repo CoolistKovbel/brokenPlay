@@ -23,6 +23,14 @@ const formSchema = z.object({
 export const InitialModal = () => {
     const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
+    const [file, setFile] = useState<File | null>(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) {
+        console.log(file)
+        setFile(e.target.files[0]);
+      }
+    };
   
     useEffect(() => {
       setIsMounted(true);
@@ -77,7 +85,7 @@ export const InitialModal = () => {
                           <Input   
                             type="file"                        
                             // value={field.value}
-                            onChange={field.onChange}
+                            onChange={handleFileChange}
                             className="p-2 bg-[#222] text-white"
                           />
 

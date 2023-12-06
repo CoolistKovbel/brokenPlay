@@ -53,7 +53,8 @@ export const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
 
 
     return (
-        <div className="flex flex-col h-full text-primary w-full dark:bg-[#111] bg-[#222] pt-[100px]">
+        <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
+
             <ServerHeader 
                 server={'slow beans'}
                 role={role || "ADMIN"}

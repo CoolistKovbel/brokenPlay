@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
+import { writeFile } from "fs/promises";
 import * as z from "zod";
 
 // Validation schema for server request
@@ -21,7 +22,12 @@ export async function POST(req: Request) {
     const { email, username, password, eAddress, image } =
       UserSchema.parse(body);
 
-    console.log(image);
+    console.log(body)
+    console.log(image, "in the server i  th ink");
+
+    if(image){
+      await writeFile(image.path, image.buffer)
+  }
 
     // Check if there are an existing user
 
@@ -41,19 +47,20 @@ export async function POST(req: Request) {
 
     // Setup image function with server for creation
 
-    const newUser = await prisma.profile.create({
-      data: {
-        userId: crypto.randomUUID(),
-        username,
-        email,
-        password: hashedPassword,
-        eddress: eAddress,
-      },
-    });
+    // const newUser = await prisma.profile.create({
+    //   data: {
+    //     userId: crypto.randomUUID(),
+    //     username,
+    //     email,
+    //     password: hashedPassword,
+    //     eddress: eAddress,
+    //   },
+    // });
 
-    const { password: newUserPassword, ...rest } = newUser;
+    // const { password: newUserPassword, ...rest } = newUser;
 
-    return NextResponse.json(rest, { status: 200 });
+    // return NextResponse.json(rest, { status: 200 });
+    return NextResponse.json("fuck", { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json(error, { status: 500 });

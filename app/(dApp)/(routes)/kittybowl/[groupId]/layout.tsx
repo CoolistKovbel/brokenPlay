@@ -9,6 +9,7 @@ import { prisma } from "@/lib/db"
 
 const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {serverId: string}}) => {
 
+    console.log(params.serverId)
 
 
     return (

@@ -12,13 +12,10 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { SignInFormSchema } from "./constant";
 
-import { getEthereumAccount } from "../../lib/web3";
 import { useRouter } from "next/navigation";
 
 function SignInForm() {
   const router = useRouter()
-
-  const [eAdress, setEaddres] = useState("");
 
   const form = useForm<z.infer<typeof SignInFormSchema>>({
     resolver: zodResolver(SignInFormSchema),
@@ -30,6 +27,7 @@ function SignInForm() {
 
   const onSubmit = async (values: z.infer<typeof SignInFormSchema>) => {
     try {
+
       console.log(values);
 
       const res = await signIn("credentials", {
@@ -47,14 +45,6 @@ function SignInForm() {
     }
   };
 
-  useEffect(() => {
-    const x = async () => {
-      const y = await getEthereumAccount();
-      setEaddres(y);
-    };
-
-    x();
-  }, [eAdress]);
 
   return (
     <div className="bg-[#111] h-full flex items-center align-center justify-center">

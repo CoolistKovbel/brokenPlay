@@ -10,13 +10,12 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { SignUpFormSchema } from "./constant";
 
-import { getEthereumAccount } from "../../lib/web3";
 import { useRouter } from "next/navigation";
 import axios from "axios"
+import fs from "fs/promises"
 
 function SignUpForm() {
   const router = useRouter()
-  const [eAdress, setEaddres] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +39,27 @@ function SignUpForm() {
   const onSubmit = async (values: z.infer<typeof SignUpFormSchema>) => {
     try {
 
-      console.log(values.image, "Image value")
-      console.log(file, "Image value")
+      values.image = file
+
+      if(values.image === file){
+        const fileBuffer = await (values.image as Blob).arrayBuffer();
+        const buffer = Buffer.from(fileBuffer);
+        console.log(buffer);
+
+        // let path = `${process.cwd()}/public/${values.image.name}`;
+        let path = `/public/${values.image.name}`;
+        console.log(path)
+        
+        // let p = `${path.split("/Users/shpintz/Desktop/hml")[1]}`;
+        // let p = `${path.split("/Users/shpintz/Desktop/hml")[1]}`;
+        // await fs.writeFile(p, buffer);
+  
+        values.image = {path, buffer};
+      }
+
+      console.log(values.image)
+
+
       const res = await axios.post("/api/user", values)
 
       console.log(res)
@@ -53,14 +71,6 @@ function SignUpForm() {
     }
   };
 
-  useEffect(() => {
-    const x = async () => {
-      const y = await getEthereumAccount();
-      setEaddres(y);
-    };
-
-    x();
-  }, [eAdress]);
 
   return (
     <div className="bg-[#111] h-full flex items-center align-center justify-center">
@@ -175,7 +185,7 @@ function SignUpForm() {
                     <FormItem>
                       <FormLabel>Image: </FormLabel>
                       <FormControl>
-                       <input type="file" onChange={(e) => setFile(e.target.value[0])} />
+                       <input type="file" onChange={handleFileChange} />
                       </FormControl>
                     </FormItem>
                   )}

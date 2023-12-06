@@ -1,9 +1,8 @@
-"use client";
+import { authOptions } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
 
-import { useSession } from "next-auth/react";
-
-export const User = () => {
-  const { data: session } = useSession();
+export const User = async () => {
+  const session = await getServerSession(authOptions)
 
   return JSON.stringify(session?.user.userId);
 };
