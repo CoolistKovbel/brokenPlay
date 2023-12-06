@@ -8,7 +8,7 @@ import React from "react";
 async function dAppLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
-  console.log(session);
+  console.log(session, "sessoin not here");
 
   return (
     <div className=" h-full">

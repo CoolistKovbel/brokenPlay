@@ -15,20 +15,23 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "MysticMurko",
       credentials: {
-        email: { label: "eddress", type: "email", placeholder: "0x" },
+        eddress: { label: "eddress", placeholder: "0x" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         
-        if (!credentials?.email || !credentials?.password) {
+
+        console.log(credentials)
+
+
+        if (!credentials?.eddress || !credentials?.password) {
           return null;
         }
 
         const existingUser = await prisma.profile.findUnique({
-          where: { email: credentials?.email },
+          where: { eddress: credentials?.eddress },
         }); 
 
         console.log(existingUser)
@@ -48,9 +51,11 @@ export const authOptions: NextAuthOptions = {
 
         return {
           id: `${existingUser.id}`,
+          userId: existingUser.userId,
           username: existingUser.username || "",
           email: existingUser.email,
-          eddress: existingUser.eddress || "" 
+          eddress: existingUser.eddress || "" ,
+          image: existingUser.image
         };
       },
     }),
@@ -66,7 +71,9 @@ export const authOptions: NextAuthOptions = {
         return {
           ...token,
           username: user.username,
-          eddress: user.eddress
+          eddress: user.eddress,
+          userId: user.userId,
+          image: user.image
 
         };
       }

@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 function SignInForm() {
   const router = useRouter()
+
   const [eAdress, setEaddres] = useState("");
 
   const form = useForm<z.infer<typeof SignInFormSchema>>({
@@ -32,7 +33,7 @@ function SignInForm() {
       console.log(values);
 
       const res = await signIn("credentials", {
-        email: values.eddress,
+        eddress: values.eddress,
         password: values.password,
         redirect: false
       });
@@ -80,7 +81,6 @@ function SignInForm() {
                       <FormLabel>Eddress: </FormLabel>
                       <FormControl>
                         <Input
-                          type="email"
                           placeholder="enter 0xAddress"
                           className="bg-black text-[#16a34a] text-sm"
                           {...field}

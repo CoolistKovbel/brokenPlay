@@ -45,7 +45,7 @@ function SignUpForm() {
 
       console.log(res)
 
-      router.push("/KittyBowl")
+      router.push("/sign-in")
 
     } catch (error) {
       console.log(error);
