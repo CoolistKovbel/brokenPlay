@@ -154,13 +154,12 @@ export async function mintNFT(amount: any) {
 
     const res = await contract.mint(amount, {
       value: ethers.utils.parseEther((0.042 * amount).toString()),
-      gassLimit: "50000",
     });
 
     console.log(res)
 
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
