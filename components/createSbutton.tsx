@@ -1,10 +1,10 @@
-import { initialProfile } from '@/lib/initial-profile'
+import {InitialProfile} from '@/lib/initial-profile'
 import React from 'react'
 
 function CreateServer() {
 
 
-    initialProfile()
+    const profile = InitialProfile()
 
   return (
     <div>
