@@ -1,12 +1,9 @@
 // Create a initial profile launch
-
-
+import { useRouter } from "next/navigation";
 import { prisma } from "../lib/db";
 import { User } from "./current-profile";
 
-interface initialProfileProps {
-
-}
+// interface initialProfileProps {}
 
 interface ProfileCreateInput {
   userId: string;
@@ -16,16 +13,23 @@ interface ProfileCreateInput {
   password: string;
 }
 
-export const initialProfile = async () => {
+export const InitialProfile = async () => {
+  const router = useRouter();
+  const d = User(); //returns userID
 
-  const d =  User()
-  console.log(d)
-  
-  return (
-    <div>
-      slow
-    </div>
-  )
+  if (!d) {
+    router.push("/");
+  }
 
+  const profile = await prisma.profile.findUnique({
+    where: {
+      userId: d,
+    },
+  });
 
+  if (profile) {
+    return profile;
+  }
+
+  return "slow";
 };

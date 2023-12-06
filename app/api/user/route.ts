@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const { email, username, password, eAddress, image } =
       UserSchema.parse(body);
 
-    console.log(email);
+    console.log(image);
 
     // Check if there are an existing user
 
