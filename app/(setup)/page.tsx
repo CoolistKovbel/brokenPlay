@@ -1,5 +1,5 @@
 
-import LandingHero from "@/components/LandingHero";
+import LandingHero from "@/components/landing/LandingHero";
 
 import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -9,11 +9,8 @@ import { authOptions } from "@/lib/auth";
 export default async function Home() {
   
   const session = await getServerSession(authOptions);
-  console.log(session);
-
-  if (session?.user) {
-    return <div>AdminPage {session?.user.username}</div>;
-  }
+  
+  console.log(session, "This is from the setup layout");
 
   //   const group = await prisma.group.findFirst({
   //     where: {
@@ -26,7 +23,7 @@ export default async function Home() {
   // })
 
   // if(group) { 
-  //     return redirect(`/servers/${group.id}`)
+  //     return redirect(`/kittybowl/${group.id}`)
   // }
 
   return (

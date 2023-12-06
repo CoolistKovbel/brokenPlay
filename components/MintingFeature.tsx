@@ -1,6 +1,5 @@
 "use client";
 
-
 import * as z from 'zod'
 import React from "react";
 import Image from "next/image";
@@ -16,12 +15,17 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { mintNFT } from "../lib/web3"
+import { useSession } from 'next-auth/react'
 
 export const MintAmountFormSchema = z.object({
   amount: z.number() 
 })
 
 function MintingFeature() {
+
+  const { data: session } = useSession()
+
+  console.log(session, "This is data minting feature page")
 
   const form = useForm<z.infer<typeof MintAmountFormSchema >>({
     resolver: zodResolver(MintAmountFormSchema ),
