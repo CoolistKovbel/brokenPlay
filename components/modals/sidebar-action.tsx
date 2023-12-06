@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useModal } from "../model-store";
+import { useModal } from "@/hooks/use-modal-store";
 import { ActionTooltip } from "../ui/action-tooltip";
 import { Plus } from "lucide-react";
 
