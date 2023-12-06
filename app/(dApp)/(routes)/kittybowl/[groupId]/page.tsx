@@ -1,6 +1,6 @@
 const ServerPage = () => {
     return (
-        <div>
+        <div className="pt-[100px]">
             server 
         </div>
     )
