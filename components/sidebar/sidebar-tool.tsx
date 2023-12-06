@@ -6,16 +6,24 @@ import { getSession } from "next-auth/react";
 import { ScrollArea } from "../ui/scroll-area";
 import SideBarAction from "./sidebar-action";
 import { prisma } from "@/lib/db";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+
 
 
 async function SidebarTool() {
-  const joined = false;
+
+  const session = await getServerSession(authOptions);
+
+  console.log(session, "sessoin in the dAppLayout page");
+  
+  const joined = false
 
   const group = prisma.group.findMany({
     where: {
       members: {
         some: {
-          profileId: "0",
+          profileId: session?.user.userId,
         },
       },
     },

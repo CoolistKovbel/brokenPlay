@@ -2,6 +2,7 @@
 
 
 import { prisma } from "../lib/db";
+import { User } from "./current-profile";
 
 interface initialProfileProps {
 
@@ -17,7 +18,8 @@ interface ProfileCreateInput {
 
 export const initialProfile = async () => {
 
-
+  const d =  User()
+  console.log(d)
   
   return (
     <div>
