@@ -12,11 +12,15 @@ export default async function Home() {
   
   console.log(session, "This is from the setup layout");
 
+  const etherAddress = session?.user.eddress
+  const username = session?.user.username
+  const idA = session?.user.userId
+
   //   const group = await prisma.group.findFirst({
   //     where: {
   //         members: {
   //             some: {
-  //                 profileId: profile.id
+  //                 profileId: idA
   //             }
   //         }
   //     }
