@@ -2,16 +2,20 @@
 
 import { signOut } from "next-auth/react";
 import { Button } from "../components/ui/button";
+import { redirect } from "next/navigation";
 
 const UserLogout = () => {
+
+  const handleSignout = () => {
+    signOut()
+    redirect(`${window.location.origin}/sign-in`)
+  }
+
+
+
   return (
     <Button
-      onClick={() =>
-        signOut({
-          redirect: true,
-          callbackUrl: "/",
-        })
-      }
+      onClick={handleSignout}
       variant="destructive"
     >
       Sign out

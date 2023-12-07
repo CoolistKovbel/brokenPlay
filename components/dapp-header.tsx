@@ -12,6 +12,7 @@ import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/db";
 import { InitialModal } from "./modals/initial-modal";
 import { userBoughtNFT } from "@/lib/web3";
+import UserLogout from "@/lib/user-logout";
 
 async function DappHeader() {
   const session: any = await getServerSession(authOptions);
@@ -48,7 +49,7 @@ async function DappHeader() {
       </h2>
 
       {session?.user ? (
-        <div className="flex items-center justify-between w-[250px]">
+        <div className="flex items-center justify-between w-[300px] text-sm">
           <Link href="/" className="flex items-center">
             <Home /> <span>Home</span>
           </Link>
@@ -59,6 +60,7 @@ async function DappHeader() {
           <Link href={`/kittybowl/${server.id}`} className="flex items-center">
             <MessageCircle /> <span>Message</span>
           </Link>
+          <UserLogout />
         </div>
       ) : (
         <div className="flex items-center justify-between w-[180px]">
@@ -70,6 +72,7 @@ async function DappHeader() {
             {" "}
             <Scroll /> <span>Register</span>
           </Link>
+          
         </div>
       )}
     </div>
