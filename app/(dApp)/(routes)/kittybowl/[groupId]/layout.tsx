@@ -1,24 +1,17 @@
-// import { ServerSidebar } from "@/components/server/server-sidebar";
-// import { currentProfile } from "@/lib/current-profile"
-import SideBarAction from "@/components/sidebar/sidebar-action";
+
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
-import SidebarTool from "@/components/sidebar/sidebar-tool";
-import { prisma } from "@/lib/db"
 
 
 
-const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {serverId: string}}) => {
 
-    console.log(params.serverId)
+const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {groupId: string}}) => {
 
+    console.log(params, "Ther is a sservier id here")
 
     return (
         <div className="h-full">
-            <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-                <SidebarTool />
-
-                <ServerSidebar serverId={params.serverId} />
-
+            <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0"> 
+                <ServerSidebar serverId={params.groupId} />
             </div>
             <main className="h-full md:pl-60">
                 {children}

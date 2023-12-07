@@ -29,14 +29,17 @@ async function DappHeader() {
     },
   });
 
-  if (server) {
+  const link = `/kittybowl/${server.id}`
+
+  if (!server) {
     return <InitialModal />;
   }
 
   return (
-    <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-30 fixed ">
-      <h2 className="font-size-3xl font-bold">
-        <Link href="/">MysticMurkoXD</Link>
+    <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] p-4">
+
+      <h2 className="font-bold">
+        <Link href="/" className="text-4xl">MysticMurkoXD</Link>
       </h2>
 
       {session?.user ? (
@@ -48,7 +51,7 @@ async function DappHeader() {
             <PictureInPicture2Icon /> <span>Mint</span>
           </Link>
           {/* Check to see if has group if an go through the wholle process. */}
-          <Link href={`/kittybowl/${server?.id}`} className="flex items-center">
+          <Link href={link} className="flex items-center">
             <MessageCircle /> <span>Message</span>
           </Link>
         </div>

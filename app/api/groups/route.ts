@@ -31,8 +31,6 @@ export async function POST(req: Request) {
             return new NextResponse("unauthroized", {status: 401})
         }
 
-        
-
         const server = await prisma.group.create({
             data: {
                 profileId: profile.userId,

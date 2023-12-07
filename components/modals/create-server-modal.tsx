@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import * as z from "zod";
 import { Button } from "../ui/button";
+import { useModal } from "@/hooks/use-modal-store";
 
 
 const formSchema = z.object({
@@ -19,10 +20,12 @@ const formSchema = z.object({
     imageUrl: z.any(),
   });
 
-export const InitialModal = () => {
-    const [isMounted, setIsMounted] = useState(false);
+export const CreateServerModal = () => {
+  const { isOpen, onClose, type } = useModal();
     const router = useRouter();
     const [file, setFile] = useState<File | null>(null);
+
+    const isModalOpen = isOpen && type === "createServer";
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files) {
@@ -31,9 +34,6 @@ export const InitialModal = () => {
       }
     };
   
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
   
     const form = useForm({
       resolver: zodResolver(formSchema),
@@ -56,18 +56,21 @@ export const InitialModal = () => {
         await axios.post("/api/groups", formInt);
         form.reset();
         router.refresh();
-        window.location.reload();
+        onClose();
         
       } catch (error) {
         console.log(error);
       }
     };
-  
-    if (!isMounted) {
-      return null;
+
+    const handleClose = () => {
+      form.reset();
+      onClose();
     }
+  
+
     return (
-        <Dialog open>
+        <Dialog open={isModalOpen} onOpenChange={handleClose}>
         <DialogContent className="bg-white text-black p-0 overflow-hidden">
           <DialogHeader className="pt-8 px-6">
             <DialogTitle className="text-2xl text-center font-bold">

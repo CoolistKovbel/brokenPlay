@@ -12,7 +12,7 @@ interface ServerSidebarProps {
 
 export const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
 
-    console.log(serverId)
+    console.log(serverId, "DE servider is heres")
     
     // const server = await prisma.group.findUnique({
     //     where: {

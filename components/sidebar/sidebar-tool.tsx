@@ -10,6 +10,7 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { InitialModal } from "@/components/modals/initial-modal";
+import { NavigationItem } from "./navigation-item";
 
 
 
@@ -18,17 +19,20 @@ async function SidebarTool() {
   const session = await getServerSession(authOptions);
 
   console.log(session, "sessoin in the dAppLayout page");
-  const joined = session
 
-  // const server = await prisma.group.findFirst({
-  //   where: {
-  //     members:{
-  //       some: {
-  //         profileId: session?.user.id
-  //       }
-  //     }
-  //   }
-  // })
+  if (!session) {
+    return redirect("/sign-in");
+  }
+
+  const servers = await prisma.group.findMany({
+    where: {
+      members: {
+        some: {
+          profileId: session.user.userId,
+        },
+      },
+    },
+  });
 
   // // if(server) {
   // //   return redirect(`/kittybowl/${server.id}`)
@@ -38,10 +42,12 @@ async function SidebarTool() {
   //   return <InitialModal />
   // }
 
+  console.log(servers)
+
   
 
   return (
-    <div className="space-y-2 flex flex-col items-center h-full text-[orange] w-full bg-[#444] pt-[120px]">
+    <div className="space-y-2 flex flex-col items-center h-full text-[orange] w-full bg-[#444] pt-[120px] pb-[10px]">
       {/* image */}
       <div className="relative w-[120px] h-[120px] m-auto">
         <Image src="/DarkHorsev12-test.png" alt="random iamge" fill />
@@ -50,39 +56,19 @@ async function SidebarTool() {
       <Separator className="h-[2px] bg-[#222] rounded-md dark:bg-[#111] w-10 mx-auto" />
 
       {/* Groups */}
-      <div className="bg-[#222] h-full text-center overflow-auto">
+      <ScrollArea className="flex-1 w-full">
 
-
-        <div className="p-2">
-          <div className="relative w-[25px] h-[25px] m-auto">
-            <Image src="/test2.png" alt="test" fill />
+        {servers.map((serv) => (
+          <div key={serv.id} className="mb-4 text-center flex items-center justify-center">
+            <NavigationItem
+              id={serv.id}
+              name={serv.name}
+              imageUrl={serv.imageUrl || ""}
+            />
           </div>
-
-          <h2>Group #001</h2>
-          <p>Price: 100</p>
-          {joined ? <Button>Enter Chat</Button> : <Button>Join Chat</Button>}
-        </div>
-
-        <div className="p-2">
-          <div className="relative w-[25px] h-[25px] m-auto">
-            <Image src="/test2.png" alt="test" fill />
-          </div>
-          <h2>Group #001</h2>
-          <p>Price: 100</p>
-          {joined ? <Button>Enter Chat</Button> : <Button>Join Chat</Button>}
-        </div>
-
-        <div className="p-2">
-          <div className="relative w-[25px] h-[25px] m-auto">
-            <Image src="/test2.png" alt="test" fill />
-          </div>
-          <h2>Group #001</h2>
-          <p>Price: 100</p>
-          {joined ? <Button>Enter Chat</Button> : <Button>Join Chat</Button>}
-        </div>
-
+        ))}
         
-      </div>
+      </ScrollArea>
 
       {/* Models */}
       <SideBarAction />
