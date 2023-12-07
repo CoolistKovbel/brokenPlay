@@ -20,33 +20,35 @@ export async function POST(req: Request) {
         const fileBuffer = await (image as File).arrayBuffer();
         const buffer = Buffer.from(fileBuffer);
     
-        console.log(buffer, "this is a buffer");
+        // console.log(buffer, "this is a buffer");
 
         const path = `${process.cwd()}/public/groups/${crypto.randomUUID() + image.name}`;
         await writeFile(path, buffer)
 
-        console.log(path.split(`${process.cwd()}/public/groups/`)[1])
+        // console.log(path.split(`${process.cwd()}/public/groups/`)[1])
 
         if(!profile) {
             return new NextResponse("unauthroized", {status: 401})
         }
+        console.log(profile.userId, "give me the idea user i guess")
+        console.log(profile, "give me the idea user i guess")
 
         const server = await prisma.group.create({
             data: {
-                profileId: profile.userId,
+                profileId: profile.id,
                 name,
                 imageUrl: path.split(`${process.cwd()}/public/groups/`)[1],
                 inviteCode: crypto.randomUUID(),
                 channels: {
                     create: [
                         {
-                            name: "general", profileId: profile.userId
+                            name: "general", profileId: profile.id
                         }
                     ]
                 },
                 members: {
                     create: [
-                        {profileId: profile.userId, role: MemberRole.ADMIN}
+                        {profileId: profile.id, role: MemberRole.ADMIN}
                     ]
                 }
             }

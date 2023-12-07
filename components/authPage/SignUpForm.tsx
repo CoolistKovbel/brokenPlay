@@ -3,7 +3,7 @@
 import * as z from "zod";
 import React, { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -112,7 +112,7 @@ function SignUpForm() {
                           {...field}
                         />
                       </FormControl>
-                      
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -131,6 +131,7 @@ function SignUpForm() {
                           {...field}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -149,6 +150,7 @@ function SignUpForm() {
                           {...field}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -166,6 +168,7 @@ function SignUpForm() {
                           {...field}
                         />
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />

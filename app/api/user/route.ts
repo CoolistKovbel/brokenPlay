@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 
     const newUser = await prisma.profile.create({
       data: {
-        userId: crypto.randomUUID(),
+        userId: crypto.randomUUID().split("-").join("").substring(0, 12),
         username,
         email,
         password: hashedPassword,
@@ -63,6 +63,8 @@ export async function POST(req: Request) {
         image: path.split(`${process.cwd()}/public/`)[1]
       },
     });
+
+    console.log(newUser)
 
     const { password: newUserPassword, ...rest } = newUser;
 

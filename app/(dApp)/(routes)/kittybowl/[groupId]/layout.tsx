@@ -5,8 +5,6 @@ import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 
-
-
 const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {groupId: string}}) => {
 
     console.log(params, "Ther is a sservier id here")
@@ -18,7 +16,7 @@ const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; p
             id: params.groupId,
             members: {
                 some: {
-                    profileId: dd?.userId
+                    profileId: dd?.id
                 }
             }
         }

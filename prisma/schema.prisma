@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Profile {
-  id       String  @id @default(cuid()) @map("_id") @db.ObjectId
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   userId   String  @unique
   username String  @unique
   email    String  @unique
@@ -29,7 +29,7 @@ model Profile {
 }
 
 model Group {
-  id         String  @id @default(cuid()) @map("_id") @db.ObjectId
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   imageUrl   String?
   inviteCode String?
@@ -53,7 +53,7 @@ enum MemberRole {
 }
 
 model Member {
-  id   String     @id @default(cuid()) @map("_id")
+  id   String     @id @default(auto()) @map("_id") @db.ObjectId
   role MemberRole @default(GUEST)
 
   profileId String @db.ObjectId
@@ -76,7 +76,7 @@ enum ChannelType {
 }
 
 model Channel {
-  id   String      @id @default(cuid()) @map("_id") @db.ObjectId
+  id   String      @id @default(auto()) @map("_id") @db.ObjectId
   name String
   type ChannelType @default(TEXT)
 
