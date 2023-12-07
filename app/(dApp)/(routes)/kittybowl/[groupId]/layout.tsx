@@ -1,5 +1,8 @@
 
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
+import { User } from "@/lib/current-profile";
+import { prisma } from "@/lib/db";
+import { redirect } from "next/navigation";
 
 
 
@@ -7,6 +10,25 @@ import { ServerSidebar } from "@/components/sidebar/sidebar-server";
 const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {groupId: string}}) => {
 
     console.log(params, "Ther is a sservier id here")
+    const dd = await User()
+    console.log(dd, "woof")
+
+    const server = await prisma.group.findUnique({
+        where: {
+            id: params.groupId,
+            members: {
+                some: {
+                    profileId: dd?.userId
+                }
+            }
+        }
+    })
+
+    console.log(server, "Unique server goundf")
+
+    if(!server) {
+        return redirect("/")
+    }
 
     return (
         <div className="h-full">

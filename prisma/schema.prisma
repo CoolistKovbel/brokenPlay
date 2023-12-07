@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Profile {
-  id       String  @id @default(cuid()) @map("_id")
+  id       String  @id @default(cuid()) @map("_id") @db.ObjectId
   userId   String  @unique
   username String  @unique
   email    String  @unique
@@ -29,7 +29,7 @@ model Profile {
 }
 
 model Group {
-  id         String  @id @default(cuid()) @map("_id")
+  id         String  @id @default(cuid()) @map("_id") @db.ObjectId
   name       String
   imageUrl   String?
   inviteCode String?
@@ -37,7 +37,7 @@ model Group {
   members  Member[]
   channels Channel[]
 
-  profileId String
+  profileId String @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id])
 
   createdAt DateTime @default(now())
@@ -56,10 +56,10 @@ model Member {
   id   String     @id @default(cuid()) @map("_id")
   role MemberRole @default(GUEST)
 
-  profileId String
+  profileId String @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id])
 
-  groupID String
+  groupID String @db.ObjectId
   group   Group  @relation(fields: [groupID], references: [id])
 
   createdAt DateTime @default(now())
@@ -76,14 +76,14 @@ enum ChannelType {
 }
 
 model Channel {
-  id   String      @id @default(cuid()) @map("_id")
+  id   String      @id @default(cuid()) @map("_id") @db.ObjectId
   name String
   type ChannelType @default(TEXT)
 
-  profileId String
+  profileId String @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id])
 
-  groupID String
+  groupID String @db.ObjectId
   group   Group  @relation(fields: [groupID], references: [id])
 
   createdAt DateTime @default(now())

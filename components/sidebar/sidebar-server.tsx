@@ -1,64 +1,58 @@
-
 import { prisma } from "@/lib/db";
 
 import { ChannelType } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { ServerHeader } from "./sidebar-server-header";
-
+import { User } from "@/lib/current-profile";
 
 interface ServerSidebarProps {
-    serverId: string;
+  serverId: string;
 }
 
-export const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
+export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
+  console.log(serverId, "DE servider is heres");
+  const profile = await User();
 
-    console.log(serverId, "DE servider is heres")
-    
-    // const server = await prisma.group.findUnique({
-    //     where: {
-    //         id: serverId
-    //     },
-    //     include: {
-    //         channels: {
-    //             orderBy: {
-    //                 createdAt: "asc"
-    //             }
-    //         },
-    //         members: {
-    //             include: {
-    //                 profile: true
-    //             },
-    //             orderBy: {
-    //                 role: "asc"
-    //             }
-    //         }
-    //     },
-    // })
+  const server = await prisma.group.findUnique({
+    where: {
+      id: serverId,
+    },
+    include: {
+      profile: true, 
+      channels: {
+        where: {
+          groupID: serverId,
+        },
+      },
+      members: {
+        include: {
+          profile: true, // Include the profile field for each member
+        },
+        orderBy: {
+          role: "asc",
+        },
+      },
+    },
+  });
 
-    // console.log(server)
+  console.log(server);
 
-    // const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT)
-    // const auidioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO)
-    // const videoChannels = server?.channels.filter((channel) => channel.type === ChannelType.VIDEO)
+  // const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT)
+  // const auidioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO)
+  // const videoChannels = server?.channels.filter((channel) => channel.type === ChannelType.VIDEO)
 
-    // const members = server?.members.filter((member) => member.profileId !== profile.id)
+  // const members = server?.members.filter((member) => member.profileId !== profile.id)
 
+  if (!profile) {
+    return redirect("/");
+  }
 
-    // if(!server){
-    //     return redirect('/')
-    // }
+  // const role = server.members.find((member) => member.profileId === profile.id)?.role
+  const role = "ADMIN";
 
-    // const role = server.members.find((member) => member.profileId === profile.id)?.role
-     const role = "ADMIN"
-
-
-    return (
-        <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
-
-            <ServerHeader 
-                server={'slow beans'}
-                role={role || "ADMIN"}
-            />
-        </div>
-    )
-}
+  return (
+    <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
+      <ServerHeader server={"slow beans"} role={role || "ADMIN"} />
+    </div>
+  );
+};

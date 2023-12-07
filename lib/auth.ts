@@ -73,7 +73,8 @@ export const authOptions: NextAuthOptions = {
           username: user.username,
           eddress: user.eddress,
           userId: user.userId,
-          image: user.image
+          image: user.image,
+          id: user.id
 
         };
       }
@@ -87,7 +88,8 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           username: token.username,
           eddress: token.eddress,
-          userId: token.userId
+          userId: token.userId,
+          id: token.id
         },
       };
     },

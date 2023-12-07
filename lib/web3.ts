@@ -120,6 +120,8 @@ export async function grabAllAnnouncements() {
 export async function userBoughtNFT(address: string){
   
   try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
     const contract = new ethers.Contract(
       contractAddress,
       contractABI,
@@ -185,7 +187,7 @@ export async function mintNFT(amount: any) {
 
 
 const contractBB = () => {
-  const provider = new ethers.providers.InfuraProvider(NETWORK, APIKEY);
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractABI, signer);
   return contract;
