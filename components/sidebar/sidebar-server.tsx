@@ -18,7 +18,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
       id: serverId,
     },
     include: {
-      profile: true, 
       channels: {
         where: {
           groupID: serverId,
@@ -26,7 +25,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
       },
       members: {
         include: {
-          profile: true, // Include the profile field for each member
+          profile: true, 
         },
         orderBy: {
           role: "asc",
@@ -52,7 +51,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
 
   return (
     <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
-      <ServerHeader server={"slow beans"} role={role || "ADMIN"} />
+      <ServerHeader server={server?.name} role={role || "ADMIN"} />
     </div>
   );
 };
