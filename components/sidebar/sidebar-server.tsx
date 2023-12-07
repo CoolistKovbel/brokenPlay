@@ -11,6 +11,7 @@ interface ServerSidebarProps {
 
 export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   console.log(serverId, "DE servider is heres");
+
   const profile = await User();
 
   const server = await prisma.group.findUnique({
@@ -25,7 +26,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
       },
       members: {
         include: {
-          profile: true, 
+          profile: true,
         },
         orderBy: {
           role: "asc",
@@ -36,22 +37,31 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
 
   console.log(server);
 
-  // const textChannels = server?.channels.filter((channel) => channel.type === ChannelType.TEXT)
-  // const auidioChannels = server?.channels.filter((channel) => channel.type === ChannelType.AUDIO)
-  // const videoChannels = server?.channels.filter((channel) => channel.type === ChannelType.VIDEO)
+  const textChannels = server?.channels.filter(
+    (channel) => channel.type === ChannelType.TEXT
+  );
+  const auidioChannels = server?.channels.filter(
+    (channel) => channel.type === ChannelType.AUDIO
+  );
+  const videoChannels = server?.channels.filter(
+    (channel) => channel.type === ChannelType.VIDEO
+  );
 
-  // const members = server?.members.filter((member) => member.profileId !== profile.id)
+  const members = server?.members.filter(
+    (member) => member.profileId !== profile?.id
+  );
 
   if (!profile) {
     return redirect("/");
   }
 
-  // const role = server.members.find((member) => member.profileId === profile.id)?.role
-  const role = "ADMIN";
+  const role = server?.members.find(
+    (member) => member.profileId === profile.id
+  )?.role;
 
   return (
     <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
-      <ServerHeader server={server?.name} role={role || "ADMIN"} />
+      <ServerHeader server={server} role={role} />
     </div>
   );
 };

@@ -10,10 +10,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
 import { Label } from "@/components/ui/label";
 import { useModal } from "@/hooks/use-modal-store";
+
 import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
+
 import { useOrigin } from "@/hooks/use-origin";
 
 export const InviteModal = () => {
@@ -40,7 +44,7 @@ export const InviteModal = () => {
   const onNew = async () => {
     try {
       setIsLoading(true); 
-      const response = await axios.patch(`/api/servers/${server?.id}/invite-code`);
+      const response = await axios.patch(`/api/groups/${server?.id}/invite-code`);
 
       onOpen("invite", { server: response.data });
     } catch (error) {

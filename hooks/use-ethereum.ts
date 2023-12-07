@@ -2,18 +2,18 @@
 
 import { useEffect, useState } from "react"
 
-export const useOrigin = () => {
+export const useEthereum = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const origin = typeof window !== "undefined" && window.location.origin ? window.location.origin : "";
+  const ethereum = typeof window !== "undefined" && window.ethereum ? window.ethereum : "";
 
   if (!mounted) {
     return "";
   }
 
-  return origin;
+  return ethereum;
 }

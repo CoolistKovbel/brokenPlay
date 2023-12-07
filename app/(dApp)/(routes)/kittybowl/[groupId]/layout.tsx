@@ -8,7 +8,9 @@ import { redirect } from "next/navigation";
 const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {groupId: string}}) => {
 
     console.log(params, "Ther is a sservier id here")
+
     const dd = await User()
+    
     console.log(dd, "woof")
 
     const server = await prisma.group.findUnique({

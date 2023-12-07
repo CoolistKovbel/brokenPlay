@@ -1,6 +1,7 @@
+// main layout
+
 import DappHeader from "@/components/dapp-header";
 import SidebarTool from "@/components/sidebar/sidebar-tool";
-// import SidebarTool from "@/components/sidebar/sidebar-tool";
 
 import React from "react";
 
