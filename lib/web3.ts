@@ -1,11 +1,14 @@
 // KEY -> 0x6f6C58Ba47892EF76fF9678895166E9E073917e8 <- eth
 // BTC -> 1EBKdZ6rfUcDxR3uPfAsKcnPgaYm9zCUp2 <- address
+require("dotenv").config()
+
 import { ethers } from "ethers";
 import ABI from "./abi.json";
-
 export const contractAddress = "0x01B2795EC6E5ADD288e196fA437ADCB23438E9E7";
 
 export const contractABI = ABI.abi;
+
+const { NETWORK, APIKEY} = process.env
 
 
 // Grab ethereum object
@@ -13,12 +16,9 @@ export const getEthereumObject = () => {
   return window.ethereum
 };
 
-
 export const signInMessageVerification = async () => {
   try {
     if (window.ethereum) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
       const contract = new ethers.Contract(
         contractAddress,
         contractABI,
@@ -40,7 +40,7 @@ export const signInMessageVerification = async () => {
 
 export const getEthereumAccount =  async() => {
   try {
-    const ethereum = getEthereumObject();
+    const ethereum: Window = getEthereumObject();
 
     if (!ethereum) {
       console.error("Make sure you have Metamask!");
@@ -116,6 +116,26 @@ export async function grabAllAnnouncements() {
   }
 }
 
+// Check if user owns a nft
+export async function userBoughtNFT(address: string){
+  
+  try {
+    const contract = new ethers.Contract(
+      contractAddress,
+      contractABI,
+      signer
+    );
+
+      const res = await contract.ownerToToken(address)
+
+      return res
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+}
+
 
 // CLient functions
 export async function sendMessage(x:any) {
@@ -165,8 +185,8 @@ export async function mintNFT(amount: any) {
 
 
 const contractBB = () => {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = new ethers.providers.InfuraProvider(NETWORK, APIKEY);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractABI, signer);
-  return contract
-}
+  return contract;
+};

@@ -11,9 +11,10 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/db";
 import { InitialModal } from "./modals/initial-modal";
+import { userBoughtNFT } from "@/lib/web3";
 
 async function DappHeader() {
-  const session = await getServerSession(authOptions);
+  const session: any = await getServerSession(authOptions);
 
   //   Check to see if user has nft....
   console.log(session, "data from dapp header");
@@ -31,6 +32,9 @@ async function DappHeader() {
 
   console.log("server from header", server)
 
+  const owns = await userBoughtNFT(session?.user.eddress)
+
+  console.log(owns)
 
   if (!server) {
     return <InitialModal />;
