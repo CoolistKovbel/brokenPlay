@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
     await writeFile(path, buffer)
 
-    console.log(path.split(`${process.cwd()}/public`)[1])
+    console.log(path.split(`${process.cwd()}/public/`)[1])
 
     // // Check if there are an existing user
 
@@ -66,7 +66,6 @@ export async function POST(req: Request) {
 
     const { password: newUserPassword, ...rest } = newUser;
 
-    // return NextResponse.json(rest, { status: 200 });
     return NextResponse.json(newUser, { status: 200 });
   } catch (error) {
     console.log(error);

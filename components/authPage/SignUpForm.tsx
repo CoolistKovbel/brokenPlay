@@ -12,7 +12,7 @@ import { SignUpFormSchema } from "./constant";
 
 import { useRouter } from "next/navigation";
 import axios from "axios"
-import fs from "fs/promises"
+
 
 function SignUpForm() {
   const router = useRouter()

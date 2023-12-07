@@ -15,9 +15,7 @@ const formSchema = z.object({
     name: z.string().min(1, {
       message: "group name required",
     }),
-    imageUrl: z.string().min(1, {
-      message: "group image required too",
-    }),
+    imageUrl: z.any(),
   });
 
 export const InitialModal = () => {
@@ -48,7 +46,13 @@ export const InitialModal = () => {
   
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try {
-        await axios.post("/api/groups", values);
+        values.imageUrl = file
+        console.log(values.imageUrl)
+        const formInt = new FormData()
+        formInt.append("name", values.name)
+        formInt.append("imageUrl", values.imageUrl)
+
+        await axios.post("/api/groups", formInt);
         form.reset();
         router.refresh();
         window.location.reload();
