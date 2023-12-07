@@ -28,7 +28,7 @@ async function SidebarTool() {
     where: {
       members: {
         some: {
-          profileId: session.user.userId,
+          profileId: session.user.id,
         },
       },
     },
@@ -42,7 +42,7 @@ async function SidebarTool() {
   //   return <InitialModal />
   // }
 
-  console.log(servers)
+  console.log(servers, "All the serers from the sidebar")
 
   
 

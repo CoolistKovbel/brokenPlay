@@ -29,7 +29,8 @@ async function DappHeader() {
     },
   });
 
-  const link = `/kittybowl/${server.id}`
+  console.log("server from header", server)
+
 
   if (!server) {
     return <InitialModal />;
@@ -51,7 +52,7 @@ async function DappHeader() {
             <PictureInPicture2Icon /> <span>Mint</span>
           </Link>
           {/* Check to see if has group if an go through the wholle process. */}
-          <Link href={link} className="flex items-center">
+          <Link href={`/kittybowl/${server.id}`} className="flex items-center">
             <MessageCircle /> <span>Message</span>
           </Link>
         </div>
