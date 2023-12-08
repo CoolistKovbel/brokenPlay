@@ -11,7 +11,6 @@ const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; p
 
     const dd = await User()
     
-    // console.log(dd, "woof")
 
     const server = await prisma.group.findUnique({
         where: {
@@ -24,7 +23,6 @@ const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; p
         }
     })
 
-    // console.log(server, "Unique server goundf")
 
     if(!server) {
         return redirect("/")

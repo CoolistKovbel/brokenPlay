@@ -1,12 +1,30 @@
 import { prisma } from "@/lib/db";
 
-import { ChannelType } from "@prisma/client";
+import { ChannelType, MemberRole } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { ServerHeader } from "./sidebar-server-header";
 import { User } from "@/lib/current-profile";
+import { ScrollArea } from "../ui/scroll-area";
+import { Separator } from "../ui/separator";
+import { Hash, Mic, Shield, ShieldCheck, Video } from "lucide-react";
+import { ServerSearch } from "./sidebar-server-search";
+import { ServerSection } from "./sidebar-server-section";
+
 
 interface ServerSidebarProps {
   serverId: string;
+}
+
+const iconMap = {
+  [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4"/>,
+  [ChannelType.AUDIO]: <Mic className="mr-2 h-4 w-4"/>,
+  [ChannelType.VIDEO]: <Video className="mr-2 h-4 w-4"/>
+}
+
+const roleIconMap = {
+  [MemberRole.GUEST]: null,
+  [MemberRole.MODERATOR]: <ShieldCheck className="h-4 w-4 mr-2 text-indigo-500" />,
+  [MemberRole.ADMIN]: <Shield className="h-4 w-4 mr-2 text-indigo-500" />,
 }
 
 export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
@@ -35,7 +53,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     },
   });
 
-
   const textChannels = server?.channels.filter(
     (channel) => channel.type === ChannelType.TEXT
   );
@@ -61,6 +78,57 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   return (
     <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
       <ServerHeader server={server} role={role} />
+      <ScrollArea className="flex-1 px-3">
+        <div className="mt-2">
+
+          <ServerSearch
+            data={[
+              {
+                label: "Text Channels",
+                type: "channel",
+                data: textChannels?.map((channel) => ({
+                  id: channel.id,
+                  name: channel.name,
+                  icon: iconMap[channel.type],
+                })),
+              },
+              {
+                label: "Voice Channels",
+                type: "channel",
+                data: auidioChannels?.map((channel) => ({
+                  id: channel.id,
+                  name: channel.name,
+                  icon: iconMap[channel.type],
+                })),
+              },
+              // video? 
+              {
+                label: "Members",
+                type: "member",
+                data: members?.map((member) => ({
+                  id: member.id,
+                  name: member.profile.username,
+                  icon: roleIconMap[member.role],
+                })),
+              },
+            ]}
+          />
+
+        </div>
+        <Separator className="bg-zinc-200 rounded-md my-2" />
+        {!!textChannels?.length && (
+          <div className="mb-2">
+
+            <ServerSection
+              sectionType="channels"
+              channelType={ChannelType.TEXT}
+              role={role}
+              label="text channels"
+            />
+
+          </div>
+        )}
+      </ScrollArea>
     </div>
   );
 };
