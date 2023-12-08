@@ -5,6 +5,7 @@ import { CreateServerModal } from "../modals/create-server-modal"
 import { InviteModal } from "../modals/invite-modal"
 import { EditServerModal } from "../modals/edit-server-modal"
 import { MembersModal } from "../modals/members-modal"
+import { CreateGroupModal } from "../modals/create-group-modal"
 
 export const ModalProvider = () => {
 
@@ -26,6 +27,7 @@ export const ModalProvider = () => {
             <InviteModal />
             <EditServerModal />
             <MembersModal />
+            <CreateGroupModal />
         </>
     )
 }
