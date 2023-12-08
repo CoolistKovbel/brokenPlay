@@ -18,7 +18,7 @@ async function DappHeader() {
   const session: any = await getServerSession(authOptions);
 
   //   Check to see if user has nft....
-  console.log(session, "data from dapp header");
+  // console.log(session, "data from dapp header");
 
   // If so then create server
   const server = await prisma.group.findFirst({
@@ -31,11 +31,11 @@ async function DappHeader() {
     },
   });
 
-  console.log("server from header", server)
+  // console.log("server from header", server)
 
   const owns = await userBoughtNFT(session?.user.eddress)
 
-  console.log(owns)
+  // console.log(owns)
 
   if (!server) {
     return <InitialModal />;

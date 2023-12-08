@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
@@ -45,6 +45,13 @@ export const EditServerModal = () => {
     });
   
     const isLoading = form.formState.isSubmitting;
+
+    useEffect(() => {
+      if(server) {
+          form.setValue("name", server.name) 
+          form.setValue("imageUrl", server.imageUrl || "") 
+      }
+    },[server, form])
   
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try {
@@ -52,9 +59,9 @@ export const EditServerModal = () => {
         console.log(values.imageUrl)
         const formInt = new FormData()
         formInt.append("name", values.name)
-        formInt.append("imageUrl", values.imageUrl)
+        formInt.append("imageUrl", values.imageUrl || "")
 
-        await axios.post(`/api/groups/${server?.id}`, formInt);
+        await axios.patch(`/api/groups/${server?.id}`, formInt);
         form.reset();
         router.refresh();
         onClose();
@@ -75,7 +82,7 @@ export const EditServerModal = () => {
         <DialogContent className="bg-white text-black p-0 overflow-hidden">
           <DialogHeader className="pt-8 px-6">
             <DialogTitle className="text-2xl text-center font-bold">
-              Create your group
+              Update your group info
             </DialogTitle>
             <DialogDescription className="text-center text-zine-500">
               Give your group a purpose...what is going to be de next club in town
