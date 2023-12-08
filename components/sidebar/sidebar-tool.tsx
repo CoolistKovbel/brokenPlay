@@ -18,7 +18,7 @@ async function SidebarTool() {
   
   const session = await getServerSession(authOptions);
 
-  console.log(session, "sessoin in the dAppLayout page");
+  // console.log(session, "sessoin in the dAppLayout page");
 
   if (!session) {
     return redirect("/sign-in");
@@ -42,7 +42,7 @@ async function SidebarTool() {
   //   return <InitialModal />
   // }
 
-  console.log(servers, "All the serers from the sidebar")
+  // console.log(servers, "All the serers from the sidebar")
 
   
 

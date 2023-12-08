@@ -17,10 +17,6 @@ import UserLogout from "@/lib/user-logout";
 async function DappHeader() {
   const session: any = await getServerSession(authOptions);
 
-  //   Check to see if user has nft....
-  // console.log(session, "data from dapp header");
-
-  // If so then create server
   const server = await prisma.group.findFirst({
     where: {
       members: {
@@ -31,24 +27,24 @@ async function DappHeader() {
     },
   });
 
-  // console.log("server from header", server)
-
+  // Web3
   const owns = await userBoughtNFT(session?.user.eddress)
 
-  // console.log(owns)
-
+  // If no server found and user has NFT - pop up the model
   if (!server) {
     return <InitialModal />;
   }
 
   return (
     <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] p-4">
-
+      {/* Logo */}
       <h2 className="font-bold">
         <Link href="/" className=" text-[1.2rem] md:text-4xl">MysticMurkoXD</Link>
       </h2>
 
+      {/* if user is connect display dynamic header */}
       {session?.user ? (
+        // Header is there is user
         <div className="flex items-center justify-between  w-[150px] md:w-[300px] text-[10px] md:text-sm">
           <Link href="/" className="flex items-center">
             <Home className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Home</span>
@@ -63,6 +59,7 @@ async function DappHeader() {
           <UserLogout />
         </div>
       ) : (
+        // Header if there is no user
         <div className="flex items-center justify-between w-[180px]">
           <Link href="/sign-in" className="flex items-center">
             {" "}

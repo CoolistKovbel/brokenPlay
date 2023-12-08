@@ -12,10 +12,10 @@ export async function POST(req: Request) {
         const name = bodyV.get("name") as string
         const image: File | null = bodyV.get("imageUrl") as File
 
-        console.log(bodyV)
-        console.log(name)
-        console.log(image, "from the server")
-        console.log(profile, "logging from the gorups routes")
+        // console.log(bodyV)
+        // console.log(name)
+        // console.log(image, "from the server")
+        // console.log(profile, "logging from the gorups routes")
 
         
         const fileBuffer = await (image as File).arrayBuffer();

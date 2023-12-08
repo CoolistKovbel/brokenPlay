@@ -13,9 +13,12 @@ import ServerChannel from "./sidebar-server-channels";
 import { ServerMember } from "./sidebar-server-members";
 import { ServerWithMembersWithProfiles } from "@/type";
 
+
+
 interface ServerSidebarProps {
-  serverId: string;
+  groupId: string;
 }
+
 
 const iconMap = {
   [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4" />,
@@ -31,19 +34,19 @@ const roleIconMap = {
   [MemberRole.ADMIN]: <Shield className="h-4 w-4 mr-2 text-indigo-500" />,
 };
 
-export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
-  console.log(serverId, "DE servider is heres");
+export const ServerSidebar = async ({ groupId }: ServerSidebarProps) => {
+  console.log(groupId, "DE servider is heres");
 
   const profile = await User();
 
-  const server = await prisma.group.findUnique({
+  const server:ServerWithMembersWithProfiles  = await prisma.group.findUnique({
     where: {
-      id: serverId,
+      id: groupId,
     },
     include: {
       channels: {
         where: {
-          groupID: serverId,
+          groupID: groupId,
         },
       },
       members: {
@@ -56,6 +59,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
       },
     },
   });
+
 
   const textChannels = server?.channels.filter(
     (channel) => channel.type === ChannelType.TEXT
@@ -79,6 +83,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   return (
     <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-[100px]">
       <ServerHeader server={server} role={role} />
+
       <ScrollArea className="flex-1 px-3">
         <div className="mt-2">
           <ServerSearch

@@ -29,9 +29,15 @@ function ServerChannel({ channel, server, role }: ServerChannelProps) {
 
   const Icon = iconMap[channel.type];
 
+  console.log(params, "from server side bar")
+
+  const onClickV = () => {
+    router.push(`/kittybowl/${params?.groupId}/channels/${channel.id}`)
+  }
+
   return (
     <button
-      onClick={() => {}}
+      onClick={onClickV}
       className={cn(
         "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-orange-700/10 transition mb-1"
       )}

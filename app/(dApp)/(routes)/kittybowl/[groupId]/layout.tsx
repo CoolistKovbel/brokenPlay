@@ -1,3 +1,4 @@
+// App version 1 layout
 
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
 import { User } from "@/lib/current-profile";
@@ -5,9 +6,9 @@ import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 
-const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; params: {groupId: string}}) => {
+const ServerIdLayout = async ({children, params}: {children: React.ReactNode; params: {groupId: string}}) => {
 
-    // console.log(params, "Ther is a sservier id here")
+    console.log(params, "Ther is a sservier id here")
 
     const dd = await User()
     
@@ -31,7 +32,7 @@ const ServerIdLayout = async ({children, params,}: {children: React.ReactNode; p
     return (
         <div className="h-full">
             <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0"> 
-                <ServerSidebar serverId={params.groupId} />
+                <ServerSidebar groupId={params.groupId} />
             </div>
             <main className="h-full md:pl-60">
                 {children}
