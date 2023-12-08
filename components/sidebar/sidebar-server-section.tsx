@@ -25,7 +25,7 @@ export const ServerSection = ({
 
   return (
     <div className="flex items-center justify-between py-2">
-      <p className="text-xs uppercase font-semibold text-zinc">{label}</p>
+      <p className="text-xs uppercase font-semibold text-[pink]">{label}</p>
       {role !== MemberRole.GUEST && sectionType === "channels" && (
         <ActionTooltip label="create channel" side="top">
           <button

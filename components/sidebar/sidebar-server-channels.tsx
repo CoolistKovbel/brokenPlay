@@ -2,11 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import { Channel, ChannelType, Group, MemberRole } from "@prisma/client";
-import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
+import { Edit, Hash, Lock, Mic,  Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import React from "react";
 import { ActionTooltip } from "../action-tooltip";
+import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerChannelProps {
   channel: Channel;
@@ -23,6 +24,8 @@ const iconMap = {
 function ServerChannel({ channel, server, role }: ServerChannelProps) {
   const params = useParams();
   const router = useRouter();
+
+  const { onOpen } = useModal();
 
   const Icon = iconMap[channel.type];
 
@@ -43,21 +46,21 @@ function ServerChannel({ channel, server, role }: ServerChannelProps) {
       >
         {channel.name}
       </p>
+
       {channel.name !== 'general' && role !== MemberRole.GUEST && (
         <div className="ml-auto flex items-center gap-x-2">
             <ActionTooltip label="Edit">
-                <Edit className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 transition"/>
-            </ActionTooltip>
-            <ActionTooltip label="Edit">
-                <Trash className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 transition"/>
+                <Edit onClick={() => onOpen("editChannel", {server, channel})} className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 transition"/>
             </ActionTooltip>
         </div>
       )}
+
       {channel.name === "general" && (
         <Lock
           className="ml-auto w-4 h-4 text-zinc-500 dark:text-zinc-400"
         />
       )}
+      
     </button>
   );
 }

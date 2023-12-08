@@ -43,8 +43,6 @@ export const CreateGroupModal = () => {
     });
   
     const isLoading = form.formState.isSubmitting;
-
-    console.log(params)
   
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try {

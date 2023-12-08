@@ -13,24 +13,23 @@ import ServerChannel from "./sidebar-server-channels";
 import { ServerMember } from "./sidebar-server-members";
 import { ServerWithMembersWithProfiles } from "@/type";
 
-
-
 interface ServerSidebarProps {
   serverId: string;
 }
 
-
 const iconMap = {
-  [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4"/>,
-  [ChannelType.AUDIO]: <Mic className="mr-2 h-4 w-4"/>,
-  [ChannelType.VIDEO]: <Video className="mr-2 h-4 w-4"/>
-}
+  [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4" />,
+  [ChannelType.AUDIO]: <Mic className="mr-2 h-4 w-4" />,
+  [ChannelType.VIDEO]: <Video className="mr-2 h-4 w-4" />,
+};
 
 const roleIconMap = {
   [MemberRole.GUEST]: null,
-  [MemberRole.MODERATOR]: <ShieldCheck className="h-4 w-4 mr-2 text-indigo-500" />,
+  [MemberRole.MODERATOR]: (
+    <ShieldCheck className="h-4 w-4 mr-2 text-indigo-500" />
+  ),
   [MemberRole.ADMIN]: <Shield className="h-4 w-4 mr-2 text-indigo-500" />,
-}
+};
 
 export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   console.log(serverId, "DE servider is heres");
@@ -64,9 +63,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   const auidioChannels = server?.channels.filter(
     (channel) => channel.type === ChannelType.AUDIO
   );
-  const videoChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.VIDEO
-  );
 
   const members = server?.members.filter(
     (member) => member.profileId !== profile?.id
@@ -85,7 +81,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
       <ServerHeader server={server} role={role} />
       <ScrollArea className="flex-1 px-3">
         <div className="mt-2">
-
           <ServerSearch
             data={[
               {
@@ -106,7 +101,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                   icon: iconMap[channel.type],
                 })),
               },
-              // video? 
+              // video?
               {
                 label: "Members",
                 type: "member",
@@ -118,7 +113,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
               },
             ]}
           />
-
         </div>
         <Separator className="bg-zinc-200 rounded-md my-2" />
 
@@ -154,25 +148,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
           </div>
         )}
         {auidioChannels?.map((channel) => (
-          <ServerChannel
-            key={channel.id}
-            channel={channel}
-            role={role}
-            server={server}
-          />
-        ))}
-
-        {!!videoChannels?.length && (
-          <div className="mb-2">
-            <ServerSection
-              sectionType="channels"
-              channelType={ChannelType.VIDEO}
-              role={role}
-              label="Video channels"
-            />
-          </div>
-        )}
-        {videoChannels?.map((channel) => (
           <ServerChannel
             key={channel.id}
             channel={channel}
