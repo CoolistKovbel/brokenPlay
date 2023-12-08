@@ -2,15 +2,25 @@
 
 import { signOut } from "next-auth/react";
 import { Button } from "../components/ui/button";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { Uuser } from "./request-client-user";
+import { useEffect } from "react";
 
 const UserLogout = () => {
 
-  const handleSignout = () => {
-    signOut()
-    redirect(`${window.location.origin}/sign-in`)
-  }
+  const profile = Uuser()
+  const router = useRouter();
 
+  const handleSignout = async () => {
+
+    if (profile) {
+      signOut({ redirect: false });
+      router.push("/sign-in")
+    } else if (profile === null || profile === undefined) {
+      router.push("/");
+    }
+
+  }
 
 
   return (

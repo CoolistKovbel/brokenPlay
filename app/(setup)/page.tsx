@@ -10,7 +10,7 @@ export default async function Home() {
   
   const session = await getServerSession(authOptions);
   
-  console.log(session, "This is from the setup layout");
+  // console.log(session, "This is from the setup layout");
 
   const etherAddress = session?.user.eddress
   const username = session?.user.username
