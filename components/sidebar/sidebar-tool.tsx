@@ -63,7 +63,7 @@ async function SidebarTool() {
             <NavigationItem
               id={serv.id}
               name={serv.name}
-              imageUrl={serv.imageUrl || ""}
+              imageUrl={`${serv.imageUrl}`}
             />
           </div>
         ))}

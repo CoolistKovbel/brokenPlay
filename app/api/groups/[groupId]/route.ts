@@ -5,6 +5,7 @@ import { NextResponse } from "next/server"
 
 export async function PATCH(req: Request, {params }:  {params: {groupId: string}}) {
     try {
+        let path;
 
         const profile = await User()
         const body = await req.formData()
@@ -15,17 +16,26 @@ export async function PATCH(req: Request, {params }:  {params: {groupId: string}
         console.log(name, "This is the name from groupID pathc")
         console.log(imageUrl, "This is the imageUrl from groupID pathc")
 
+        if(imageUrl !== null) {
+            const fileBuffer = await (imageUrl as File).arrayBuffer();
+            const buffer = Buffer.from(fileBuffer);
+            path = `${process.cwd()}/public/groups/${crypto.randomUUID() + imageUrl.name}`;
+            await writeFile(path, buffer)
+            path = path.split(`${process.cwd()}/public/groups/`)[1]
 
-        const fileBuffer = await (imageUrl as File).arrayBuffer();
-        const buffer = Buffer.from(fileBuffer);
-    
-        // console.log(buffer, "this is a buffer");
-    
-        const path = `${process.cwd()}/public/groups/${crypto.randomUUID() + imageUrl.name}`;
+        } else if(imageUrl === "") {
+            const group = await prisma.group.findUnique({
+                where: {
+                    id: params.groupId,
+                },
+            })
 
-        await writeFile(path, buffer)
+            console.log(group?.imageUrl)
+            path = group?.imageUrl
+        }
 
-        // console.log(path.split(`${process.cwd()}/public/groups/`)[1])
+
+
 
         if(!profile) {
             return new NextResponse("unaithorized", {status: 401})
@@ -38,7 +48,7 @@ export async function PATCH(req: Request, {params }:  {params: {groupId: string}
             },
             data: {
                 name,
-                imageUrl: path.split(`${process.cwd()}/public/groups/`)[1]
+                imageUrl: path
             }
         })
 

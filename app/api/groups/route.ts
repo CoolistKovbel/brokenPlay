@@ -17,21 +17,19 @@ export async function POST(req: Request) {
         console.log(image, "from the server")
         console.log(profile, "logging from the gorups routes")
 
+        
         const fileBuffer = await (image as File).arrayBuffer();
         const buffer = Buffer.from(fileBuffer);
     
-        // console.log(buffer, "this is a buffer");
-
+        
         const path = `${process.cwd()}/public/groups/${crypto.randomUUID() + image.name}`;
         await writeFile(path, buffer)
 
-        // console.log(path.split(`${process.cwd()}/public/groups/`)[1])
 
         if(!profile) {
             return new NextResponse("unauthroized", {status: 401})
         }
-        console.log(profile.userId, "give me the idea user i guess")
-        console.log(profile, "give me the idea user i guess")
+
 
         const server = await prisma.group.create({
             data: {
