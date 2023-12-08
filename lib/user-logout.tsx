@@ -27,6 +27,7 @@ const UserLogout = () => {
     <Button
       onClick={handleSignout}
       variant="destructive"
+      className="w-6 h-6 text-[10px]" 
     >
       Sign out
     </Button>

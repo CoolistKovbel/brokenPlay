@@ -45,20 +45,20 @@ async function DappHeader() {
     <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] p-4">
 
       <h2 className="font-bold">
-        <Link href="/" className="text-4xl">MysticMurkoXD</Link>
+        <Link href="/" className=" text-[1.2rem] md:text-4xl">MysticMurkoXD</Link>
       </h2>
 
       {session?.user ? (
-        <div className="flex items-center justify-between w-[300px] text-sm">
+        <div className="flex items-center justify-between  w-[150px] md:w-[300px] text-[10px] md:text-sm">
           <Link href="/" className="flex items-center">
-            <Home /> <span>Home</span>
+            <Home className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Home</span>
           </Link>
           <Link href="/mint" className="flex items-center">
-            <PictureInPicture2Icon /> <span>Mint</span>
+            <PictureInPicture2Icon className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Mint</span>
           </Link>
           {/* Check to see if has group if an go through the wholle process. */}
           <Link href={`/kittybowl/${server.id}`} className="flex items-center">
-            <MessageCircle /> <span>Message</span>
+            <MessageCircle className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Message</span>
           </Link>
           <UserLogout />
         </div>
