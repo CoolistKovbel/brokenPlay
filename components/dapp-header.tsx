@@ -17,6 +17,7 @@ import UserLogout from "@/lib/user-logout";
 async function DappHeader() {
   const session: any = await getServerSession(authOptions);
 
+  // Finds group using profile ID
   const server = await prisma.group.findFirst({
     where: {
       members: {

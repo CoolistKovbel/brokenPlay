@@ -1,15 +1,12 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { getSession } from "next-auth/react";
 import { ScrollArea } from "../ui/scroll-area";
 import SideBarAction from "./sidebar-action";
 import { prisma } from "@/lib/db";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { InitialModal } from "@/components/modals/initial-modal";
 import { NavigationItem } from "./navigation-item";
 
 
@@ -18,12 +15,11 @@ async function SidebarTool() {
   
   const session = await getServerSession(authOptions);
 
-  // console.log(session, "sessoin in the dAppLayout page");
-
   if (!session) {
     return redirect("/sign-in");
   }
 
+  // Finds gorup uisng profile iD
   const servers = await prisma.group.findMany({
     where: {
       members: {

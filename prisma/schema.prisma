@@ -62,9 +62,9 @@ model Member {
   groupID String @db.ObjectId
   group   Group  @relation(fields: [groupID], references: [id])
 
-  message Message[]
+  message        Message[]
   directMessages DirectMessage[]
-  
+
   conversationInitated Conversation[] @relation("MemberOne")
   conversationRecieved Conversation[] @relation("MemberTwo")
 
@@ -101,19 +101,17 @@ model Channel {
   @@index([groupID])
 }
 
-
-
 model Message {
-  id   String      @id @default(auto()) @map("_id") @db.ObjectId
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
   content String
 
   fileUrl String?
 
   memberId String @db.ObjectId
-  member Member @relation(fields: [memberId], references: [id])
+  member   Member @relation(fields: [memberId], references: [id])
 
-  channelId String @db.ObjectId
-  channel Channel @relation(fields: [channelId], references: [id])
+  channelId String  @db.ObjectId
+  channel   Channel @relation(fields: [channelId], references: [id])
 
   deleted Boolean @default(false)
 
@@ -125,36 +123,31 @@ model Message {
 }
 
 model Conversation {
-
-  id   String      @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   memberOneId String @db.ObjectId
-  memberOne Member @relation("MemberOne",fields: [memberOneId], references: [id])
+  memberOne   Member @relation("MemberOne", fields: [memberOneId], references: [id])
 
   memberTwoId String @db.ObjectId
-  memberTwo Member @relation("MemberTwo",fields: [memberTwoId], references: [id])
+  memberTwo   Member @relation("MemberTwo", fields: [memberTwoId], references: [id])
 
   directMessages DirectMessage[]
 
-
+  @@unique([memberOneId, memberTwoId])
   @@index([memberOneId])
   @@index([memberTwoId])
-
-  @@unique([memberOneId, memberTwoId])
-
 }
 
 model DirectMessage {
-  id   String      @id @default(auto()) @map("_id") @db.ObjectId
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
   content String
   fileUrl String?
 
   memberId String @db.ObjectId
-  member Member @relation(fields: [memberId], references: [id])
+  member   Member @relation(fields: [memberId], references: [id])
 
-  conversationId String @db.ObjectId
-  conversation Conversation @relation(fields: [conversationId], references: [id])
-
+  conversationId String       @db.ObjectId
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
 
   deleted Boolean @default(false)
 
@@ -163,5 +156,4 @@ model DirectMessage {
 
   @@index([memberId])
   @@index([conversationId])
-
 }

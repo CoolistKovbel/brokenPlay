@@ -6,6 +6,7 @@ import { User } from "@/lib/current-profile";
 import { prisma } from "@/lib/db";
 import { ChatHeader } from "@/components/chat/chat-header";
 
+
 interface ChannelIdPageProps {
   params: {
     groupId: string;

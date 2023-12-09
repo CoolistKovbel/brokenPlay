@@ -1,5 +1,6 @@
 // App version 1 layout
 
+
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
 import { User } from "@/lib/current-profile";
 import { prisma } from "@/lib/db";
