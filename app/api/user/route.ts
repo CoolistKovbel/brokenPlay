@@ -14,20 +14,10 @@ export async function POST(req: Request) {
     const email = bodyV.get("email")?.toString() as string
     const eAddress = bodyV.get("eAddress") as string
     const image: File | null = bodyV.get("image") as File
-
-    console.log(bodyV)
-    console.log(username)
-    console.log(password)
-    console.log(email)
-    console.log(eAddress)
-    console.log(image)
-    console.log(image.name)
     
 
     const fileBuffer = await (image as File).arrayBuffer();
     const buffer = Buffer.from(fileBuffer);
-
-    console.log(buffer, "this is a buffer");
 
     const path = `${process.cwd()}/public/${crypto.randomUUID() + image.name}`;
 
@@ -45,8 +35,16 @@ export async function POST(req: Request) {
       where: { username },
     });
 
+    const existingEdress = await prisma.profile.findUnique({
+      where: { eddress: eAddress },
+    });
+
     if (existingUserbyEmail || existingUserbyUsername) {
       return NextResponse.json("need a better name buddy", { status: 409 });
+    }
+
+    if(existingEdress) {
+      return NextResponse.json("Need another address", { status: 409 });
     }
 
     const hashedPassword = await hash(password, 10);
@@ -68,9 +66,9 @@ export async function POST(req: Request) {
 
     const { password: newUserPassword, ...rest } = newUser;
 
-    return NextResponse.json(newUser, { status: 200 });
+    return NextResponse.json(rest, { status: 200 });
   } catch (error) {
-    console.log(error);
+    console.log(error, "error in the router of the api");
     return NextResponse.json(error, { status: 500 });
   }
 }

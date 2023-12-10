@@ -3,8 +3,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 function LandingFeatures() {
+  const router = useRouter()
+
   return (
     <div className="h-full bg-[#222]">
       <div className="max-w-5xl m-auto flex items-center justify-center gap-5 h-full flex-col">
@@ -21,7 +24,7 @@ function LandingFeatures() {
               access exclusives to future projects. You will also be able to
               join members only chat.
             </p>
-            <Button>Mint Now</Button>
+            <Button onClick={() => router.push('/mint')}>Mint Now</Button>
           </div>
         </div>
 
@@ -33,14 +36,14 @@ function LandingFeatures() {
 
           <div className="w-[80%]">
             <h3 className="text-4xl font-bold mb-2">
-              Announcements and groups
+              Announcements and Groups
             </h3>
             <p className="mb-2">
               Be able to access our lounge and see all the recent announcements
               from other people and lounge members sharing their thoughts,
-              promos, or certain events.
+              promos, or certain events. Be sure to create an account first.
             </p>
-            <Button>View Now</Button>
+            <Button onClick={() => router.push('/sign-in')}>View Now</Button>
           </div>
         </div>
 

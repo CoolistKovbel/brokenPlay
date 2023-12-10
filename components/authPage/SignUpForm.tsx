@@ -1,7 +1,7 @@
 "use client";
 
 import * as z from "zod";
-import React, { useState, useEffect } from "react";
+import { useState} from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useForm } from "react-hook-form";
@@ -9,9 +9,9 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { SignUpFormSchema } from "./constant";
-
 import { useRouter } from "next/navigation";
 import axios from "axios"
+import {  toast } from 'react-toastify';
 
 
 function SignUpForm() {
@@ -49,16 +49,16 @@ function SignUpForm() {
       formD.append("eAddress", values.eAddress)
       formD.append("image", values.image)
 
-      console.log(values.image)
-
       const res = await axios.post("/api/user", formD)
 
-      console.log(res)
+      console.log(res?.data)
+      console.log(res, "This is res data")
 
       router.push("/sign-in")
 
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+      console.log(error?.response?.data);
+      toast(`💀 ${error?.response?.data}`);
     }
   };
 

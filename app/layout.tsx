@@ -4,6 +4,8 @@ import './globals.css'
 import Provider from '@/components/Provider'
 import { ModalProvider } from '@/components/providers/modal-provider'
 import { SocketProvider } from '@/components/providers/socket-provider'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +29,7 @@ export default function RootLayout({
             {children}
           </SocketProvider>
         </Provider>
+        <ToastContainer />
         </body>
     </html>
   )
