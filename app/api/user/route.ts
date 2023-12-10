@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     if(existingEdress) {
       return NextResponse.json("Need another address", { status: 409 });
     }
-
+ 
     const hashedPassword = await hash(password, 10);
 
     // Setup image function with server for creation

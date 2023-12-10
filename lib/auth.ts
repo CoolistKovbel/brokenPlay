@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
           where: { eddress: credentials?.eddress },
         }); 
 
-        console.log(existingUser)
+        
 
         if (!existingUser) {
           return null;

@@ -1,6 +1,4 @@
-import React from "react";
-import { useSession } from "next-auth/react";
-
+"use client"
 
 import { Button } from "@/components/ui/button";
 
@@ -8,10 +6,6 @@ import { mintNFT } from "@/lib/web3";
 
 
 function MintingForm() {
-  const { data: session } = useSession();
-
-  console.log(session, "This is data minting feature page");
-  console.log(session?.user.eddress);
 
 
   const onSubmitBro = async (e:any) => {

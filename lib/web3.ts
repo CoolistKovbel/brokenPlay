@@ -9,14 +9,6 @@ export const contractAddress = "0x01B2795EC6E5ADD288e196fA437ADCB23438E9E7";
 export const contractABI = ABI.abi;
 
 
-// declare global {
-//   interface Window {
-//     ethereum: import("ethers").providers.ExternalProvider
-//   }
-// }
-
-
-
 // Grab ethereum object
 export const getEthereumObject = () => {
   return window.ethereum
@@ -167,6 +159,30 @@ export async function mintNFT(amount: any) {
   } catch (error) {
     console.log(error)
   }
+}
+
+// Grab all channels
+export async function getAllChannels () {
+try {
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(
+    contractAddress,
+    contractABI,
+    signer
+  );
+
+
+  const channels = await contract.getAllChannels()
+
+  return channels
+  
+} catch (error) {
+  console.log(error)
+}
+
+
 }
 
 

@@ -9,9 +9,6 @@ import Link from "next/link";
 import React from "react";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { prisma } from "@/lib/db";
-import { InitialModal } from "./modals/initial-modal";
-import { userBoughtNFT } from "@/lib/web3";
 import UserLogout from "@/lib/user-logout";
 
 async function DappHeader() {
@@ -37,9 +34,9 @@ async function DappHeader() {
             <PictureInPicture2Icon className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Mint</span>
           </Link>
           {/* Check to see if has group if an go through the wholle process. */}
-          <Link href={`/kittybowl/${server.id}`} className="flex items-center">
+          {/* <Link href={`/kittybowl/${server.id}`} className="flex items-center">
             <MessageCircle className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Message</span>
-          </Link>
+          </Link> */}
           <UserLogout />
         </div>
       ) : (
