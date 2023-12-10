@@ -17,24 +17,7 @@ import UserLogout from "@/lib/user-logout";
 async function DappHeader() {
   const session: any = await getServerSession(authOptions);
 
-  // Finds group using profile ID
-  const server = await prisma.group.findFirst({
-    where: {
-      members: {
-        some: {
-          profileId: session?.user.id,
-        },
-      },
-    },
-  });
 
-  // Web3
-  const owns = await userBoughtNFT(session?.user.eddress)
-
-  // If no server found and user has NFT - pop up the model
-  if (!server) {
-    return <InitialModal />;
-  }
 
   return (
     <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] p-4">
