@@ -10,10 +10,8 @@ async function dAppLayout({ children }: { children: React.ReactNode }) {
 
 
         <div className="h-full">
-            <div className="hidden md:flex h-full w-[120px] z-30 flex-col fixed inset-y-0">
-              <SidebarTool />
-            </div>
-            <main className="md:pl-[120px] h-full">
+
+            <main className="h-full">
                 {children}
             </main>
         </div>

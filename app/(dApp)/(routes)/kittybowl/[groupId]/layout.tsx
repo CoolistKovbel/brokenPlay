@@ -33,10 +33,13 @@ const ServerIdLayout = async ({children, params}: {children: React.ReactNode; pa
 
     return (
         <div className="h-full">
-            <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0"> 
+                        <div className="hidden md:flex h-full w-[120px] z-30 flex-col fixed inset-y-0">
+              <SidebarTool />
+            </div>
+            <div className="hidden md:flex h-full w-96 z-20 flex-col pl-[120px] fixed inset-y-0"> 
                 <ServerSidebar groupId={params.groupId} />
             </div>
-            <main className="h-full md:pl-60">
+            <main className="h-full  md:pl-[288px]">
                 {children}
             </main>
         </div>

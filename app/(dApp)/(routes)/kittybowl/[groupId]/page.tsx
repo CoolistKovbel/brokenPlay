@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { User} from "@/lib/current-profile";
 import { prisma } from "@/lib/db";
+import { getEthereumAccount, userBoughtNFT } from "@/lib/web3";
 
 interface ServerIdPageProps {
   params: {
@@ -14,12 +15,14 @@ const ServerIdPage = async ({
   params
 }: ServerIdPageProps) => {
 
+  const metamaskAccount = await getEthereumAccount()
 
   const profile = await User();
 
-  if (!profile) {
+  if (!profile && !metamaskAccount) {
     return redirect("/sign-in");
   }
+  
 
   const server = await prisma.group.findUnique({
     where: {
