@@ -8,34 +8,18 @@ export const contractAddress = "0x01B2795EC6E5ADD288e196fA437ADCB23438E9E7";
 
 export const contractABI = ABI.abi;
 
-const { NETWORK, APIKEY} = process.env
+
+// declare global {
+//   interface Window {
+//     ethereum: import("ethers").providers.ExternalProvider
+//   }
+// }
+
 
 
 // Grab ethereum object
 export const getEthereumObject = () => {
   return window.ethereum
-};
-
-export const signInMessageVerification = async () => {
-  try {
-    if (window.ethereum) {
-      const contract = new ethers.Contract(
-        contractAddress,
-        contractABI,
-        signer
-      );
-
-      //   Message
-      const message = `entered the site at: ${Date.now()}`;
-
-      //
-      let rawSig = await signer.signMessage(message);
-
-      return rawSig;
-    }
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 export const getEthereumAccount =  async() => {

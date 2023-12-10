@@ -1,9 +1,7 @@
-// main layout
+// Dapp layout that will hold most pages 
 
 import DappHeader from "@/components/dapp-header";
 import SidebarTool from "@/components/sidebar/sidebar-tool";
-
-import React from "react";
 
 async function dAppLayout({ children }: { children: React.ReactNode }) {
   return (

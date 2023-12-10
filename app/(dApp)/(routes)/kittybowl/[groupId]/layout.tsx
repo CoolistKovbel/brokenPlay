@@ -2,6 +2,7 @@
 
 
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
+import SidebarTool from "@/components/sidebar/sidebar-tool";
 import { User } from "@/lib/current-profile";
 import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";

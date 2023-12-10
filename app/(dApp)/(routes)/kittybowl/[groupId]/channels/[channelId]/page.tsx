@@ -45,9 +45,12 @@ const ChannelIdPage = async ({
     <div className="bg-[#313373] flex flex-col h-full pt-[100px]">
         <ChatHeader
             name={channel.name}
-            serverId={channel.groupID}
+            groupId={channel.groupID}
             type="channel"
         />
+        <div className="flex-1">
+          Messages
+        </div>
     </div>
    );
 }
