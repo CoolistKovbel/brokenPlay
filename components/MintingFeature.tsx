@@ -7,24 +7,7 @@ import MintingForm from "./forms/MintingForm";
 
 async function MintingFeature() {
 
-  // Finds group using profile ID
-  // const server = await prisma.group.findFirst({
-  //   where: {
-  //     members: {
-  //       some: {
-  //         profileId: session?.user.id,
-  //       },
-  //     },
-  //   },
-  // });
 
-  // Web3
-  // const owns = await userBoughtNFT(session?.user.eddress)
-
-  // If no server found and user has NFT - pop up the model
-  // if (!server) {
-  //   return <InitialModal />;
-  // }
 
 
   return (

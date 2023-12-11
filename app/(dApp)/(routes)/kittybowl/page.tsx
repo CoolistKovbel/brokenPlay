@@ -1,5 +1,6 @@
 import CreateGroup from "@/components/kittyhome/CreateGroup";
-import { Button } from "@/components/ui/button";
+import JoinVip from "@/components/kittyhome/JoinVip";
+
 
 
 
@@ -21,16 +22,7 @@ function KittyBowl() {
         <CreateGroup />
 
         {/* join vip group and move onto push to group page */}
-        <div className="w-full text-right p-4">
-            <h2 className="text-3xl font-bold mb-2">You may also join our exclusive nft group chat for those who have an nft</h2>
-            <p className="text-md">
-                You <strong>must</strong> own a nft to join the chat.... it will be free
-            </p>
-            <div className="w-[20%] p-2 flex items-center justify-between m-auto mt-4">
-                <Button>Get NFT</Button>
-                <Button>Join VIP</Button>
-            </div>
-        </div>
+        <JoinVip />
 
         {/* list all the group availble to join - allow user to join - and push to group page */}
         <div className="bg-[#222] w-full text-center p-5">

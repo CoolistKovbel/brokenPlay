@@ -99,6 +99,21 @@ export async function userBoughtNFT(address: string) {
   }
 }
 
+// check to see if user joined vip
+export async function userVIP(account:any) {
+  try {
+    
+    const contract = contractBB()
+
+    const isVip = await contract.VIPLounge(account)
+
+    return isVip
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // CLient functions
 export async function sendMessage(x: any) {
   console.log("sending message");
@@ -160,6 +175,29 @@ export async function getAllChannels() {
 }
 
 
+// Action to join vip channge
+export async function vipActionJoin() {
+try {
+  
+  const contract = contractBB()
+
+
+  const res = await contract.joinSpecialChannel()
+
+  console.log(res, "Starting ")
+  console.log(res.hash)
+  await res.wait()
+  console.log(res.hash, "completed transcatin")
+  console.log(res, "rest of the data")
+
+  return res
+
+} catch (error) {
+  console.log(error)
+}
+}
+
+
 type createMysticGroup = {
   channelName: String;
   channelCost: BigNumber;
@@ -182,6 +220,7 @@ export async function CreateMysticGroup({channelName, channelCost, channelImage}
     console.log(xx, "Starting")
     console.log(xx.hash)
     await xx.wait()
+    console.log(xx, "data")
     console.log(xx.hash, "Completed")
 
     return 'hello'

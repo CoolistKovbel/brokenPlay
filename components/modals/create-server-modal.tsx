@@ -59,8 +59,6 @@ export const CreateServerModal = () => {
         const channelImage = deFile
 
 
-        console.log(channelImage)
-
         const cImage = await FileUpload({channelImage});
         
         console.log({
@@ -71,6 +69,7 @@ export const CreateServerModal = () => {
 
         await CreateMysticGroup({channelImage: cImage, channelCost, channelName})
 
+        // Handle return data or upload smart contract or ippfs
 
         form.reset();
         router.refresh();
