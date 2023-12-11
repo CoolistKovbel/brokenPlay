@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 
 import { mintNFT } from "@/lib/web3";
+import { toast } from "react-toastify";
 
 
 function MintingForm() {

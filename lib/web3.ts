@@ -4,6 +4,7 @@ require("dotenv").config();
 
 import { BigNumber, ethers } from "ethers";
 import ABI from "./abi.json";
+import { toast } from "react-toastify";
 export const contractAddress = "0xAF9bf209e95A35406d6ccc9597c6285B2d9238E4";
 
 export const contractABI = ABI.abi;
@@ -130,9 +131,16 @@ export async function mintNFT(amount: any) {
       value: ethers.utils.parseEther((0.042 * amount).toString()),
     });
 
+    console.log(res.hash, "Transaction started")
     console.log(res);
+    res.wait()
+
+    console.log(res.hash, "Transaction ended")
+
+
   } catch (error) {
     console.log(error);
+    toast(`☠ No worrk big error make sure metamask is worky: ${error?.toString()}`)
   }
 }
 
@@ -168,6 +176,8 @@ export async function CreateMysticGroup({channelName, channelCost, channelImage}
 
     // Only holder c all
     const xx = await contract.createChannel(channelName, Number(channelCost), channelImage)
+
+    console.log(xx)
 
     return 'hello'
   } catch (error) {

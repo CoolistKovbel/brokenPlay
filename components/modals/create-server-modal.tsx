@@ -16,7 +16,6 @@ import { FileUpload } from "../FileUpload";
 
 
 
-
 const formSchema = z.object({
     name: z.string().min(1, {
       message: "group name required",
@@ -30,13 +29,12 @@ const formSchema = z.object({
 export const CreateServerModal = () => {
   const { isOpen, onClose, type } = useModal();
     const router = useRouter();
-    const [file, setFile] = useState<File | null>(null);
+    const [deFile, setFile] = useState<File | null>(null);
 
     const isModalOpen = isOpen && type === "createServer";
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files) {
-        console.log(file)
         setFile(e.target.files[0]);
       }
     };
@@ -58,9 +56,12 @@ export const CreateServerModal = () => {
         
         const channelName = values.name
         const channelCost = ethers.utils.parseEther(values.cost)
-        let channelImage = file as File
+        const channelImage = deFile
 
-        const cImage = await FileUpload({channelImage})
+
+        console.log(channelImage)
+
+        const cImage = await FileUpload({channelImage});
         
         console.log({
           channelCost,
