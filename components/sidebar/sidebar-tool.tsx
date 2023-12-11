@@ -11,6 +11,7 @@ import { NavigationItem } from "./navigation-item";
 
 
 
+
 async function SidebarTool() {
   
   const session = await getServerSession(authOptions);
@@ -19,26 +20,8 @@ async function SidebarTool() {
     return redirect("/sign-in");
   }
 
-  // Finds gorup uisng profile iD
-  const servers = await prisma.group.findMany({
-    where: {
-      members: {
-        some: {
-          profileId: session.user.id,
-        },
-      },
-    },
-  });
 
-  // // if(server) {
-  // //   return redirect(`/kittybowl/${server.id}`)
-  // // }
 
-  // if(server === null || server === undefined){
-  //   return <InitialModal />
-  // }
-
-  // console.log(servers, "All the serers from the sidebar")
 
   
 
@@ -53,17 +36,7 @@ async function SidebarTool() {
 
       {/* Groups */}
       <ScrollArea className="flex-1 w-full">
-
-        {servers.map((serv) => (
-          <div key={serv.id} className="mb-4 text-center flex items-center justify-center">
-            <NavigationItem
-              id={serv.id}
-              name={serv.name}
-              imageUrl={`${serv.imageUrl}`}
-            />
-          </div>
-        ))}
-        
+        <NavigationItem />
       </ScrollArea>
 
       {/* Models */}

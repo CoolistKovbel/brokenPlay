@@ -1,6 +1,6 @@
 
 import { redirect } from "next/navigation";
-import { ChannelType } from "@prisma/client";
+
 
 import { User } from "@/lib/current-profile";
 import { prisma } from "@/lib/db";
