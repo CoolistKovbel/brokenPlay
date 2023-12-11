@@ -1,6 +1,5 @@
 "use client"
 
-import React,{useState} from 'react'
 import MatrixRain from "@/components/MatrixRain";
 import { useSession } from 'next-auth/react'
 import Image from 'next/image';
@@ -9,9 +8,6 @@ import Link from 'next/link';
 function LandingHero() {
   
   const { data: session } = useSession()
-
-  console.log(session, "This is data from hero")
-
 
 
   return (

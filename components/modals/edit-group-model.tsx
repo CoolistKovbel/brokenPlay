@@ -47,7 +47,6 @@ export const EditGroupModal = () => {
   const router = useRouter();
   const params = useParams()
   const isModalOpen = isOpen && type === "editChannel";
-  console.log(`params are and channel id ${channel?.id}`, params)
 
   const form = useForm({
     resolver: zodResolver(formSchema),

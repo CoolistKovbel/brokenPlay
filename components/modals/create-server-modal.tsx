@@ -7,15 +7,22 @@ import { Input } from "../ui/input"
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import * as z from "zod";
 import { Button } from "../ui/button";
 import { useModal } from "@/hooks/use-modal-store";
+import { ethers } from "ethers";
+import { CreateMysticGroup } from "@/lib/web3";
+import { FileUpload } from "../FileUpload";
+
+
 
 
 const formSchema = z.object({
     name: z.string().min(1, {
       message: "group name required",
+    }),
+    cost: z.string().min(1, {
+      message: "make sure the price is good"
     }),
     imageUrl: z.any(),
   });
@@ -39,6 +46,7 @@ export const CreateServerModal = () => {
       resolver: zodResolver(formSchema),
       defaultValues: {
         name: "",
+        cost: "",
         imageUrl: "",
       },
     });
@@ -47,13 +55,22 @@ export const CreateServerModal = () => {
   
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       try {
-        values.imageUrl = file
-        console.log(values.imageUrl)
-        const formInt = new FormData()
-        formInt.append("name", values.name)
-        formInt.append("imageUrl", values.imageUrl)
+        
+        const channelName = values.name
+        const channelCost = ethers.utils.parseEther(values.cost)
+        let channelImage = file as File
 
-        await axios.post("/api/groups", formInt);
+        const cImage = await FileUpload({channelImage})
+        
+        console.log({
+          channelCost,
+          channelName,
+          cImage
+        })
+
+        // await CreateMysticGroup({channelImage: cImage, channelCost, channelName})
+
+
         form.reset();
         router.refresh();
         onClose();
@@ -80,6 +97,7 @@ export const CreateServerModal = () => {
               Give your group a purpose...what is going to be de next club in town
             </DialogDescription>
           </DialogHeader>
+
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="space-y-8 px-6">
@@ -90,15 +108,11 @@ export const CreateServerModal = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          {/* file Upload component */}
                           <Input   
                             type="file"                        
-                            // value={field.value}
                             onChange={handleFileChange}
                             className="p-2 bg-[#222] text-white"
                           />
-
-
                         </FormControl>
                       </FormItem>
                     )}
@@ -125,7 +139,30 @@ export const CreateServerModal = () => {
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="cost"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                        Cost: 
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          disabled={isLoading}
+                          className="bg-zinc-300/50 border-0 focus-visable:ring-0 text-black focus-visable:rin-offset-0"
+                          placeholder="enter server amount in eth"
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
+
+              
               <DialogFooter className="bg-gray-200 px-6 py-4">
                 <Button disabled={isLoading} variant="secondary">
                   Create
@@ -133,6 +170,7 @@ export const CreateServerModal = () => {
               </DialogFooter>
             </form>
           </Form>
+
         </DialogContent>
       </Dialog>
     )

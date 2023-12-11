@@ -1,5 +1,7 @@
+import CreateGroup from "@/components/kittyhome/CreateGroup";
 import { Button } from "@/components/ui/button";
-import React from "react";
+
+
 
 function KittyBowl() {
 
@@ -16,16 +18,7 @@ function KittyBowl() {
         </div>
 
         {/* Launch a create group model and push to group page */}
-        <div className="w-full p-4">
-            <h2 className="text-4xl font-bold mb-2">If you have an nft create a group</h2>
-            <p className="text-[18px] leading-relaxed mb-2">
-                There is a small price to create a group but you will also be able to
-                set a price for others to join. <strong>Be generous </strong>, most of the earnings will
-                be going back to the contract for future features and will fuel me to
-                produce some content
-            </p>
-            <Button>Create Group</Button>
-        </div>
+        <CreateGroup />
 
         {/* join vip group and move onto push to group page */}
         <div className="w-full text-right p-4">

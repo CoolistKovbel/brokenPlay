@@ -2,7 +2,7 @@
 // BTC -> 1EBKdZ6rfUcDxR3uPfAsKcnPgaYm9zCUp2 <- address
 require("dotenv").config();
 
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import ABI from "./abi.json";
 export const contractAddress = "0xAF9bf209e95A35406d6ccc9597c6285B2d9238E4";
 
@@ -149,6 +149,31 @@ export async function getAllChannels() {
   } catch (error) {
     console.log(error);
   }
+}
+
+
+type createMysticGroup = {
+  channelName: String;
+  channelCost: BigNumber;
+  channelImage: String;
+}
+
+
+// Create a group
+export async function CreateMysticGroup({channelName, channelCost, channelImage}: createMysticGroup) {
+
+  try {
+    
+    const contract = contractBB()
+
+    // Only holder c all
+    const xx = await contract.createChannel(channelName, Number(channelCost), channelImage)
+
+    return 'hello'
+  } catch (error) {
+    console.log(error,"error homie")
+  }
+
 }
 
 const contractBB = () => {
