@@ -1,3 +1,4 @@
+import AllGroups from "@/components/kittyhome/AllGroups";
 import CreateGroup from "@/components/kittyhome/CreateGroup";
 import JoinVip from "@/components/kittyhome/JoinVip";
 
@@ -25,16 +26,7 @@ function KittyBowl() {
         <JoinVip />
 
         {/* list all the group availble to join - allow user to join - and push to group page */}
-        <div className="bg-[#222] w-full text-center p-5">
-            <h2 className="text-4xl font-bold mb-5">No nft no problem</h2>
-            <p className="mb-2">
-                You will still be able to join any top cat group for a price. 
-            </p>
-            {/* Groups */}
-            <div className="bg-[yellow] w-full h-[400px]">
-
-            </div>
-        </div>
+        <AllGroups />
 
 
     </div>

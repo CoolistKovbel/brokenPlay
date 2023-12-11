@@ -100,17 +100,15 @@ export async function userBoughtNFT(address: string) {
 }
 
 // check to see if user joined vip
-export async function userVIP(account:any) {
+export async function userVIP(account: any) {
   try {
-    
-    const contract = contractBB()
+    const contract = contractBB();
 
-    const isVip = await contract.VIPLounge(account)
+    const isVip = await contract.VIPLounge(account);
 
-    return isVip
-
+    return isVip;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
@@ -146,16 +144,16 @@ export async function mintNFT(amount: any) {
       value: ethers.utils.parseEther((0.042 * amount).toString()),
     });
 
-    console.log(res.hash, "Transaction started")
+    console.log(res.hash, "Transaction started");
     console.log(res);
-    res.wait()
+    res.wait();
 
-    console.log(res.hash, "Transaction ended")
-
-
+    console.log(res.hash, "Transaction ended");
   } catch (error) {
     console.log(error);
-    toast(`☠ No worrk big error make sure metamask is worky: ${error?.toString()}`)
+    toast(
+      `☠ No worrk big error make sure metamask is worky: ${error?.toString()}`
+    );
   }
 }
 
@@ -174,60 +172,74 @@ export async function getAllChannels() {
   }
 }
 
-
 // Action to join vip channge
 export async function vipActionJoin() {
-try {
-  
-  const contract = contractBB()
+  try {
+    const contract = contractBB();
 
+    const res = await contract.joinSpecialChannel();
 
-  const res = await contract.joinSpecialChannel()
+    console.log(res, "Starting ");
+    console.log(res.hash);
+    await res.wait();
+    console.log(res.hash, "completed transcatin");
+    console.log(res, "rest of the data");
 
-  console.log(res, "Starting ")
-  console.log(res.hash)
-  await res.wait()
-  console.log(res.hash, "completed transcatin")
-  console.log(res, "rest of the data")
-
-  return res
-
-} catch (error) {
-  console.log(error)
-}
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
+export async function joinGroup(groupId: any, cost: any) {
+  try {
+    const contract = contractBB();
+
+    const res = await contract.joinChannel(groupId, {
+      value: ethers.utils.parseEther((0.024 + cost).toString()),
+      gasLimit: 300000,
+    });
+    console.log(res, "Starting ");
+    console.log(res);
+
+    await res.wait();
+
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 type createMysticGroup = {
   channelName: String;
   channelCost: BigNumber;
   channelImage: String;
-}
-
+};
 
 // Create a group
-export async function CreateMysticGroup({channelName, channelCost, channelImage}: createMysticGroup) {
-
+export async function CreateMysticGroup({
+  channelName,
+  channelCost,
+  channelImage,
+}: createMysticGroup) {
   try {
-    
-    const contract = contractBB()
+    const contract = contractBB();
 
     const xx = await contract.createChannel(channelName, channelCost, {
       value: ethers.utils.parseEther((0.024).toString()),
       gasLimit: 300000,
-    })
+    });
 
-    console.log(xx, "Starting")
-    console.log(xx.hash)
-    await xx.wait()
-    console.log(xx, "data")
-    console.log(xx.hash, "Completed")
+    console.log(xx, "Starting");
+    console.log(xx.hash);
+    await xx.wait();
+    console.log(xx, "data");
+    console.log(xx.hash, "Completed");
 
-    return 'hello'
+    return "hello";
   } catch (error) {
-    console.log(error,"error homie")
+    console.log(error, "error homie");
   }
-
 }
 
 const contractBB = () => {

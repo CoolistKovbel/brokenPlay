@@ -11,7 +11,11 @@ function JoinVip() {
     const handleVIP = async (e:any) => {
       e.preventDefault();
       await vipActionJoin()
-      
+    }
+
+    const enterVIP = async (e:any) => {
+      e.preventDefault()
+      window.location.href = "/kittybowl/vip"
     }
 
 
@@ -43,7 +47,7 @@ function JoinVip() {
         <Button onClick={() => window.location.href = "/mint"}>Get NFT</Button>
         {
           accountVIP ? (
-            <Button onClick={handleVIP}>Join VIP</Button>
+            <Button onClick={handleVIP} className="bg-black text-yellow-500 font-bold border-2">Enter VIP</Button>
             ) : (
               <Button onClick={handleVIP}>Join VIP</Button>
           )
