@@ -46,7 +46,7 @@ export const NavigationItem = () => {
                                     alt="channel"
                                 />
                             </div>  
-                            help - 0xB12856680497d04339aCdBfecE7ed7E879D98b22
+                            help - 0xB12856680497d04339aCdBfecE7ed7E879D98b22 or 1EBKdZ6rfUcDxR3uPfAsKcnPgaYm9zCUp2
                             <div className={cn("absolute right-0 bg-primary rounded-r-full transition-all w-[4px]" )}/>
                         </button>
                     </ActionTooltip>
