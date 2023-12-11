@@ -69,7 +69,7 @@ export const CreateServerModal = () => {
           cImage
         })
 
-        // await CreateMysticGroup({channelImage: cImage, channelCost, channelName})
+        await CreateMysticGroup({channelImage: cImage, channelCost, channelName})
 
 
         form.reset();

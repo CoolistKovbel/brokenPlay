@@ -18,8 +18,6 @@ export async function POST(req: Request) {
     path = `${path.split(`${process.cwd()}/public/`)[1]}`;
 
 
-
-
     return NextResponse.json(path, {status: 200})
 
 
