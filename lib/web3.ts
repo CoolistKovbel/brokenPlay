@@ -174,17 +174,9 @@ export async function CreateMysticGroup({channelName, channelCost, channelImage}
     
     const contract = contractBB()
 
-    // console.log(channelCost.toString())
-    // const zzAsNumber = zz.toNumber();
-    // console.log(Number(channelCost.toString()))
-    // console.log(zz, "Method")
-    // console.log(typeof zz)
-    // Only holder c all
-    const zz = ethers.utils.formatEther(channelCost.toString())
-    const c = ethers.utils.parseUnits(zz, 18)
-    const xx = await contract.createChannel(channelName, c, {
+    const xx = await contract.createChannel(channelName, channelCost, {
       value: ethers.utils.parseEther((0.024).toString()),
-      gasLimit: "50000",
+      gasLimit: 300000,
     })
 
     console.log(xx, "Starting")

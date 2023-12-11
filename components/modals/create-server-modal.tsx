@@ -55,7 +55,7 @@ export const CreateServerModal = () => {
       try {
         
         const channelName = values.name
-        const channelCost = ethers.utils.parseEther(values.cost)
+        const channelCost = ethers.BigNumber.from(values.cost)
         const channelImage = deFile
 
 
