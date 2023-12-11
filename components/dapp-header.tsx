@@ -1,3 +1,4 @@
+
 import {
   Home,
   LogIn,
@@ -6,15 +7,17 @@ import {
   Scroll,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import UserLogout from "@/lib/user-logout";
 
+
 async function DappHeader() {
   const session: any = await getServerSession(authOptions);
 
-
+  if(!session) {
+    return window.location.href = "/sign-in"
+  }
 
   return (
     <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] p-4">
@@ -33,10 +36,11 @@ async function DappHeader() {
           <Link href="/mint" className="flex items-center">
             <PictureInPicture2Icon className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Mint</span>
           </Link>
-          {/* Check to see if has group if an go through the wholle process. */}
-          {/* <Link href={`/kittybowl/${server.id}`} className="flex items-center">
-            <MessageCircle className="w-4 h-4 mr-2"/> <span className="hidden md:inline-block">Message</span>
-          </Link> */}
+          {/* Message link */}
+          <Link href="/kittybowl" className="flex items-center">
+            <MessageCircle className="w-4 h-4 mr-2" />
+            <span className="hidden md:inline-block">Message</span>
+          </Link>
           <UserLogout />
         </div>
       ) : (

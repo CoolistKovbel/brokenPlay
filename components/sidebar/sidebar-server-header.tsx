@@ -37,7 +37,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         
         <DropdownMenuTrigger className="focus:outline-none" asChild>
           <button className=" text-yellow-500 w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 border-b-2 hover:bg-slate-700/10 transition">
-            {server.name}
+            <span>server name</span>
             <ChevronDown className="h-5 w-5 ml-auto" />
           </button>
        
@@ -72,12 +72,6 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
             </DropdownMenuItem>
           )}
           {isModerator && <DropdownMenuSeparator />}
-          {/* {isAdmin && (
-            <DropdownMenuItem className="text-rose-600  px-3 py-2 text-sm cursor-pointer">
-              Delete Server
-              <Trash className="h-4 w-4 ml-auto" />
-            </DropdownMenuItem>
-          )} */}
           {!isAdmin && (
             <DropdownMenuItem className="text-rose-600 px-3 py-2 text-sm cursor-pointer">
               leave Server

@@ -17,20 +17,7 @@ const ServerIdLayout = async ({
 
   const dd = await User();
 
-  const server = await prisma.group.findUnique({
-    where: {
-      id: params.groupId,
-      members: {
-        some: {
-          profileId: dd?.id,
-        },
-      },
-    },
-  });
 
-  if (!server) {
-    return redirect("/");
-  }
 
   return (
     <div className="h-full">

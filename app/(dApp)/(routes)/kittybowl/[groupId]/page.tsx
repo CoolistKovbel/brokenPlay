@@ -24,31 +24,32 @@ const ServerIdPage = async ({
   }
   
 
-  const server = await prisma.group.findUnique({
-    where: {
-      id: params.groupId,
-      members: {
-        some: {
-          profileId: profile.id,
-        }
-      }
-    },
-    include: {
-      channels: {
-        where: {
-          name: "general"
-        },
-        orderBy: {
-          createdAt: "asc"
-        }
-      }
-    }
-  })
+  // const server = await prisma.group.findUnique({
+  //   where: {
+  //     id: params.groupId,
+  //     members: {
+  //       some: {
+  //         profileId: profile.id,
+  //       }
+  //     }
+  //   },
+  //   include: {
+  //     channels: {
+  //       where: {
+  //         name: "general"
+  //       },
+  //       orderBy: {
+  //         createdAt: "asc"
+  //       }
+  //     }
+  //   }
+  // })
 
-  const initialChannel = server?.channels[0];
+  // const initialChannel = server?.channels[0];
 
 
-  return redirect(`/kittybowl/${params.groupId}/channels/${initialChannel?.id}`)
+  // return redirect(`/kittybowl/${params.groupId}/channels/${initialChannel?.id}`)
+  
 }
  
 export default ServerIdPage;
