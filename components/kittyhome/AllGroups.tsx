@@ -1,7 +1,8 @@
 "use client";
-import { getAllChannels, joinGroup } from "@/lib/web3";
+import { getAllChannels, joinGroup, withdrawl } from "@/lib/web3";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import { ethers } from "ethers";
 
 function AllGroups() {
   const [groups, setGroups] = useState([]);
@@ -49,7 +50,7 @@ function AllGroups() {
               >
                 <header className="flex items-center justify-center flex-col gap-1">
                   <h2 className="text-[18px] font-bold">{group.name}</h2>
-                  <p className="text-[10px] font-bold">Price: {group.cost.toString()}</p>
+                  <p className="text-[10px] font-bold">Price: {ethers.utils.formatEther(group.cost.toString())}</p>
                 </header>
                 <Button onClick={(e) => handleGroupJoin(e, group.id.toString(), group.cost.toString())}>Join</Button>
               </div>

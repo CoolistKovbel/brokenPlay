@@ -15,7 +15,13 @@ function JoinVip() {
 
     const enterVIP = async (e:any) => {
       e.preventDefault()
-      window.location.href = "/kittybowl/vip"
+      const res = await vipActionJoin()
+      console.log(res, 'from vip')
+      if(res){
+        window.location.href = "/kittybowl/vip"
+      } else {
+        return null
+      }
     }
 
 
@@ -29,10 +35,6 @@ function JoinVip() {
         setAccountVIP(vip)
       }
       zz()
-
-
-
-
 
     },[])
 
