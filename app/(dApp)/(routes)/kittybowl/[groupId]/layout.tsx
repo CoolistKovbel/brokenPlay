@@ -3,7 +3,6 @@
 import { ServerSidebar } from "@/components/sidebar/sidebar-server";
 import SidebarTool from "@/components/sidebar/sidebar-tool";
 import { User } from "@/lib/current-profile";
-import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 const ServerIdLayout = async ({
@@ -21,7 +20,7 @@ const ServerIdLayout = async ({
 
   return (
     <div className="h-full">
-      <div className="hidden md:flex h-full w-[120px] z-30 flex-col fixed inset-y-0">
+      <div className="hidden md:flex h-full w-[140px] z-30 flex-col fixed pt-[10px]  md:pt-[100px] inset-y-0">
         <SidebarTool />
       </div>
       <div className="hidden md:flex h-full w-96 z-20 flex-col pl-[120px] fixed inset-y-0">

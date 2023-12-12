@@ -17,8 +17,10 @@ export const NavigationItem = () => {
     const params = useParams()
     const router = useRouter()
 
-    const onClick = () => {
-        router.push(`/kittybowl/`)
+    const onClick = (e:any, id:string) => {
+        e.preventDefault()
+        
+        router.push(`/kittybowl/${id}`)
     }
 
       // Finds gorup uisng profile iD
@@ -37,8 +39,8 @@ export const NavigationItem = () => {
             {
                 servers.map((server:any) => (
                     <ActionTooltip key={server.id.toString()} side="right" align="center" label={server.name.toString()}>
-                        <button onClick={onClick} className="group relative flex items-center flex-col">
-                            
+                        <button onClick={(e) => onClick(e, server.id.toString())} className="group relative flex items-center flex-col">
+                            {server.name}
                             <div className={cn("relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden")}>
                                 <Image 
                                     fill
@@ -46,7 +48,6 @@ export const NavigationItem = () => {
                                     alt="channel"
                                 />
                             </div>  
-                            help - 0xB12856680497d04339aCdBfecE7ed7E879D98b22 or 1EBKdZ6rfUcDxR3uPfAsKcnPgaYm9zCUp2 -> 0xb5636394602ED1f8B0c70485FBDd8Ea635b9f55C testnet
                             <div className={cn("absolute right-0 bg-primary rounded-r-full transition-all w-[4px]" )}/>
                         </button>
                     </ActionTooltip>

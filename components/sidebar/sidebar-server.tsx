@@ -11,25 +11,11 @@ import { ServerSearch } from "./sidebar-server-search";
 import { ServerSection } from "./sidebar-server-section";
 import ServerChannel from "./sidebar-server-channels";
 import { ServerMember } from "./sidebar-server-members";
-import { ServerWithMembersWithProfiles } from "@/type";
 
 interface ServerSidebarProps {
   groupId: string;
 }
 
-const iconMap = {
-  [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4" />,
-  [ChannelType.AUDIO]: <Mic className="mr-2 h-4 w-4" />,
-  [ChannelType.VIDEO]: <Video className="mr-2 h-4 w-4" />,
-};
-
-const roleIconMap = {
-  [MemberRole.GUEST]: null,
-  [MemberRole.MODERATOR]: (
-    <ShieldCheck className="h-4 w-4 mr-2 text-indigo-500" />
-  ),
-  [MemberRole.ADMIN]: <Shield className="h-4 w-4 mr-2 text-indigo-500" />,
-};
 
 export const ServerSidebar = async ({ groupId }: ServerSidebarProps) => {
   console.log(groupId, "DE servider is heres");
@@ -77,7 +63,7 @@ export const ServerSidebar = async ({ groupId }: ServerSidebarProps) => {
   // )?.role;
 
   return (
-    <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-0 md:pt-[100px]">
+    <div className="flex flex-col h-full text-primary w-full bg-[#222] pt-0 md:pt-[100px] p-4">
       <ServerHeader />
 
       <ScrollArea className="flex-1 px-3">

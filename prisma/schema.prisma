@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User profile
 model Profile {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   userId   String  @unique
@@ -20,7 +21,6 @@ model Profile {
   eddress  String  @unique
   image    String?
 
-  server   Group[]
   members  Member[]
   channels Channel[]
 
@@ -28,24 +28,7 @@ model Profile {
   updatedAt DateTime @updatedAt
 }
 
-model Group {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  imageUrl   String?
-  inviteCode String  @unique
-
-  members  Member[]
-  channels Channel[]
-
-  profileId String  @db.ObjectId
-  profile   Profile @relation(fields: [profileId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([profileId])
-}
-
+// channel member? if joined will create role or nft holder will allow to mange members
 enum MemberRole {
   ADMIN
   MODERATOR
@@ -54,13 +37,12 @@ enum MemberRole {
 
 model Member {
   id   String     @id @default(auto()) @map("_id") @db.ObjectId
+  groupID String
+
   role MemberRole @default(GUEST)
 
   profileId String  @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id])
-
-  groupID String @db.ObjectId
-  group   Group  @relation(fields: [groupID], references: [id])
 
   message        Message[]
   directMessages DirectMessage[]
@@ -75,22 +57,20 @@ model Member {
   @@index([groupID])
 }
 
+// Channels within the group
 enum ChannelType {
   TEXT
-  AUDIO
-  VIDEO
 }
-
+// Channel within the type allowed to be created if user has nft or i guess if member is moderator within the channel.. server $$
 model Channel {
   id   String      @id @default(auto()) @map("_id") @db.ObjectId
   name String
+  groupID String
   type ChannelType @default(TEXT)
 
   profileId String  @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id])
 
-  groupID String @db.ObjectId
-  group   Group  @relation(fields: [groupID], references: [id])
 
   message Message[]
 
@@ -101,6 +81,7 @@ model Channel {
   @@index([groupID])
 }
 
+// Maybe use by sockets
 model Message {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   content String
@@ -122,6 +103,9 @@ model Message {
   @@index([memberId])
 }
 
+// Maybe edition feature 
+
+// conversation details
 model Conversation {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -137,7 +121,7 @@ model Conversation {
   @@index([memberOneId])
   @@index([memberTwoId])
 }
-
+// Single prive message details
 model DirectMessage {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   content String
