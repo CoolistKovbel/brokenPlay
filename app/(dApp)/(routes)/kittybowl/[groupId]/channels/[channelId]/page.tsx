@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 
 
 import { User } from "@/lib/current-profile";
-import { prisma } from "@/lib/db";
 import { ChatHeader } from "@/components/chat/chat-header";
+import ChatWrapperComponent from "@/components/chat/ChatWrapperComponent";
 
 
 interface ChannelIdPageProps {
@@ -24,33 +24,13 @@ const ChannelIdPage = async ({
     return redirect("/sign-in");
   }
 
-  const channel = await prisma.channel.findUnique({
-    where: {
-      id: params.channelId,
-    },
-  });
-
-  const member = await prisma.member.findFirst({
-    where: {
-      groupID: params.groupId,
-      profileId: profile.id,
-    }
-  });
-
-  if (!channel || !member) {
-    redirect("/");
-  }
+  console.log(`Server components from main id page group${params.groupId} channel ${params.channelId}`)
 
   return ( 
-    <div className="bg-[#313373] flex flex-col h-full pt-[100px]">
-        <ChatHeader
-            name={channel.name}
-            groupId={channel.groupID}
-            type="channel"
-        />
-        <div className="flex-1">
-          Messages
-        </div>
+    <div className="bg-[#313373] flex flex-col h-[100vh] pt-[100px]">
+
+      <ChatWrapperComponent groupID={params.groupId} channelID={params.channelId} />
+        
     </div>
    );
 }

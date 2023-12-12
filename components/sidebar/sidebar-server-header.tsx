@@ -1,6 +1,6 @@
 "use client";
 
-import { ServerWithMembersWithProfiles } from "@/type";
+
 import { MemberRole } from "@prisma/client";
 import {
   DropdownMenu,
@@ -21,7 +21,7 @@ import {
 import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerHeaderProps {
-  server: ServerWithMembersWithProfiles;
+  server: any;
   role?: MemberRole;
 }
 
@@ -37,7 +37,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         
         <DropdownMenuTrigger className="focus:outline-none" asChild>
           <button className=" text-yellow-500 w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 border-b-2 hover:bg-slate-700/10 transition">
-            <span>server name</span>
+            <span>{server?.name?.toString()}</span>
             <ChevronDown className="h-5 w-5 ml-auto" />
           </button>
        
