@@ -224,6 +224,8 @@ export async function CreateMysticGroup({
 }: createMysticGroup) {
   try {
     const contract = contractBB();
+    
+    
 
     const xx = await contract.createChannel(channelName, channelCost, {
       value: ethers.utils.parseEther((0.024).toString()),
@@ -239,6 +241,7 @@ export async function CreateMysticGroup({
     return "hello";
   } catch (error) {
     console.log(error, "error homie");
+    toast("💀 DumbLip make sure you have a nft before you create a group...")
   }
 }
 

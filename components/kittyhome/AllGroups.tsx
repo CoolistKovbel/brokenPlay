@@ -30,9 +30,9 @@ function AllGroups() {
   }, []);
 
   return (
-    <div className="bg-[#222] w-full text-center p-5">
-      <h2 className="text-4xl font-bold mb-5">No nft no problem</h2>
-      <p className="mb-2">
+    <div className="bg-[#fEFEFE] w-full text-center p-5 h-[500]">
+      <h2 className="text-4xl font-bold mb-5 uppercase">No nft no problem</h2>
+      <p className="mb-2 font-bold">
         You will still be able to join any of the top {groups.length} cat group
         for a price.
       </p>
@@ -45,11 +45,11 @@ function AllGroups() {
             {groups.map((group: any) => (
               <div
                 key={group.id.toString()}
-                className="w-[150px] h-[150px] bg-white flex items-center justify-center flex-col gap-2"
+                className="w-[150px] h-[150px] bg-yellow-300 flex items-center justify-center flex-col gap-2 rounded-lg p-2 text-black capitalize"
               >
-                <header className="flex items-center justify-center gap-1">
-                  <h2 className="text-2xl font-bold">{group.name}</h2>
-                  <p>Price: {group.cost.toString()}</p>
+                <header className="flex items-center justify-center flex-col gap-1">
+                  <h2 className="text-[18px] font-bold">{group.name}</h2>
+                  <p className="text-[10px] font-bold">Price: {group.cost.toString()}</p>
                 </header>
                 <Button onClick={(e) => handleGroupJoin(e, group.id.toString(), group.cost.toString())}>Join</Button>
               </div>

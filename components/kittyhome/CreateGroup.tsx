@@ -16,7 +16,7 @@ function CreateGroup() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 h-[400px]">
       <h2 className="text-4xl font-bold mb-2">
         If you have an nft create a group
       </h2>

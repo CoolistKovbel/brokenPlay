@@ -38,7 +38,7 @@ function JoinVip() {
 
 
   return (
-    <div className="w-full text-right p-4">
+    <div className="w-full text-right p-4 h-[200px]">
     <h2 className="text-3xl font-bold mb-2">You may also join our exclusive nft group chat for those who have an nft</h2>
     <p className="text-md">
         You <strong>must</strong> own a nft to join the chat.... it will be free
