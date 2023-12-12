@@ -11,7 +11,7 @@ async function MintingFeature() {
 
 
   return (
-    <section id="#mint" className="bg-[#333] p-2 w-full h-full flex items-center justify-center">
+    <section id="#mint" className="bg-[#444] p-2 w-full h-[100vh] flex items-center justify-center">
 
       <div className="max-w-7xl m-auto flex items-center justify-between flex-col md:flex-row gap-5 ">
         

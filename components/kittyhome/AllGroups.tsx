@@ -31,14 +31,14 @@ function AllGroups() {
   }, []);
 
   return (
-    <div className="bg-[#fEFEFE] w-full text-center p-5 h-[500]">
-      <h2 className="text-4xl font-bold mb-5 uppercase">No nft no problem</h2>
-      <p className="mb-2 font-bold">
+    <div className="bg-[#222] border-2 w-[90%] m-auto text-center p-5 h-[500]">
+      <h2 className="text-4xl md:text-8xl font-bold mb-5 uppercase mt-5">No nft no problem</h2>
+      <p className="mb-2 font-bold text-[20px]">
         You will still be able to join any of the top {groups.length} cat group
         for a price.
       </p>
       {/* Groups */}
-      <div className="bg-[yellow] w-full h-[400px]">
+      <div className="bg-[yellow] w-full h-[400px] mt-20">
         {/* Loads array of NFTS */}
 
         {groups ? (
