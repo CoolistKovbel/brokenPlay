@@ -3,6 +3,8 @@
 require("dotenv").config();
 
 import { BigNumber, ethers } from "ethers";
+import * as zksync from "zksync-ethers";
+
 import ABI from "./abi.json";
 import { toast } from "react-toastify";
 export const contractAddress = "0xAF9bf209e95A35406d6ccc9597c6285B2d9238E4";
@@ -254,11 +256,20 @@ export const withdrawl = async () => {
   }
 }
 
-// check if address owns
 
+// Contract intense v1
 const contractBB = () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractABI, signer);
   return contract;
 };
+
+
+export const TestMe  = async () => {
+    const provider = zksync.Provider.getDefaultProvider(zksync.types.Network.Sepolia);
+    console.log(provider, "old")
+    const newProvider = new zksync.Provider("")
+    console.log(newProvider)
+    console.log(newProvider.getSigner())
+}
