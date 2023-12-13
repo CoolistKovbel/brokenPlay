@@ -9,6 +9,8 @@ function LandingHero() {
   
   const { data: session } = useSession()
 
+  
+
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
