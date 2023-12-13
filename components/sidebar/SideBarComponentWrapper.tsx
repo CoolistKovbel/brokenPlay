@@ -17,7 +17,7 @@ interface SideBarComponentWrapperProps {
 function SideBarComponentWrapper({groupId}:SideBarComponentWrapperProps) {
 
 
-    const [singleGroup, SetSingleGroup] = useState([])
+    const [singleGroup, SetSingleGroup] = useState<any>([])
 
 
 
@@ -44,7 +44,7 @@ function SideBarComponentWrapper({groupId}:SideBarComponentWrapperProps) {
 
         <Separator className="bg-zinc-200 rounded-md my-2" />
         <div className="mb-2">
-          <ServerSection />
+          <ServerSection label="Lounge 🌋"  server={singleGroup}/>
         </div>
         {/* Channel */}
         <ServerChannel />

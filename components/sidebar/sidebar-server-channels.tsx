@@ -11,7 +11,7 @@ import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerChannelProps {
   channel: Channel;
-  server: Group;
+  server: any;
   role?: MemberRole;
 }
 
@@ -21,6 +21,8 @@ function ServerChannel({ channel, server, role }: ServerChannelProps) {
   const router = useRouter();
 
   const { onOpen } = useModal();
+
+
 
 
   console.log(params, "from server side bar")
@@ -42,7 +44,7 @@ function ServerChannel({ channel, server, role }: ServerChannelProps) {
           "line-clamp-1 font-semibold text-sm text-zinc-500 group-hover:text-zinc-600  transition",
         )}
       >
-        channel name
+        General
       </p>
 
       <div className="ml-auto flex items-center gap-x-2">

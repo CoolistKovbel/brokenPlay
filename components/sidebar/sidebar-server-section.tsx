@@ -26,8 +26,8 @@ export const ServerSection = ({
   return (
     <div className="flex items-center justify-between py-2">
       <p className="text-xs uppercase font-semibold text-[pink]">{label}</p>
-      {role !== MemberRole.GUEST && sectionType === "channels" && (
-        <ActionTooltip label="create channel" side="top">
+
+      <ActionTooltip label="create channel" side="top">
           <button
             onClick={() => onOpen("createChannel")}
             className="text-zinc-500 hover:text-zinc-600 transition"
@@ -35,8 +35,8 @@ export const ServerSection = ({
             <Plus className="h-4 w-4" />
           </button>
         </ActionTooltip>
-      )}
-        {role === MemberRole.ADMIN && sectionType === "members" && (
+
+        {/* {role === MemberRole.ADMIN && sectionType === "members" && (
         <ActionTooltip label="Manage Members" side="top">
             <button
                 onClick={() => onOpen("members", { server })}
@@ -45,7 +45,7 @@ export const ServerSection = ({
                 <Settings className="h-4 w-4" />
             </button>
             </ActionTooltip>
-        )}
+        )} */}
     </div>
   );
 };
