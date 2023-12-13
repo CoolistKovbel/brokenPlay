@@ -37,7 +37,7 @@ export const NavigationItem = () => {
         <div className="mb-4 text-center flex items-center justify-center flex-col gap-4">
 
             {
-                servers.map((server:any) => (
+                servers && servers.map((server:any) => (
                     <ActionTooltip key={server.id.toString()} side="right" align="center" label={server.name.toString()}>
                         <button onClick={(e) => onClick(e, server.id.toString())} className="group relative flex items-center flex-col">
                             {server.name}
