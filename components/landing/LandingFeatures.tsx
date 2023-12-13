@@ -50,14 +50,12 @@ function LandingFeatures() {
         {/* Feature 3 */}
         <div className="flex items-center justify-center p-6  w-full h-[300px] p-2 bg-[#333] flex-col">
           <h3 className="text-4xl font-bold mb-2">
-            How did you hear about us?
+            You have any friends?... want to be?
           </h3>
           <p className="mb-2 text-center">
-            Share your story or how you stumbled upon here and what do you
-            expect. Remeber this will require a small fee and will exist on the
-            blockchain forever. Be wise.
+            Join and edit your profile and add and talk to some people who could end up being your friend. This will
           </p>
-          <Button>share now</Button>
+          <Button>see more</Button>
         </div>
       </div>
     </div>
