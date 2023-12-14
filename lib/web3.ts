@@ -268,6 +268,5 @@ const contractBB = () => {
 
 export const TestMe  = async () => {
     const provider = zksync.Provider.getDefaultProvider(zksync.types.Network.Sepolia);
-    console.log(provider, "old")
-    const newProvider = new zksync.Provider("")
+    console.log(provider)
 }
