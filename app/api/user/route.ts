@@ -28,11 +28,11 @@ export async function POST(req: Request) {
     // // Check if there are an existing user
 
     const existingUserbyEmail = await prisma.profile.findUnique({
-      where: { email },
+      where: { email: email },
     });
 
     const existingUserbyUsername = await prisma.profile.findUnique({
-      where: { username },
+      where: { username: username },
     });
 
     const existingEdress = await prisma.profile.findUnique({
