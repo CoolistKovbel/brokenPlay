@@ -1,4 +1,5 @@
 // Grabs the window location orgin
+"use client"
 
 import { useEffect, useState } from "react"
 
