@@ -17,7 +17,6 @@ function KittyBowl() {
         <div className="bg-red-500 flex-1"></div>
 
      
-
           {/* Mention the user name */}
           <div className="w-full p-4 text-center h-[800px] bg-pink-300">
             <div className="w-[1200px] h-full flex items-center justify-center flex-col m-auto gap-3">
@@ -34,18 +33,18 @@ function KittyBowl() {
 
           {/* Launch a create group model and push to group page */}
           <Separator className="bg-orange-200 rounded-md my-2" />
+
           <CreateGroup />
 
           <Separator className="bg-orange-200 rounded-md my-2" />
           
           {/* join vip group and move onto push to group page */}
           <JoinVip />
+
           <Separator className="bg-orange-200 rounded-md my-2" />
-        
 
-        {/* list all the group availble to join - allow user to join - and push to group page */}
-        <AllGroups />
-
+          {/* list all the group availble to join - allow user to join - and push to group page */}
+          <AllGroups />
 
     </div>
   );

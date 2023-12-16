@@ -6,7 +6,9 @@ async function dAppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full h-full">
       <DappHeader />
-      <main className="w-full min-h-[100vh]">{children}</main>
+      <main className="w-full min-h-[100vh]">
+        {children}
+      </main>
     </div>
   );
 }

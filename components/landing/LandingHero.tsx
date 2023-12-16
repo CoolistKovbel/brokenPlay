@@ -1,7 +1,6 @@
 "use client"
 
 import MatrixRain from "@/components/MatrixRain";
-import { TestMe } from "@/lib/web3";
 import { useSession } from 'next-auth/react'
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,15 +9,12 @@ function LandingHero() {
   
   const { data: session } = useSession()
 
-  
-
-
   return (
     <div className="w-full h-full relative flex items-center justify-center">
     <MatrixRain />
 
     <div className="max-w-4xl flex items-center justify-center p-4 flex-row absolute z-40">
-      <button onClick={() => TestMe()}>teset me</button>
+
       <div className='flex items-center justify-between w-[800px] h-full align-center flex-col md:flex-row'>
 
         <div className="w-[400px] mb-[20px] md:mb-0 text-center bg-gray-600 p-4 rounded-lg">
@@ -41,8 +37,6 @@ function LandingHero() {
             )
           }
 
-
-          
         </div>
 
         <div className="relative w-[300px] h-[300px]">

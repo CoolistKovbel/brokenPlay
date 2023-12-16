@@ -15,11 +15,6 @@ function AllGroups() {
     console.log(groupy, "handled");
   };
 
-  console.log(
-    groups.map(
-      (group: any) => `there is ${group.name} and theyre id ${group.id}`
-    )
-  );
 
   useEffect(() => {
     const xx = async () => {

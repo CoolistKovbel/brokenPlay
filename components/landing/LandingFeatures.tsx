@@ -9,10 +9,23 @@ function LandingFeatures() {
   const router = useRouter()
 
   return (
-    <div className="h-full bg-[#222]">
+    <div className="h-full bg-[#111]">
+
+      
+      {/* 
+      
+        feature obejct data
+
+      */}
+
+
       <div className="max-w-5xl m-auto flex items-center justify-center gap-5 h-full flex-col">
-        {/* Feature 1 */}
-        <div className="flex items-center p-6 w-full h-[300px] p-2 bg-[#333]">
+        {/*
+        
+            Feature object 1
+        
+        */}
+        <div className="flex items-center justify-center p-6 w-full h-[300px] p-2 bg-[#222] border-2 rounded-xl">
           <div className="relative w-[200px] h-[200px]">
             <Image src="/logo-b.png" alt="feature 1" fill />
           </div>
@@ -24,12 +37,16 @@ function LandingFeatures() {
               access exclusives to future projects. You will also be able to
               join members only chat.
             </p>
-            <Button onClick={() => router.push('/mint')}>Mint Now</Button>
+            <Button onClick={() => router.push('/mint')} className="bg-yellow-500 text-black font-bold hover:text-white">Mint Now</Button>
           </div>
         </div>
 
-        {/* Feature 2 */}
-        <div className="flex items-center p-6  w-full h-[300px] p-2 bg-[#333] flex-row-reverse">
+        {/*
+
+          Feature object 2
+        
+        */}
+        <div className="flex items-center p-6  w-full h-[300px] p-2 bg-[#222] border-2 rounded-xl flex-row-reverse">
           <div className="relative w-[200px] h-[200px]">
             <Image src="/logo-b.png" alt="feature 1" fill />
           </div>
@@ -43,21 +60,27 @@ function LandingFeatures() {
               from other people and lounge members sharing their thoughts,
               promos, or certain events. Be sure to create an account first.
             </p>
-            <Button onClick={() => router.push('/sign-in')}>View Now</Button>
+            <Button onClick={() => router.push('/sign-in') } className="bg-yellow-500 text-black font-bold hover:text-white">View Now</Button>
           </div>
         </div>
 
-        {/* Feature 3 */}
-        <div className="flex items-center justify-center p-6  w-full h-[300px] p-2 bg-[#333] flex-col">
+        {/* 
+        
+
+        feature object 3
+
+        */}
+        <div className="flex items-center justify-center p-6  w-full h-[300px] p-2 bg-[#222] border-2 rounded-xl flex-col">
           <h3 className="text-4xl font-bold mb-2">
             You have any friends?... want to be?
           </h3>
           <p className="mb-2 text-center">
             Join and edit your profile and add and talk to some people who could end up being your friend. This will
           </p>
-          <Button>see more</Button>
+          <Button className="bg-yellow-500 text-black font-bold hover:text-white">see more</Button>
         </div>
       </div>
+
     </div>
   );
 }

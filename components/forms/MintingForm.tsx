@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 
 import { mintNFT } from "@/lib/web3";
-import { toast } from "react-toastify";
 
 
 function MintingForm() {
@@ -21,10 +20,10 @@ function MintingForm() {
 
   };
   return (
-      <form className="mt-3 flex items-center justify-between" onSubmit={onSubmitBro}>
-        <input type="number" className="text-black w-[30%] p-4"/>
+      <form className="mt-3 relative" onSubmit={onSubmitBro}>
+        <input type="number" className="text-black w-full p-4 "/>
 
-        <Button className="mt-3" type="submit">Mint now</Button>
+        <Button className="h-full absolute right-0 bottom-0" type="submit">Mint now</Button>
       </form>
   );
 }
