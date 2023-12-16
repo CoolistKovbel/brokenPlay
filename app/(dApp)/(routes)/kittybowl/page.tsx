@@ -16,9 +16,8 @@ function KittyBowl() {
     <div className="pt-[100px] bg-black text-green-500 w-full h-full flex items-center justify-center flex-col gap-10 ">
         <div className="bg-red-500 flex-1"></div>
 
-     
           {/* Mention the user name */}
-          <div className="w-full p-4 text-center h-[800px] bg-pink-300">
+          <div className="w-full p-4 text-center h-[800px] bg-gradient-to-r from-purple-400 to-pink-500">
             <div className="w-[1200px] h-full flex items-center justify-center flex-col m-auto gap-3">
               <div className="bg-black text-yellow-300 p-4">
                 <h2 className="text-4xl md:text-6xl font-bold mb-4">Welcome to our KittyBowl</h2>

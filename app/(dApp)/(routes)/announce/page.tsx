@@ -15,14 +15,17 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
-import styles from "../../../styles.module.css"
 import * as z from "zod";
+import { getAllChannels, getEthereumAccount, grabAllAnnouncements, sendMessage } from "@/lib/web3";
+
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const FormSchema = z.object({
   message: z.string().min(1, "edd required"),
 });
+
+
 
 function Announce() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -133,11 +136,38 @@ function Announce() {
 
   const onMessage = async (values: z.infer<typeof FormSchema>) => {
     console.log(values);
+
+    try {
+
+
+     await sendMessage(values.message)
+
+    let x = await getAllChannels()
+    console.log(x)
+
+      
+    } catch (error) {
+      console.log(error, "message sumbit failed")
+    }
+
+
   };
 
   useEffect(() => {
     const Quill = require("quill");
+    
   }, []);
+
+  useEffect(() => {
+    const x = async () => {
+      
+     const yy = await grabAllAnnouncements("0x610aC7169092c2120f20B3b04d8452fa5a90c774")
+      console.log(yy)
+      return yy
+    }
+
+    x()
+  },[])
 
   return (
     <div className="pt-[100px] bg-[#222] w-full h-[100%] text-emerald-500 flex items-center justify-center flex-col gap-4">
@@ -156,6 +186,7 @@ function Announce() {
       {/* ====================================================== */}
 
       {/* Message Screen */}
+ 
       <div className="border-4 p-10 w-[100%] h-[720px] overflow-auto flex item-center justify-center flex-col gap-8 relative bg-[#888]" > 
         
         {/* <Image id={styles.scan} src="/scanlines.png" fill />

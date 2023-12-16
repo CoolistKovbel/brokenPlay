@@ -74,13 +74,29 @@ export async function getUserNFTProfileImage() {
   }
 }
 
-export async function grabAllAnnouncements() {
+export async function grabAllAnnouncements(account:any) {
   try {
     const contract = contractBB();
 
     const x = await contract.getAllMessages();
 
-    return x;
+    let tokenId = await contract.ownerToToken(account);
+
+    let randomTokenMetaData = await contract.tokenURI(tokenId);
+
+    if (randomTokenMetaData.startsWith("ipfs://")) {
+      randomTokenMetaData = `https://scarlet-husky-loon-439.mypinata.cloud/ipfs/${
+        randomTokenMetaData.split("ipfs://")[1]
+      }`;
+    }
+
+    const tokenMetaday = await fetch(randomTokenMetaData).then((res) =>
+      res.json()
+    );
+
+    return [x, tokenMetaday.image]
+  
+
   } catch (error) {
     console.log(error);
   }
