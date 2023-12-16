@@ -6,7 +6,6 @@ import LandingFeatures from "@/components/landing/LandingFeatures";
 import LandingHero from "@/components/landing/LandingHero";
 
 
-
 export default async function Home() {
 
 

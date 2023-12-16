@@ -82,23 +82,14 @@ export async function grabAllAnnouncements(account:any) {
 
     let tokenId = await contract.ownerToToken(account);
 
-    let randomTokenMetaData = await contract.tokenURI(tokenId);
+    console.log(tokenId)
 
-    if (randomTokenMetaData.startsWith("ipfs://")) {
-      randomTokenMetaData = `https://scarlet-husky-loon-439.mypinata.cloud/ipfs/${
-        randomTokenMetaData.split("ipfs://")[1]
-      }`;
-    }
-
-    const tokenMetaday = await fetch(randomTokenMetaData).then((res) =>
-      res.json()
-    );
-
-    return [x, tokenMetaday.image]
+    return x
   
 
   } catch (error) {
     console.log(error);
+    return "error in web3"
   }
 }
 
