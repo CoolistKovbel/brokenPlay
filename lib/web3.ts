@@ -7,7 +7,7 @@ import * as zksync from "zksync-ethers";
 
 import ABI from "./abi.json";
 import { toast } from "react-toastify";
-export const contractAddress = "0xAF9bf209e95A35406d6ccc9597c6285B2d9238E4";
+export const contractAddress = "0xdD6e93c82a2608CD2020231498798fc4620357fe";
 
 export const contractABI = ABI.abi;
 

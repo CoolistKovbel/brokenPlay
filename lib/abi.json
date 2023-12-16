@@ -3,68 +3,6 @@
 		{
 			"inputs": [
 				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "approve",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "string",
-					"name": "newURI",
-					"type": "string"
-				}
-			],
-			"name": "changeBaseURI",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "string",
-					"name": "channelName",
-					"type": "string"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_cost",
-					"type": "uint256"
-				}
-			],
-			"name": "createChannel",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "string",
-					"name": "_message",
-					"type": "string"
-				}
-			],
-			"name": "createMessage",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
 					"internalType": "string",
 					"name": "_name",
 					"type": "string"
@@ -232,108 +170,6 @@
 			"type": "event"
 		},
 		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "channelId",
-					"type": "uint256"
-				}
-			],
-			"name": "joinChannel",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "joinSpecialChannel",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_amount",
-					"type": "uint256"
-				}
-			],
-			"name": "mint",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "from",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "safeTransferFrom",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "from",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				},
-				{
-					"internalType": "bytes",
-					"name": "data",
-					"type": "bytes"
-				}
-			],
-			"name": "safeTransferFrom",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "operator",
-					"type": "address"
-				},
-				{
-					"internalType": "bool",
-					"name": "approved",
-					"type": "bool"
-				}
-			],
-			"name": "setApprovalForAll",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
 			"anonymous": false,
 			"inputs": [
 				{
@@ -359,12 +195,71 @@
 			"type": "event"
 		},
 		{
+			"inputs": [],
+			"name": "MAX_PER_WALLET",
+			"outputs": [
+				{
+					"internalType": "uint32",
+					"name": "",
+					"type": "uint32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "MAX_SUPPLY",
+			"outputs": [
+				{
+					"internalType": "uint32",
+					"name": "",
+					"type": "uint32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "from",
+					"name": "",
 					"type": "address"
-				},
+				}
+			],
+			"name": "UserOwns",
+			"outputs": [
+				{
+					"internalType": "uint32",
+					"name": "",
+					"type": "uint32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "VIPLounge",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
 				{
 					"internalType": "address",
 					"name": "to",
@@ -376,14 +271,7 @@
 					"type": "uint256"
 				}
 			],
-			"name": "transferFrom",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "withdraw",
+			"name": "approve",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
@@ -410,6 +298,19 @@
 		{
 			"inputs": [
 				{
+					"internalType": "string",
+					"name": "newURI",
+					"type": "string"
+				}
+			],
+			"name": "changeBaseURI",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
 					"internalType": "uint256",
 					"name": "",
 					"type": "uint256"
@@ -418,9 +319,9 @@
 			"name": "channels",
 			"outputs": [
 				{
-					"internalType": "uint256",
+					"internalType": "uint32",
 					"name": "id",
-					"type": "uint256"
+					"type": "uint32"
 				},
 				{
 					"internalType": "string",
@@ -437,15 +338,46 @@
 			"type": "function"
 		},
 		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "channelName",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_cost",
+					"type": "uint256"
+				}
+			],
+			"name": "createChannel",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_message",
+					"type": "string"
+				}
+			],
+			"name": "createMessage",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
 			"inputs": [],
 			"name": "getAllChannels",
 			"outputs": [
 				{
 					"components": [
 						{
-							"internalType": "uint256",
+							"internalType": "uint32",
 							"name": "id",
-							"type": "uint256"
+							"type": "uint32"
 						},
 						{
 							"internalType": "string",
@@ -518,9 +450,9 @@
 		{
 			"inputs": [
 				{
-					"internalType": "uint256",
+					"internalType": "uint32",
 					"name": "",
-					"type": "uint256"
+					"type": "uint32"
 				},
 				{
 					"internalType": "address",
@@ -588,29 +520,23 @@
 			"type": "function"
 		},
 		{
-			"inputs": [],
-			"name": "MAX_PER_WALLET",
-			"outputs": [
+			"inputs": [
 				{
 					"internalType": "uint32",
-					"name": "",
+					"name": "channelId",
 					"type": "uint32"
 				}
 			],
-			"stateMutability": "view",
+			"name": "joinChannel",
+			"outputs": [],
+			"stateMutability": "payable",
 			"type": "function"
 		},
 		{
 			"inputs": [],
-			"name": "MAX_SUPPLY",
-			"outputs": [
-				{
-					"internalType": "uint32",
-					"name": "",
-					"type": "uint32"
-				}
-			],
-			"stateMutability": "view",
+			"name": "joinSpecialChannel",
+			"outputs": [],
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -640,6 +566,19 @@
 				}
 			],
 			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "mint",
+			"outputs": [],
+			"stateMutability": "payable",
 			"type": "function"
 		},
 		{
@@ -691,6 +630,75 @@
 				}
 			],
 			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenId",
+					"type": "uint256"
+				}
+			],
+			"name": "safeTransferFrom",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "safeTransferFrom",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "operator",
+					"type": "address"
+				},
+				{
+					"internalType": "bool",
+					"name": "approved",
+					"type": "bool"
+				}
+			],
+			"name": "setApprovalForAll",
+			"outputs": [],
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -762,9 +770,9 @@
 			"name": "totalChannels",
 			"outputs": [
 				{
-					"internalType": "uint256",
+					"internalType": "uint32",
 					"name": "",
-					"type": "uint256"
+					"type": "uint32"
 				}
 			],
 			"stateMutability": "view",
@@ -784,14 +792,8 @@
 			"type": "function"
 		},
 		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"name": "UserOwns",
+			"inputs": [],
+			"name": "totalSupply",
 			"outputs": [
 				{
 					"internalType": "uint32",
@@ -806,19 +808,30 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "",
+					"name": "from",
 					"type": "address"
-				}
-			],
-			"name": "VIPLounge",
-			"outputs": [
+				},
 				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenId",
+					"type": "uint256"
 				}
 			],
-			"stateMutability": "view",
+			"name": "transferFrom",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "withdraw",
+			"outputs": [],
+			"stateMutability": "nonpayable",
 			"type": "function"
 		}
 	]
