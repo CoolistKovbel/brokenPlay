@@ -10,7 +10,7 @@ export default async function Home() {
 
 
   return (
-    <main className="bg-black w-[100%] h-[100%] text-white">
+    <main className="bg-black w-[100%] m-h-[100vh] text-white">
       <LandingHero />
       <LandingFeatures />
     </main>

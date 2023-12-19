@@ -19,20 +19,20 @@ function LandingFeatures() {
       */}
 
 
-      <div className="max-w-5xl m-auto flex items-center justify-center gap-5 h-full flex-col">
+      <div className="max-w-5xl m-auto flex items-center justify-center gap-5 h-full flex-col p-4">
         {/*
         
             Feature object 1
         
         */}
-        <div className="flex items-center justify-center p-6 w-full h-[300px] p-2 bg-[#222] border-2 rounded-xl">
+        <div className="flex items-center justify-center p-6 w-full  p-2 bg-[#222] border-2 rounded-xl flex-col md:flex-row">
           <div className="relative w-[200px] h-[200px]">
             <Image src="/logo-b.png" alt="feature 1" fill />
           </div>
 
           <div className="w-[80%]">
-            <h3 className="text-4xl font-bold mb-2">Mint and Recieve</h3>
-            <p className="mb-2">
+            <h3 className="text-xl md:text-4xl font-bold mb-2">Mint and Recieve</h3>
+            <p className="mb-2 text-sm">
               With everyone who mints this special NFT you will be givin early
               access exclusives to future projects. You will also be able to
               join members only chat.
@@ -46,16 +46,16 @@ function LandingFeatures() {
           Feature object 2
         
         */}
-        <div className="flex items-center p-6  w-full h-[300px] p-2 bg-[#222] border-2 rounded-xl flex-row-reverse">
+        <div className="flex items-center p-6  w-full p-2 bg-[#222] border-2 rounded-xl flex-row-reverse flex-col md:flex-row">
           <div className="relative w-[200px] h-[200px]">
             <Image src="/logo-b.png" alt="feature 1" fill />
           </div>
 
           <div className="w-[80%]">
-            <h3 className="text-4xl font-bold mb-2">
+            <h3 className="text-xl md:text-4xl font-bold mb-2">
               Announcements and Groups
             </h3>
-            <p className="mb-2">
+            <p className="mb-2 text-sm">
               Be able to access our lounge and see all the recent announcements
               from other people and lounge members sharing their thoughts,
               promos, or certain events. Be sure to create an account first.
@@ -71,7 +71,7 @@ function LandingFeatures() {
 
         */}
         <div className="flex items-center justify-center p-6  w-full h-[300px] p-2 bg-[#222] border-2 rounded-xl flex-col">
-          <h3 className="text-4xl font-bold mb-2">
+          <h3 className="text-4xl font-bold mb-2 text-center">
             You have any friends?... want to be?
           </h3>
           <p className="mb-2 text-center">

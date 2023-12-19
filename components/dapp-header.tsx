@@ -1,9 +1,11 @@
 import {
   Home,
   LogIn,
+  MenuSquare,
   MessageCircle,
   PictureInPicture2Icon,
   Scroll,
+  User2,
 } from "lucide-react";
 import Link from "next/link";
 import { authOptions } from "@/lib/auth";
@@ -38,13 +40,13 @@ async function DappHeader() {
   console.log(account, ethereum, "int he dap hader");
 
   return (
-    <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] p-4">
+    <div className="flex items-center justify-between w-full h-[100px] bg-[#222] z-50 fixed text-[gold] ">
       {/* 
 
         Site logo
       
       */}
-      <h2 className="font-bold">
+      <h2 className="font-bold p-4">
         <Link href="/" className=" text-[1.2rem] md:text-4xl">
           MysticMurkoXD
         </Link>
@@ -59,7 +61,7 @@ async function DappHeader() {
         // Header is there is user
         <div className="flex items-center justify-between  w-[180px] md:w-[400px] text-[10px] md:text-sm">
           <Link href="/" className="flex items-center">
-            <Home className="w-4 h-4 mr-2" />{" "}
+            <Home className="w-4 h-4 mr-2" />
             <span className="hidden md:inline-block">Home</span>
           </Link>
 
@@ -72,7 +74,7 @@ async function DappHeader() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline">Messages</Button>
+              <Button variant="outline"><MenuSquare /></Button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="w-56">
@@ -96,7 +98,7 @@ async function DappHeader() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline">Account</Button>
+              <Button variant="outline"><User2 /></Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
               <DropdownMenuGroup>
@@ -110,11 +112,8 @@ async function DappHeader() {
                   <UserLogout />
                 </DropdownMenuItem>
               </DropdownMenuGroup>
-
             </DropdownMenuContent>
           </DropdownMenu>
-
-          
         </div>
       ) : (
         <div className="flex items-center justify-between w-[180px]">

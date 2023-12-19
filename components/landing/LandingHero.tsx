@@ -17,7 +17,7 @@ function LandingHero() {
 
       <div className='flex items-center justify-between w-[800px] h-full align-center flex-col md:flex-row'>
 
-        <div className="w-[400px] mb-[20px] md:mb-0 text-center bg-gray-600 p-4 rounded-lg">
+        <div className="w-[400px] mb-[20px] md:mb-0 text-center bg-[#9A7AA0] p-4 rounded-lg">
 
           <h2 className="text-5xl font-bold mb-2">Ultimate NFT Collection</h2>
           <p className="text-md mb-4">
